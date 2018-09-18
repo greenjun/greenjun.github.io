@@ -3,7 +3,7 @@ main:
   - title: "Tags"
     url: /tags-archive/
   - title: "Categories"
-    url: /category-archive/
+    url: /categories/
   
   
   #- title: "About"
