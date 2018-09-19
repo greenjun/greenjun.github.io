@@ -6,9 +6,9 @@ tags:
   - data mining
   - EDA
 ---
-최대한 수식을 배제하고 전체적인 흐름을 익히게 했습니다
-
-따라서 궁금하신 점은 메일이나 검색을 활용해주세요
+* 내용은 지속적으로 업데이트 될것입니다.
+* 최대한 수식을 배제하고 전체적인 흐름을 익히게 했습니다.
+* 따라서 궁금하신 점은 메일이나 검색을 활용해주세요.
 
 이번 글은 데이터 마이닝의 시작 단계에서 배우는 **EDA(Exploratory Data Analysis)** 에 관한 글입니다.
 
@@ -172,16 +172,30 @@ the non-graphical methods are quantitative and objective, but they do not give a
 ### Correlation for categorical data
 * categorical variables를 위한 다양한 방법이 존재
 
-###
+### Univariate statistics by category
+* 목적변수가 quantitative이고 설명변수가 categorical 변수일때, categorical 변수의 level에 따라 목적변수를 비교하고자 할때 사용합니다.
+* Comparing the **means** is an informal version of ANOVA. 
+* Comparing **medians** is a robust informal version of one-way ANOVA. 
+* Comparing measures of **spread** is a good informal test of the assumption of equal variances needed for valid
+analysis of variance.
+
+### Correlation and covariance
+* 두개의 변수가 quantitative일때
+* covariance는 2개의 확률변수의 상관정도를 나타내는 값이다. 
+* correlation은 서로간의 데이터가 독립이면 0이다. (역은 참이 아니다) 
 
 
 
 
+## Multivariate graphical EDA
 
+### Univariate graphs by category
+* 목적변수가 quantitative이고 설명변수가 categorical 변수일때, categorical 변수의 level에 따라 각각 quantitative 변수의 값을 표시(side-by-side boxplots or distribution by category levels)
 
-
-### Cross-tabulation
-
+### Scatterplots
+* 두개의 변수가 quantitative일때
+* outcome variable을 사용할때는 y축에 놓아야한다.
+* categorical 변수를 산점도에 표시 가능하다.(모양, 색, 크기 등등)
 
 
 
@@ -192,11 +206,12 @@ the non-graphical methods are quantitative and objective, but they do not give a
 
 
 ### Reference 
-* 
-* 
+* CMU Statistics
+* https://www.youtube.com/user/jbstatistics
 
 
 
 
 > 용어정리 sampling distribution, median(robustness), 
+
 
