@@ -1,9 +1,10 @@
 ---
-title:  ""
+title:  "데이터 마이닝 - EDA"
 categories:
   - data mining
 tags:
   - data mining
+  - EDA
 ---
 
 
