@@ -10,7 +10,7 @@ header:
   actions:
     - label: "Facebook"
       url: "https://facebook.com/YunJunhyuck12"
-excerpt: "You have to have confidence in your ability, and then tough enough to follow through"
+excerpt: "Be the best at what I do"
 intro: 
   - excerpt: 'Nullam suscipit et nam, tellus velit pellentesque at malesuada, enim eaque. Quis nulla, netus tempor in diam gravida tincidunt, *proin faucibus* voluptate felis id sollicitudin. Centered with'
 feature_row:
