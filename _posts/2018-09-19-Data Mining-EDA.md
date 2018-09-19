@@ -63,12 +63,33 @@ EDA라는게 왜 나왔냐면, 데이터베이스나 엑셀 등등에 저장된 
 
 ### Univariable, non-graphical - Categorical data
 
-**범주형 변수로 데이터를 수집한 이유**
+...**범주형 변수로 데이터를 수집한 이유**
 
 * 값의 범위에 관심이 있어서
 * 빈도에 관심이 있어서
 
-**표현 방법**
+...**표현 방법**
+
+Tabulation(빈도표)
+|            | 남자      | 여자      |
+|--------    |--------   |--------  |
+| Count      |     7     |3         | 
+| Proportion |   0.7     |0.3       |
+| Percent    |      70%  |30%       |
+
+여기서 count와 proportion, percent는 서로 바꿔쓸수 있으므로 상황에 맞게 사용하면 됩니다.
+
+...**알수있는것**
+
+* missing data가 존재한다면 percent의 합이 100%가 안되므로 missing data 파악가능
+* 데이터의 갯수 파악가능, 구성비 파악가능
+
+### Univariable, non-graphical - Quantitative data
+
+**양적변수로 Univariable EDA 하는 이유**
+
+* 값의 범위에 관심이 있어서
+* 빈도에 관심이 있어서
 
 Tabulation(빈도표)
 |            | 남자      | 여자      |
@@ -83,8 +104,6 @@ Tabulation(빈도표)
 
 * missing data가 존재한다면 percent의 합이 100%가 안되므로 missing data 파악가능
 * 데이터의 갯수 파악가능, 구성비 파악가능
-
-
 
 
 $$
