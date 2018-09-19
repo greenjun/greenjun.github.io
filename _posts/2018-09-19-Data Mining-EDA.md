@@ -7,24 +7,26 @@ tags:
   - EDA
 ---
 
+이번 글은 데이터 마이닝의 시작 단계에서 배우는 **EDA(Exploratory Data Analysis)** 에 관한 글입니다.
 
-이번 글에서는 **차원축소(dimensionality reduction)**와 **변수추출(feature extraction)** 기법으로 널리 쓰이고 있는 **주성분분석(Principal Component Analysis)**에 대해 살펴보도록 하겠습니다. 이번 글은 고려대 강필성 교수님과 역시 같은 대학의 김성범 교수님 강의를 정리했음을 먼저 밝힙니다. 그럼 시작하겠습니다.
-
-
-
-## 기법 개요
-
-PCA는 데이터의 **분산(variance)**을 최대한 보존하면서 서로 직교하는 새 기저(축)를 찾아, 고차원 공간의 표본들을 선형 연관성이 없는 저차원 공간으로 변환하는 기법입니다. 이를 그림([출처](https://stats.stackexchange.com/questions/2691/making-sense-of-principal-component-analysis-eigenvectors-eigenvalues))으로 나타내면 아래와 같습니다. 2차원 공간에 있는 데이터들이 하나의 주성분(PC1)을 새로운 기저로 선형변환된 걸 확인할 수 있습니다. 여기에서 핑크색 표시가 돼 있는 사선축이 원 데이터의 분산을 최대한 보존하는(=데이터가 가장 많이 흩뿌려져 있는) 새 기저입니다. PCA의 목적은 바로 이런 축을 찾는 데 있습니다.
-
-<a href="http://imgur.com/Uv2dlsH"><img src="http://i.imgur.com/Uv2dlsH.gif" width="600px" title="source: imgur.com" /></a>
+## EDA란 
+EDA라는게 왜 나왔냐면, 데이터베이스나 엑셀 등등에 저장된 데이터를 숫자로만 보게되면 매우 지루하고 자세하게 보지도 못하기 때문에
+조금더 데이터를 잘파악하도록 하고자 하는 노력에서 나왔습니다. 
+따라서 ==정해진 방식이 아니라 만약 데이터를 더 잘 파악할 수 있다면 여러분들의 창의력을 발휘해 데이터를 표현해도 됩니다.==
+EDA란 탐색적 자료 분석, 즉 데이터가 어떤 자료로 구성되어있고 분포는 어떠한지를 보는 것입니다. 
 
 
+## EDA 목적
+### 1. Detection of mistakes (데이터 수집단계에서 실수로 입력한 부분이 있는지)
+### 2. Checking of assumptions (데이터에 대한 가정이 맞는지)
+### 3. Preliminary selection of appropriate models (데이터 유형에 맞는 적절한 모델 선택하기)
+### 4. determining relationships among explanatory variables (설명변수들 사이의 관계 파악하기)
+### 5. assessing the direction and rough size of relationships between explanatory and outcome variables. (설명변수와 목적변수 사이의 관계 파악)
 
-## Feature Extraction
-
-**변수추출(Feature Extraction)**은 기존 변수를 조합해 새로운 변수를 만드는 기법으로, 단순히 일부 중요 변수만을 빼내는 **변수선택(Feature Selection)**과는 대비됩니다. 변수추출에는 기존 변수 가운데 일부만 활용하는 방식이 있고, 모두 쓰는 방식이 있는데 PCA는 후자에 해당합니다. 아울러 PCA는 기존 변수를 **선형결합(linear combination)**해 새로운 변수를 만들어 냅니다. 
-
-예컨대 PCA는 변수가 $p$개, 관측치가 $n$개 있는 데이터 $X$(p x n)로 새로운 변수 $z$를 아래와 같이 만드는 과정으로 이해하면 좋을 것 같습니다. 여기에서 벡터 $x_i$는 데이터 행렬 $X$의 $i$번째 변수에 해당하는 행벡터(1 x n)인데요, 이들을 적절히 조합해 새로운 벡터 $z_i$ (1 x n)들을 만들어내는 것입니다.  
+## Type of EDA
+기본적으로 EDA는 4가지 타입으로 구분할 수 있습니다.
+그림으로 표현하느냐 글로 표현하느냐 등으로 말이죠.
+### Type of EDA - Grapical or non--grapical
 
 
 
@@ -332,10 +334,6 @@ legend('topleft',
      text.col=c('black','blue','red','green'))
 ```
 
-
-
-
-
 ## PCA의 절차
 
 지금까지 논의한 내용을 바탕으로 PCA 수행절차를 정리하면 다음과 같습니다.
@@ -347,3 +345,13 @@ legend('topleft',
 5. 해당 고유벡터와 $X$ 내적
 
 PCA는 서로 직교하는 새 기저로 데이터를 변환하기 때문에 변수 간 상관관계가 높은 데이터에 효과가 좋다고 합니다. 데이터 차원축소, 압축에 널리 쓰이고 있습니다.
+
+### Reference
+
+지금까지 논의한 내용을 바탕으로 PCA 수행절차를 정리하면 다음과 같습니다.
+
+1. 기존 데이터 $X$의 공분산행렬 계산
+2. 공분산행렬의 고유값과 고유벡터 계산
+3. 고유값의 크기 순서대로 고유벡터를 나열
+4. 정렬된 고유벡터 가운데 일부 선택
+5. 해당 고유벡터와 $X$ 내적
