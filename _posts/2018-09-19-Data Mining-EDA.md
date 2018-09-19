@@ -56,7 +56,7 @@ EDA라는게 왜 나왔냐면, 데이터베이스나 엑셀 등등에 저장된 
 
 ==여기서 중요한 것은 여러 변수를 동시에 확인하기전에 무조건 개별 데이터 먼저 파악 해보아야한다는 것입니다.==
 
-## Univariable, non-graphical
+## Univariate non-graphical EDA
 
 -outlier detection
 
@@ -122,9 +122,18 @@ robustness란 만약 데이터가 어느 방향으로 움직이거나 새로운 
 
 그래서 필요한것이 standard deviation입니다. 
 
-*  Skewness and kurtosis
+*  Skewness(asymmetry) and kurtosis(peakedness compared to a Gaussian dist.)
+
+Skewness > 0 이면 오른쪽으로 꼬리가 긴 분포입니다.  
+kurtosis > 0 이면 꼬리가 더 두꺼워지고 , 가운데가 뾰족해집니다.
 
 여기서 e = an estimate of skewness,  u = an estimate of kurtosis라고 한다면
+
+skewnesskurtosis
+
+> the non-graphical methods are quantitative and objective, but they do not give a full picture of the data. therefore, graphical methods, which are more qualitative and subjective.
+
+## Univariate graphical EDA
 
 
 
