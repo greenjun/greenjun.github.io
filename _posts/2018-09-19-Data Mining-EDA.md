@@ -161,6 +161,30 @@ the non-graphical methods are quantitative and objective, but they do not give a
 > https://www.youtube.com/watch?v=X9_ISJ0YpGw
 
 ## Multivariate non-graphical EDA
+각각의 데이터의 교차표(cross-tabulation)를 통해 관계파악 
+
+### Cross-tabulation
+* 보통은 categorical data에 사용 
+* 각 행과 열에 알고 싶은 변수 삽입하여 사용
+* 각 셀이나 행, 열의 percentages 모두 목적에 따라 유용하게 사용가능합니다.
+* basic bivariate non-graphical EDA technique.
+
+### Correlation for categorical data
+* categorical variables를 위한 다양한 방법이 존재
+
+###
+
+
+
+
+
+
+
+### Cross-tabulation
+
+
+
+
 
 
 
@@ -175,5 +199,4 @@ the non-graphical methods are quantitative and objective, but they do not give a
 
 
 > 용어정리 sampling distribution, median(robustness), 
-
 
