@@ -131,9 +131,20 @@ kurtosis > 0 이면 꼬리가 더 두꺼워지고 , 가운데가 뾰족해집니
 
 skewnesskurtosis
 
-> the non-graphical methods are quantitative and objective, but they do not give a full picture of the data. therefore, graphical methods, which are more qualitative and subjective.
+
 
 ## Univariate graphical EDA
+
+the non-graphical methods are quantitative and objective, but they do not give a full picture of the data. therefore, graphical methods, which are more qualitative and subjective.
+
+### Histograms
+- central tendency, spread, modality, shape and outliers
+- continous data 데이터 분포
+
+### bar plot
+- categorical data 데이터 분포 
+- contious data에 사용하면 전체적인 분포를 뺴곡히 파악 가능
+
 
 
 
