@@ -105,9 +105,9 @@ sample statistics (모집단 값이라고 추정되는 값)로 표현합니다
 
 * Central tendancy - sample mean, sample median, mode(peak, unrepresentative of the central tendency )
 
-여기서 median값을 봅시다. median값은 **robustness**한 성질을 가지고 있습니다.
- robustness란 만약 데이터가 어느 방향으로 움직이거나 새로운 데이터가 추가 되었을시
- 통계값이 변하지 않으려는 경향을 이야기합니다.
+여기서 median값을 봅시다. median값은 **robustness**한 성질을 가지고 있습니다. 
+robustness란 만약 데이터가 어느 방향으로 움직이거나 새로운 데이터가 추가 되었을시 
+통계값이 변하지 않으려는 경향을 이야기합니다.
 
 ==평소에는 mean을 사용하고 만약, outlier나 skewed distribution이 있을 경우 median을 사용하면 됩니다.
 
