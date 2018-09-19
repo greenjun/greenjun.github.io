@@ -58,7 +58,7 @@ EDA라는게 왜 나왔냐면, 데이터베이스나 엑셀 등등에 저장된 
 
 ## Univariate non-graphical EDA
 
--outlier detection
+* outlier detection
 
 우리가 변수를 볼 떄, 파악 해야 할것은 수집된 데이터들은 모두 다 샘플데이터라는 것입니다.
 
@@ -131,22 +131,36 @@ kurtosis > 0 이면 꼬리가 더 두꺼워지고 , 가운데가 뾰족해집니
 
 skewnesskurtosis
 
-
-
 ## Univariate graphical EDA
 
 the non-graphical methods are quantitative and objective, but they do not give a full picture of the data. therefore, graphical methods, which are more qualitative and subjective.
 
 ### Histograms
-- central tendency, spread, modality, shape and outliers
-- continous data 데이터 분포
+* central tendency, spread, modality, shape and outliers
+* continous data 데이터 분포
 
 ### bar plot
-- categorical data 데이터 분포 
-- contious data에 사용하면 전체적인 분포를 뺴곡히 파악 가능
+* categorical data 데이터 분포 
+* contious data에 사용하면 전체적인 분포를 뺴곡히 파악 가능
 
+### Boxplots
+* outlier
+* symmetry (데이터 치우침정도 파악가능)
+* robust measures of location and spread
 
+### Quantile-normal plots(QQ-plot)
+* 샘플이 가정한 분포와 얼마나 일치하는지 여부
+* detect left or right skew
+* detect positive or negative kurtosis
+* detect bimodality
 
+**만약 이론상으로 정규분포라고 가정한다면 x축은 이론상의 데이터 quantiles, y축은 샘플의 quantiles표시합니다..  
+여기서 x축과 y축의 분포가 일치한다면 일직선을 그리게 됩니다.**
+
+상세한 내용은 아래 링크를 참조하면 됩니다.
+> https://www.youtube.com/watch?v=X9_ISJ0YpGw
+
+## Multivariate non-graphical EDA
 
 
 
