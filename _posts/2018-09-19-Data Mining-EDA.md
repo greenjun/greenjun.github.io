@@ -34,6 +34,8 @@ EDA라는게 왜 나왔냐면, 데이터베이스나 엑셀 등등에 저장된 
 이것은 변수를 하나씩 확인 할 것인지 아니면 여러 변수를 동시에 확인 할 것인지 여부 입니다.
 ==여기서 중요한 것은 여러 변수를 동시에 확인하기전에 무조건 개별 데이터 먼저 파악 해보아야한다는 것입니다.==
 
+*The four types of EDA are univariate non-graphical, multivariate nongraphical, univariate graphical, and multivariate graphical.*
+
 
 $$
 \begin{align*}
