@@ -274,6 +274,12 @@ compress_html:
 
 # Defaults
 defaults:
+excerpt: "From Dream to Reality"
+header:
+  overlay_image: /assets/images/page-header-image.jpg
+  actions:
+    - label: "Home"
+      url: "https://greenjun.github.io/"
   # _posts
   - scope:
       path: ""
