@@ -11,8 +11,8 @@ header:
       url: "https://facebook.com/YunJunhyuck12"
 excerpt: "Be the best at what I do"
 intro: 
-  - excerpt: '
-M.A. Industrial Engineering, Busan National University in progress
+  - excerpt: 'M.A. Industrial Engineering, Busan National University in progress
+
 B.S. Industrial Engineering, Busan National University'
 feature_row:
   - image_path: assets/images/unsplash-gallery-image-1-th.jpg
