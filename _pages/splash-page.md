@@ -2,7 +2,6 @@
 title: "YunJunhyuck"
 layout: splash
 permalink: /about/
-date: 2016-03-23T11:48:41-04:00
 header:
   overlay_color: "#000"
   overlay_filter: "0.5"
@@ -12,11 +11,8 @@ header:
       url: "https://facebook.com/YunJunhyuck12"
 excerpt: "Be the best at what I do"
 intro: 
-  - excerpt: 
-  'EDUCATION
-  
-M.A. Industrial Engineering, Busan National University in progress
-
+  - excerpt: 'EDUCATION
+  M.A. Industrial Engineering, Busan National University in progress
 B.S. Industrial Engineering, Busan National University'
 feature_row:
   - image_path: assets/images/unsplash-gallery-image-1-th.jpg
