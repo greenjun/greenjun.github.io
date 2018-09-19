@@ -17,7 +17,7 @@ EDA라는게 왜 나왔냐면, 데이터베이스나 엑셀 등등에 저장된 
 
 조금더 데이터를 잘파악하도록 하고자 하는 노력에서 나왔습니다. 
 
--p 따라서 정해진 방식이 아니라 만약 데이터를 더 잘 파악할 수 있다면 여러분들의 창의력을 발휘해 데이터를 표현해도 됩니다
+==따라서 정해진 방식이 아니라 만약 데이터를 더 잘 파악할 수 있다면 여러분들의 창의력을 발휘해 데이터를 표현해도 됩니다==하
 
 ## EDA 목적
 
@@ -26,6 +26,10 @@ EDA라는게 왜 나왔냐면, 데이터베이스나 엑셀 등등에 저장된 
 * Preliminary selection of appropriate models (데이터 유형에 맞는 적절한 모델 선택하기)
 * determining relationships among explanatory variables (설명변수들 사이의 관계 파악하기)
 * assessing the direction and rough size of relationships between explanatory and outcome variables. (설명변수와 목적변수 사이의 관계 파악)
+
+==한가지 잊지 말아야 할것은 우리가 가진 데이터는 sample 데이터이므로
+
+우리는 sample 데이터를 통해 단지 population 분포와 parameter를 파악한다는 것에 주목해야합니다.==
 
 ## Type of EDA
 
@@ -47,7 +51,7 @@ EDA라는게 왜 나왔냐면, 데이터베이스나 엑셀 등등에 저장된 
 
 이것은 변수를 하나씩 확인 할 것인지 아니면 여러 변수를 동시에 확인 할 것인지 여부 입니다.
 
-*여기서 중요한 것은 여러 변수를 동시에 확인하기전에 무조건 개별 데이터 먼저 파악 해보아야한다는 것입니다.*
+==여기서 중요한 것은 여러 변수를 동시에 확인하기전에 무조건 개별 데이터 먼저 파악 해보아야한다는 것입니다.==
 
 ## Univariable, non-graphical
 
@@ -59,16 +63,16 @@ EDA라는게 왜 나왔냐면, 데이터베이스나 엑셀 등등에 저장된 
 
 중요한 것은 여기서 우리가 해야될 일은 바로
 
-*샘플 분포를 잘 파악해서, 모집단의 분포가 어떨 것인가를 생각해야한다는 것입니다.*
+==샘플 분포를 잘 파악해서, 모집단의 분포가 어떨 것인가를 생각해야한다는 것입니다.==
 
 ### Univariable, non-graphical - Categorical data
 
-####범주형 변수로 데이터를 수집한 이유####
+**범주형 변수로 데이터를 수집한 이유**
 
 * 값의 범위에 관심이 있어서
 * 빈도에 관심이 있어서
 
-####표현 방법####
+**표현 방법**
 
 Tabulation(빈도표)
 |            | 남자      | 여자      |
@@ -79,19 +83,29 @@ Tabulation(빈도표)
 
 여기서 count와 proportion, percent는 서로 바꿔쓸수 있으므로 상황에 맞게 사용하면 됩니다.
 
-####알수있는것####
+**알수있는것**
 
 * missing data가 존재한다면 percent의 합이 100%가 안되므로 missing data 파악가능
 * 데이터의 갯수 파악가능, 구성비 파악가능
 
 ### Univariable, non-graphical - Quantitative data
 
-####양적변수로 Univariable EDA 하는 이유####
+**양적변수로 Univariable EDA 하는 이유**
+* 샘플 데이터를 통해 모집단의 분포를 평가가능 - center, spread, modality, shape, outliers, skewness, and kurtosis 
+> 이런 값들은 categorical variable에서는 아무 의미가 없습니다.
 
-* 값의 범위에 관심이 있어서
-* 빈도에 관심이 있어서
+* 단지 히스토그램으로 그려서 파악 가능한 분포보다 우리가 관심있어하는 변수에 대해 더 자세하게 알 수 있게됨
+
+**표현방법**
+sample statistics (모집단 값이라고 추정되는 값)로 표현합니다
+
+* Central tendancy - sample mean, sample median, 
 
 
+
+
+
+
+> 용어정리 sampling distribution, median(robustness), 
 
 > Reference 
-*
