@@ -21,11 +21,11 @@ EDA라는게 왜 나왔냐면, 데이터베이스나 엑셀 등등에 저장된 
 
 ## EDA 목적
 
-1. Detection of mistakes (데이터 수집단계에서 실수로 입력한 부분이 있는지)
-2. Checking of assumptions (데이터에 대한 가정이 맞는지)
-3. Preliminary selection of appropriate models (데이터 유형에 맞는 적절한 모델 선택하기)
-4. determining relationships among explanatory variables (설명변수들 사이의 관계 파악하기)
-5. assessing the direction and rough size of relationships between explanatory and outcome variables. (설명변수와 목적변수 사이의 관계 파악)
+* Detection of mistakes (데이터 수집단계에서 실수로 입력한 부분이 있는지)
+* Checking of assumptions (데이터에 대한 가정이 맞는지)
+* Preliminary selection of appropriate models (데이터 유형에 맞는 적절한 모델 선택하기)
+* determining relationships among explanatory variables (설명변수들 사이의 관계 파악하기)
+* assessing the direction and rough size of relationships between explanatory and outcome variables. (설명변수와 목적변수 사이의 관계 파악)
 
 ## Type of EDA
 
@@ -65,8 +65,8 @@ EDA라는게 왜 나왔냐면, 데이터베이스나 엑셀 등등에 저장된 
 
 **범주형 변수로 데이터를 수집한 이유**
 
-1. 값의 범위에 관심이 있어서
-2. 빈도에 관심이 있어서
+* 값의 범위에 관심이 있어서
+* 빈도에 관심이 있어서
 
 **표현 방법**
 
@@ -81,8 +81,8 @@ Tabulation(빈도표)
 
 **알수있는것**
 
-1. missing data가 존재한다면 percent의 합이 100%가 안되므로 missing data 파악가능
-2. 데이터의 갯수 파악가능, 구성비 파악가능
+* missing data가 존재한다면 percent의 합이 100%가 안되므로 missing data 파악가능
+* 데이터의 갯수 파악가능, 구성비 파악가능
 
 
 
