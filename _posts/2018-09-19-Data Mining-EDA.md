@@ -117,11 +117,15 @@ robustness란 만약 데이터가 어느 방향으로 움직이거나 새로운 
 
 여기서 sample variance는 항상 non-negative이기 때문에 original 데이터와는 성질을 보일수도 있습니다.
 
-예를 들어, 온도 데이터라고 해봅시다. 이때 variance의 unit은 squared 되어버립니다.
-
+예를 들어, 온도 데이터라고 해봅시다. 이때 variance의 unit은 squared 되어버립니다.  
 예를 들어, km^2이라는는 데이터가 있을때 variance의 unit은 지수가 4가 되어 버립니다.
 
 그래서 필요한것이 standard deviation입니다. 
+
+*  Skewness and kurtosis
+
+여기서 e = an estimate of skewness,  u = an estimate of kurtosis라고 한다면
+
 
 
 
