@@ -45,16 +45,59 @@ toc_label: "My Table of Contents"
 ### ggplot2 구성 방식
 * 레이어를 하나씩 쌓아가면서 그림을 그리는 방식
 * 이때 레이어를 연결시키는 방법이 `+` 라는 기호를 사용하여 연결
-
-### 설치
-```python
-install.packages("ggplot2")
-library(ggplot2)
+ex) 
+#배경레이어 - 이용할 데이터와 축을 명시한다
+#그래프레이어 - 배경레이어 위에 어떤 그래프를 그릴지 선택한다.
+#기타 레이어 - 그외의 축범위 조정 외 수많은 기능들을 실행한다. 
+```R
+ggplot(data = mpg, aes(x = displ, y = hwy))+
+  geom_point()+
+  xlim(3, 6)+
+  ylim(10,30)``
 ```
 
 
 
+### 설치
+```python
+install.packages("ggplot2")
+install.packages("ggplot2")
+library(ggplot2) #시각화 
+library(dplyr)   #데이터 프레임 조작
+```
+> 모든 예제는 ggplot2 패키지 내의 mpg 데이터를 이용한다.
+
+11 variables, 234 row, dataframe
+
+variable이름 - 설명
+
+manufacturer
+
+model - model name
+
+displ - engine displacement, in litres
+
+year - year of manufacture
+
+cyl - number of cylinders
+
+trans - type of transmission
+
+drv - f = front-wheel drive, r = rear wheel drive, 4 = 4wd
+
+cty - city miles per gallon
+
+hwy - highway miles per gallon
+
+fl - fuel type
+
+class - "type" of car
+
 ## Univariate graphical EDA
+
+### bar plot
+* categorical data 데이터 분포 
+* contious data에 사용하면 전체적인 분포를 뺴곡히 파악 가능
 
 
 
@@ -66,21 +109,11 @@ library(ggplot2)
 * central tendency, spread, modality, shape and outliers
 * continous data 데이터 분포
 
-```ruby
-def print_hi(name)
-  puts "Hi, #{name}"
-end
-print_hi('Tom')
-#=> prints 'Hi, Tom' to STDOUT.
-```
 
 
 
 
 
-### bar plot
-* categorical data 데이터 분포 
-* contious data에 사용하면 전체적인 분포를 뺴곡히 파악 가능
 
 ### Boxplots
 * outlier
