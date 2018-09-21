@@ -127,10 +127,15 @@ class - "type" of car
 * detect bimodality
 
 
-```ruby
-def print_hi(name)
-  puts "Hi, #{name}"
-end
-print_hi('Tom')
-#=> prints 'Hi, Tom' to STDOUT.
-```
+
+
+
+
+### Reference 
+* CMU Statistics
+* https://www.youtube.com/user/jbstatistics
+
+
+
+
+> 용어정리 sampling distribution, median(robustness), 
