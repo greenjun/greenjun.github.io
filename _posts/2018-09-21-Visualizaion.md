@@ -47,7 +47,7 @@ toc_label: "My Table of Contents"
 * 이때 레이어를 연결시키는 방법이 `+` 라는 기호를 사용하여 연결
 
 ### 설치
-```ruby
+```python
 install.packages("ggplot2")
 library(ggplot2)
 ```
