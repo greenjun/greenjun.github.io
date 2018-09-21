@@ -93,12 +93,26 @@ class - "type" of car
 
 ### bar plot
 * categorical data 데이터 분포 
-* contious data에 사용하면 전체적인 분포를 빼곡히 파악 가능
+* continous data에 사용하면 전체적인 분포를 빼곡히 파악 가능
 
-ggplot(data=mpg, aes(x = drv))+
+먼저 하나씩 차근 차근 시작하여보자
+
+**mpg라는 데이터 셋에서 drv 별로 얼마나 많은 빈도를 가지고 있는지 확인하여 봅시다**
+
+일단 밑에 코드를 복사 붙여넣기 한 후에 그림을 확인하여 봅시다.
+
+```R
+ggplot(data = mpg, aes(x = drv))+
   geom_bar()
+```
+![barplot1](/assets/images/barplot1.PNG)
 
+여기서 
+`data = mpg는 사용할 데이터 셋이 mpg라는 것`
+`aes(x = drv)는 x축으로 drv를 지정하는 것, drv는 categorical 변수입니다.`
+`y축을 지정하지 않은 이유는 막대 그래프이기 때문데 x축만을 지정하여도 되기 때문입니다`
 
+**도전 
 
 
 
@@ -106,6 +120,8 @@ ggplot(data=mpg, aes(x = drv))+
 ### Histograms
 * central tendency, spread, modality, shape and outliers
 * continous data 데이터 분포
+
+
 
 
 
