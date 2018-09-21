@@ -50,16 +50,16 @@ ex)
 #그래프레이어 - 배경레이어 위에 어떤 그래프를 그릴지 선택한다.
 #기타 레이어 - 그외의 축범위 조정 외 수많은 기능들을 실행한다. 
 ```R
-ggplot(data = mpg, aes(x = displ, y = hwy))+
-  geom_point()+
-  xlim(3, 6)+
+ggplot(data = mpg, aes(x = displ, y = hwy))+  #배경레이어 - 이용할 데이터와 축을 명시한다.
+  geom_point()+                               #그래프레이어 - 배경레이어 위에 어떤 그래프를 그릴지 선택한다.
+  xlim(3, 6)+                                 #기타 레이어 - 그외의 축범위 조정 외 수많은 기능들을 실행한다.
   ylim(10,30)``
 ```
 
 
 
 ### 설치
-```python
+```R
 install.packages("ggplot2")
 install.packages("ggplot2")
 library(ggplot2) #시각화 
