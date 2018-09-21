@@ -102,17 +102,53 @@ class - "type" of car
 일단 밑에 코드를 복사 붙여넣기 한 후에 그림을 확인하여 봅시다.
 
 ```R
-ggplot(data = mpg, aes(x = drv))+
+ggplot(data = mpg, aes(x = drv)) +
   geom_bar()
 ```
 ![barplot1](/assets/images/barplot1.PNG)
 
-여기서 
 `data = mpg는 사용할 데이터 셋이 mpg라는 것`
+
 `aes(x = drv)는 x축으로 drv를 지정하는 것, drv는 categorical 변수입니다.`
+
 `y축을 지정하지 않은 이유는 막대 그래프이기 때문데 x축만을 지정하여도 되기 때문입니다`
 
-**도전 
+`+ 기호를 사용하여 layer를 연결시킵니다. `
+
+`geom_bar() 는 막대그래프를 그리라는 함수입니다.`
+
+x축의 이름을 바꾸고 싶다면 labs(x = "움직이는 바퀴")이라는 layer를 추가 해주면 됩니다
+
+```R
+ggplot(data = mpg, aes(x = drv))+
+  geom_bar() +
+  labs(x = "움직이는 바퀴") 
+```
+
+색이 좀 칙칙하다구요? fill=drv는 drv별로 색을 다르게 채우겠다는 뜻입니다.
+
+```R
+ggplot(data = mpg, aes(x = drv, fill=drv))+
+  geom_bar() +
+  labs(x = "움직이는 바퀴") 
+```
+
+ 
+ 
+ 흠...막대기가 위에 숫자도 추가해볼까요? geom_label(stat='count', aes(label=..count..))
+ 
+ ```R
+ggplot(data = mpg, aes(x = drv, fill=drv))+
+  geom_bar() +
+  labs(x = "움직이는 바퀴") +
+  geom_label(stat='count', aes(label=..count..))
+```
+
+![barplot2](/assets/images/barplot2.PNG)
+
+
+**Quiz1. mpg라는 데이터 셋에서 class 별로 얼마나 많은 빈도를 가지고 있는지 확인하여 봅시다**
+
 
 
 
