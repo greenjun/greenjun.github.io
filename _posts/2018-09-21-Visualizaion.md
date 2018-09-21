@@ -45,18 +45,14 @@ toc_label: "My Table of Contents"
 ### ggplot2 구성 방식
 * 레이어를 하나씩 쌓아가면서 그림을 그리는 방식
 * 이때 레이어를 연결시키는 방법이 `+` 라는 기호를 사용하여 연결
-ex) 
-#배경레이어 - 이용할 데이터와 축을 명시한다
-#그래프레이어 - 배경레이어 위에 어떤 그래프를 그릴지 선택한다.
-#기타 레이어 - 그외의 축범위 조정 외 수많은 기능들을 실행한다. 
+
+ex)
 ```R
 ggplot(data = mpg, aes(x = displ, y = hwy))+  #배경레이어 - 이용할 데이터와 축을 명시한다.
   geom_point()+                               #그래프레이어 - 배경레이어 위에 어떤 그래프를 그릴지 선택한다.
   xlim(3, 6)+                                 #기타 레이어 - 그외의 축범위 조정 외 수많은 기능들을 실행한다.
   ylim(10,30)``
 ```
-
-
 
 ### 설치
 ```R
@@ -65,7 +61,7 @@ install.packages("ggplot2")
 library(ggplot2) #시각화 
 library(dplyr)   #데이터 프레임 조작
 ```
-> 모든 예제는 ggplot2 패키지 내의 mpg 데이터를 이용한다.
+> 모든 예제는 ggplot2 패키지 내의 mpg 데이터를 이용하겠습니다. 데이터 구성은 다음과 같습니다.
 
 11 variables, 234 row, dataframe
 
@@ -97,8 +93,10 @@ class - "type" of car
 
 ### bar plot
 * categorical data 데이터 분포 
-* contious data에 사용하면 전체적인 분포를 뺴곡히 파악 가능
+* contious data에 사용하면 전체적인 분포를 빼곡히 파악 가능
 
+ggplot(data=mpg, aes(x = drv))+
+  geom_bar()
 
 
 
