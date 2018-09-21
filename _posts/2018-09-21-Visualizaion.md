@@ -105,7 +105,7 @@ class - "type" of car
 ggplot(data = mpg, aes(x = drv)) +
   geom_bar()
 ```
-![barplot1](/assets/images/barplot1.PNG)
+![barplot1](/assets/images/barplot1.png)
 
 `data = mpg는 사용할 데이터 셋이 mpg라는 것`
 
@@ -144,7 +144,7 @@ ggplot(data = mpg, aes(x = drv, fill=drv))+
   geom_label(stat='count', aes(label=..count..))
 ```
 
-![barplot2](/assets/images/barplot2.PNG)
+![barplot2](/assets/images/barplot2.png)
 
 
 **Quiz1. mpg라는 데이터 셋에서 class 별로 얼마나 많은 빈도를 가지고 있는지 확인하여 봅시다**
