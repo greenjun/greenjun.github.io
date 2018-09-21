@@ -15,7 +15,7 @@ toc_label: "My Table of Contents"
 * 따라서 궁금하신 점은 메일이나 검색을 활용해주세요.
 
 ## Introduction
-이전 포스팅 ![탐색적자료분석(EDA)](https://greenjun.github.io/data%20mining/EDA/) 에 이어서
+이전 포스팅 [탐색적자료분석(EDA)](https://greenjun.github.io/data%20mining/EDA/) 에 이어서
 데이터를 시각화하는 방법에 대해 알아보겠습니다
 전에도 말했다시피  EDA하는 방법에는 크게 4가지가 있다고 했고, 
 이번 글은 그 중에서 graphic으로 표현하는 것은 포스팅 하겠습니다.
