@@ -17,10 +17,18 @@ toc_label: "My Table of Contents"
 ## Introduction
 이전 포스팅 [탐색적자료분석(EDA)](https://greenjun.github.io/data%20mining/EDA/) 에 이어서
 데이터를 시각화하는 방법에 대해 알아보겠습니다
+이 글에서 이해가 안되시는 분은 이전 포스팅을 참고해주세요
 전에도 말했다시피  EDA하는 방법에는 크게 4가지가 있다고 했고, 
 이번 글은 그 중에서 graphic으로 표현하는 것은 포스팅 하겠습니다.
 
-### ggplot2
+### 참고자료
+
+[ggplot2 공식 메뉴얼](https://cloud.r-project.org/web/packages/ggplot2/ggplot2.pdf)
+
+[ggplot2 개발자 Hadley Wickham의 paper](http://byrneslab.net/classes/biol607/readings/wickham_layered-grammar.pdf)
+
+
+## ggplot2
 수많은 책과 포스팅을 보면 시각화하는 수많은 패키지와 프로그램이 있지만
 
 여기서 소개해드릴 것은 R에서 사용하는  **ggplot2** 입니다.
@@ -31,13 +39,59 @@ toc_label: "My Table of Contents"
 
 그래서 만약 데이터 시각화에 관심이 있으시고 R을 사용하신다면 ggplot2만 익혀도 표현하고자 하는 
 
-수많은 생각을 시각화 하는데 도움이 될 것입니다.
-
-[ggplot2 공식 메뉴얼](https://cloud.r-project.org/web/packages/ggplot2/ggplot2.pdf)
+수 많은 생각을 시각화 하는데 도움이 될 것입니다.
 
 
+### ggplot2 구성 방식
+* 레이어를 하나씩 쌓아가면서 그림을 그리는 방식
+* 이때 레이어를 연결시키는 방법이 `+` 라는 기호를 사용하여 연결
+
+### 설치
+```ruby
+install.packages("ggplot2")
+library(ggplot2)
+```
 
 
+
+## Univariate graphical EDA
+
+
+
+
+
+
+
+### Histograms
+* central tendency, spread, modality, shape and outliers
+* continous data 데이터 분포
+
+```ruby
+def print_hi(name)
+  puts "Hi, #{name}"
+end
+print_hi('Tom')
+#=> prints 'Hi, Tom' to STDOUT.
+```
+
+
+
+
+
+### bar plot
+* categorical data 데이터 분포 
+* contious data에 사용하면 전체적인 분포를 뺴곡히 파악 가능
+
+### Boxplots
+* outlier
+* symmetry (데이터 치우침정도 파악가능)
+* robust measures of location and spread
+
+### Quantile-normal plots(QQ-plot)
+* 샘플이 가정한 분포와 얼마나 일치하는지 여부
+* detect left or right skew
+* detect positive or negative kurtosis
+* detect bimodality
 
 
 ```ruby
