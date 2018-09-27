@@ -7,6 +7,8 @@ tags:
   - EDA
   - ggplot
   - R
+  - barplot
+  
 toc: true
 toc_label: "My Table of Contents"
 ---
@@ -162,7 +164,7 @@ ggplot(data = mpg, aes(x = drv, fill = drv)) +
   labs(x = "움직이는 바퀴") 
 ```
 
-**흠...막대기가 위에 숫자도 추가해볼까요? **
+**흠...막대기 위에 숫자도 추가해볼까요? **
  
  ```R
 ggplot(data = mpg, aes(x = drv, fill = drv)) +
@@ -283,4 +285,4 @@ ggplot(data = mpg, aes(x = drv))+
 
 
 
-> 용어정리 barplot, 
+> 용어정리 barplot
