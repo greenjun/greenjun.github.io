@@ -99,8 +99,9 @@ class - "type" of car
 * continous data distribution
 * boxplot보다 많은 정보를 나타낼 수 있고 더 많은 정보를 보여주므로 boxplot보다는 violinplot을 사용한는것을 권합니다.
 
+![boxplotexample](/assets/images/boxplotexample.PNG)
 
-먼저 하나씩 차근 차근 시작하여봅시다
+기본적으로 boxplot의 역할은 다음과 같이 median과 Q1, Q3을 표시함으로써 outlier의 존재성을 밝혀줍니다.
 
 **먼저 mpg 데이터에 포함되어 있는 hwy연비의 분포를 확인하여 봅시다.**
 
@@ -157,9 +158,11 @@ ggplot(mpg, aes(x = drv, y = hwy, fill = drv, color = drv)) +
   scale_fill_brewer(palette="Dark2")
 ```
 
-`* scale_color_manual() : to use custom colors`
-`* scale_color_brewer() : to use color palettes from RColorBrewer package`
-`* scale_color_grey() : to use grey color palettes`
+`scale_color_manual() : to use custom colors`
+
+`scale_color_brewer() : to use color palettes from RColorBrewer package`
+
+`scale_color_grey() : to use grey color palettes`
 
 > 제목과 x축 y축 이름을 바꾸고 범례 위치를 바꾸는 참고 코드
 
