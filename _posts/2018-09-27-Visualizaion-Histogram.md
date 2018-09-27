@@ -92,7 +92,7 @@ fl - fuel type
 class - "type" of car
 
 ## Univariate graphical EDA
-* [Visualizaion-Barplot](https://greenjun.github.io/data%20mining/Visualizaion-barplot/)
+* [Visualizaion-Barplot](https://greenjun.github.io/data%20mining/Visualizaion-Barplot/)
 
 ### Histogram
 * central tendency, spread, modality, shape and outliers
