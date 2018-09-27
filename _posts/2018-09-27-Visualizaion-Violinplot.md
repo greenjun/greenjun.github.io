@@ -181,8 +181,9 @@ ggplot(mpg, aes(x = drv, y = hwy, fill = drv)) +
 * detect positive or negative kurtosis
 * detect bimodality
 
+>
 ### Reference 
 * [ggplot2_essentials](#http://www.sthda.com/english/wiki/ggplot2-violin-plot-quick-start-guide-r-software-and-data-visualization){: .btn .btn--success}
 
-> 용어정리 
+### 용어정리 
 * boxplot, violin plot
