@@ -166,7 +166,7 @@ ggplot(data = mpg, aes(x = drv, fill = drv)) +
   labs(x = "움직이는 바퀴") 
 ```
 
-**흠...막대기 위에 숫자도 추가해볼까요? **
+**흠...막대기 위에 숫자도 추가해볼까요?**
  
  ```R
 ggplot(data = mpg, aes(x = drv, fill = drv)) +
