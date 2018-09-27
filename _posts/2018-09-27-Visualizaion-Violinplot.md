@@ -97,7 +97,7 @@ class - "type" of car
 ### Violinplot
 * central tendency, spread, modality, shape and outliers
 * continous data distribution
-* boxplot보다 많은 정보를 나타낼 수 있고 더 많은 정보를 보여주므로 boxplot보다는 violinplot을 사용한는것을 권합니다.
+* boxplot보다 많은 정보를 나타낼 수 있고 더 많은 정보를 보여주므로 boxplot보다는 violinplot을 사용하는것을 권합니다.
 
 ![boxplotexample](/assets/images/boxplotexample.PNG)
 
