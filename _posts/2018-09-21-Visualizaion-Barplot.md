@@ -224,7 +224,7 @@ ggplot(data = mpg, aes(x = drv, y = hwy, fill = drv))+
   labs(x = "drv 별로 hwy의 총합")
 ```
 
-![barplot5](/assets/images/barplo5.png)
+![barplot5](/assets/images/barplot5.png)
 
 > stack 사용시 참고 코드 
 
