@@ -137,9 +137,11 @@ ggplot(data = mpg, aes(x = drv, fill=drv))+
 
 **막대를 수정해봅시다**
 
+```R
 ggplot(data = mpg, aes(x = drv, fill = drv)) +
   geom_bar(width = 0.7) +
   theme_light()
+```
 
 `geom_bar 함수 안에 숫자를 입력하면 됩니다. 만약 aes에 fill을 채우지 않았다면 color, fill함수를 여기에 사용하여 막대를 수정할 수 있습니다`
 
