@@ -178,8 +178,8 @@ ggplot(data = mpg, aes(x = drv, fill = drv)) +
  **만약 drv별로 연료타입이 어떻게 되는지 확인하고 싶다면 fill = fl로 바꿔주시면 됩니다.**
  
  ```R
-ggplot(data = mpg, aes(x = drv, fill = manufacturer)) +
-  geom_bar(width=0.7) +
+ggplot(data = mpg, aes(x = drv, fill = fl)) +
+  geom_bar(width=0.7, position = "dodge") +
   theme_light() +
   scale_x_discrete(limits=c("f", "4", "r")) +
   labs(x = "drv별로 연료타입 분포")
@@ -187,15 +187,44 @@ ggplot(data = mpg, aes(x = drv, fill = manufacturer)) +
 
 `여기서 한 막대안에 들어 있는 여러개의 분포를 x축위에 나란히 놓고 싶다면 geom_bar(position = "dodge")를 추가하시면 됩니다.`
 
-**geom_bar의 stat 함수 사용**
+![barplot3](/assets/images/barplot3.png)
 
+> 혹시 여기서 각 막대 위에 숫자를 어떻게 하면 표시가 될까요 ? 아무리 해도 안되네요 
 
+**자 이제 y축에 새로운 정보를 추가하여 나타내 봅시다. x축에 drv, y축에 hwy(연비), 그룹은 manufacturer별로**
 
+**즉 각 drv별로 생산자들이 만든 제품의 연비가 어떻게 되는지 보려고 합니다** 
 
-#만약 drv 별로 연비의 총합을 알고 싶다면 다음과 같이 y = hwy, stat = 'identity'를 추가하면 됩니다.
+```R
+ggplot(data = mpg, aes(x = drv, y = hwy, group = manufacturer)) +
+  geom_col(aes(fill = manufacturer), position = "dodge") +
+  geom_text(aes(label = hwy), position = position_dodge(0.9))
+```
+
+![barplot4](/assets/images/barplot4.png)
+
+`geom_col(aes(fill = manufacturer), position = "dodge")은 생산자별로 색을 다르게 표시하고 dodge로 옆으로 나란히 표시하겠다는 말입니다`
+
+`dodge가 아니라 stack을 사용한다면 한 막대위에 길게 쌓아지게 됩니다.`
+
+`geom_text(aes(label = hwy), position = position_dodge(0.9))는 막대위 텍스트의 표시를 y축의 hwy로 하겠다는 말입니다.`
+
+`gerom_col과 geom_test의 position은 같은 표시로 해야합니다`
+
+> 참고 코드 
+
+```R
+ggplot(data = df, aes(x, y, group = grp)) +
+  geom_col(aes(fill = grp)) +
+  geom_text(aes(label = y), position = position_stack(vjust = 0.5))
+```
+
+**만약 drv 별로 연비의 총합을 알고 싶다면 다음과 같이 y = hwy, stat = 'identity'를 추가하면 됩니다.**
+
+```R
 ggplot(data = mpg, aes(x = drv, y = hwy))+
   geom_bar(stat = 'identity')
-
+```
 
 
 
@@ -236,10 +265,9 @@ ggplot(data = mpg, aes(x = drv, y = hwy))+
 
 
 ### Reference 
-* CMU Statistics
-* https://www.youtube.com/user/jbstatistics
+* http://www.sthda.com/english/wiki/ggplot2-barplots-quick-start-guide-r-software-and-data-visualization
 
 
 
 
-> 용어정리 sampling distribution, median(robustness), 
+> 용어정리 barplot, 
