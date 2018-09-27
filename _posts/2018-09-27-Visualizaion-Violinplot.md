@@ -1,5 +1,5 @@
 ---
-title:  "시각화(Visualization)-Histogram"
+title:  "시각화(Visualization)-Violinplot"
 categories:
   - data mining
 tags:
@@ -7,7 +7,7 @@ tags:
   - EDA
   - ggplot
   - R
-  - histogram
+  - violinplot
   
 toc: true
 toc_label: "My Table of Contents"
@@ -103,13 +103,74 @@ class - "type" of car
 먼저 하나씩 차근 차근 시작하여봅시다
 
 **먼저 mpg 데이터에 포함되어 있는 hwy연비의 분포를 확인하여 봅시다.**
-코드
-`설명`
+
+```R
+ggplot(mpg, aes(x = drv, y = hwy)) +
+  geom_violin()
+  
+ggplot(mpg, aes(x = drv, y = hwy)) +
+  geom_boxplot()
+```
+
+![violinplot1](/assets/images/violinplot1.png)
+
+![boxplot1](/assets/images/boxplot1.png)
 
 
+`기존의 boxplot과 비교해 보면 데이터의 분포 모형까지도 함께 알 수 있습니다.`
 
+**이제 기존의 boxplot처럼 median과 mean 등의 summary statistics를 표시해봅시다.**
 
+```R
+ggplot(mpg, aes(x = drv, y = hwy)) +
+  geom_violin() +
+  geom_boxplot(width = 0.1) +
+  stat_summary(fun.y = mean, geom = "point", color = 2, size = 2))
+```
 
+![violinplot2](/assets/images/violinplot2.png)
+
+`stat_summary 함수를 통해 mean, median을 지정하여 plot상에 점을 찍어서 통계량을 알 수 있습니다`
+
+`geom_boxplot()함수를 추가함으로써 violinplot 내에 boxplot을 표시함으로써 많은 정보를 포함 할 수 있습니다`
+
+**그림안에 실제 hwy에 해당되는 케이스를 점을 찍어봅시다**
+
+```R
+ggplot(mpg, aes(x = drv, y = hwy)) +
+  geom_violin() +
+  geom_boxplot(width = 0.1, color = "blue") +
+  stat_summary(fun.y = mean, geom = "point", color = 2, size = 2) +
+  geom_jitter(shape=16, position=position_jitter(0.2))
+```
+
+![violinplot3](/assets/images/violinplot3.png)
+
+`실제 데이터의 점을 찍음으로써 데이터가 어떻게 분포하는지 확인가능합니다`
+
+**그래프 안의 색을 채우는 것은 fill함수, 그래프의 선을 바꾸는 것은 color함수를 통해 가능합니다**
+
+```R
+ggplot(mpg, aes(x = drv, y = hwy, fill = drv, color = drv)) +
+  geom_violin() +
+  scale_color_manual(values=c("#999999", "#E69F00", "#56B4E9")) +
+  scale_fill_brewer(palette="Dark2")
+```
+
+`* scale_color_manual() : to use custom colors`
+`* scale_color_brewer() : to use color palettes from RColorBrewer package`
+`* scale_color_grey() : to use grey color palettes`
+
+> 제목과 x축 y축 이름을 바꾸고 범례 위치를 바꾸는 참고 코드
+
+```R
+ggplot(mpg, aes(x = drv, y = hwy, fill = drv)) +
+  geom_violin(trim = T) +
+  labs(main = "drv 별 연비 분포",
+       x = "구동방식",
+       y = "연비") +
+  theme(legend.position = "top")
+```
 
 ### Quantile-normal plots(QQ-plot)
 * 샘플이 가정한 분포와 얼마나 일치하는지 여부
@@ -118,7 +179,7 @@ class - "type" of car
 * detect bimodality
 
 ### Reference 
-* 
+* http://www.sthda.com/english/wiki/ggplot2-violin-plot-quick-start-guide-r-software-and-data-visualization
 
 > 용어정리 
-* Histogram
+* boxplot, violin plot
