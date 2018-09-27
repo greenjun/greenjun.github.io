@@ -117,6 +117,27 @@ ggplot(data = mpg, aes(x = drv)) +
 
 `geom_bar() 는 막대그래프를 그리라는 함수입니다.`
 
+배경에 격자 무늬를 수정해봅시다.
+
+```R
+ggplot(data = mpg, aes(x = drv, fill = drv)) +
+  geom_bar() +
+  theme_minimal()
+```
+
+`theme 함수를 통해서 배경의 격자 무늬를 수정할 수 있습니다`
+
+
+
+
+
+
+
+
+
+
+
+
 x축의 이름을 바꾸고 싶다면 labs(x = "움직이는 바퀴")이라는 layer를 추가 해주면 됩니다
 
 ```R
@@ -145,6 +166,21 @@ ggplot(data = mpg, aes(x = drv, fill=drv))+
 ```
 
 ![barplot2](/assets/images/barplot2.png)
+
+ 만약 drv별로 어느 회사가 많이 생산하고 있는지 여부를 알고 싶을 때에는 fill = manufacturer로 바꿔주시면 됩니다.
+ h죠
+ ```R
+ggplot(data = mpg, aes(x = drv, fill = manufacturer))+
+  geom_bar(stat='count', position='stack') +
+  labs(x = "drv 별로 어느 회사가 많이 만들고있는지 여부 ")
+```
+#만약 drv 별로 연비의 총합을 알고 싶다면 다음과 같이 y = hwy, stat = 'identity'를 추가하면 됩니다.
+ggplot(data = mpg, aes(x = drv, y = hwy))+
+  geom_bar(stat = 'identity')
+
+
+
+
 
 
 **Quiz1. mpg라는 데이터 셋에서 class 별로 얼마나 많은 빈도를 가지고 있는지 확인하여 봅시다**
