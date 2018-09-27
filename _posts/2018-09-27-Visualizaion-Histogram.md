@@ -100,11 +100,9 @@ class - "type" of car
 
 먼저 하나씩 차근 차근 시작하여봅시다
 
-
-
-
-
-
+**dfgdfg**
+코드
+`설명`
 
 
 
@@ -117,14 +115,8 @@ class - "type" of car
 * detect positive or negative kurtosis
 * detect bimodality
 
-
-
-
-
-
 ### Reference 
 * 
 
-
-
-> 용어정리 Histogram
+> 용어정리 
+* Histogram
