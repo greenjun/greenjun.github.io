@@ -15,93 +15,97 @@ toc_label: "My Table of Contents"
 
 ***
 
-## Introduction
+# Introduction
 데이터 축소라는 개념이 왜 등장했을까요? database나 datawarehouse를 보면 terabyte 이상의 데이터가 들어있습니다.
 이것을 가지고 분석을 진행한다면 오랜 시간이 걸리겠지요. 그래서 그 중에서 중요한 데이터만 골라내어 분석하려는 시도에서 나왔습니다.
 
 요약하면 **much smaller in volume but yet produces the almost same analytical results**를 하기 위해서 입니다.
 
-## Data reduction strategies
+# Data reduction strategies
+
+* Numerosity reduction
+   * Regression and Log-Linear Models
+   * Histograms, clustering, sampling
+   * Data cube aggregation
 
 * Dimensionality reduction -  중요하지않은 속성을 제거하는 것
    * Wavelet transforms
    * Principal Components Analysis
    * eature subset selection, Feature creation
-
-
-
-
-* Numerosity reduction
+   
 * Data compression
 
+## Numerosity reduction
+수 많은 데이터 대신에 그 데이터를 표현할 수 있는 작은 형태로 표현하여 기존의 데이터를 대신하는 테크닉입니다.
 
-### ggplot2 구성 방식
-* 레이어를 하나씩 쌓아가면서 그림을 그리는 방식
-* 이때 레이어를 연결시키는 방법이 `+` 라는 기호를 사용하여 연결
+parametric과 nonparametric 두가지가 있습니다.
 
-ex)
-```R
-ggplot(data = mpg, aes(x = displ, y = hwy))+  #배경레이어 - 이용할 데이터와 축을 명시한다.
-  geom_point()+                               #그래프레이어 - 배경레이어 위에 어떤 그래프를 그릴지 선택한다.
-  xlim(3, 6)+                                 #기타 레이어 - 그외의 축범위 조정 외 수많은 기능들을 실행한다.
-  ylim(10,30)``
-```
+### Parametric methods
+데이터를 표현할수있는 모델을 만든 후에 data는 지우고 parameter만 남겨 놓는 것입니다. 이때, outlier는 남겨 놓아야 합니다
 
-### 설치
-```R
-install.packages("ggplot2")
-install.packages("ggplot2")
-library(ggplot2) #시각화 
-library(dplyr)   #데이터 프레임 조작
-```
-> 모든 예제는 ggplot2 패키지 내의 mpg 데이터를 이용하겠습니다. 데이터 구성은 다음과 같습니다.
+**Regression and Log-Linear Models**
 
-11 variables, 234 row, dataframe
+* To approximate the given data.
 
-variable이름 - 설명
+* In **(simple) linear regression**, the data are modeled to fit a straight line.
 
-manufacturer
+* **Multiple linear regression** is an extension of (simple) linear regression, which allows a response variable y to be modeled as a linear function of two or more predictor variables.
 
-model - model name
+* **Log-linear models** approximate **discrete multidimensional probability distributions**.
 
-displ - engine displacement, in litres
+* Log-linear models can be used to **estimate the probability of each point** in a multidimensional space for a set of discretized attributes, based on a smaller subset of **dimensional combinations**.
 
-year - year of manufacture
+* This allows a higher-dimensional data space to be **constructed from lower dimensional spaces**.
 
-cyl - number of cylinders
+* **Log-linear models are therefore also useful for dimensionality reduction and data smoothing**
 
-trans - type of transmission
+* Regression and log-linear models can both be used on [sparse data](https://gerardnico.com/data/modeling/dense_sparse){: .btn .btn--info}, although their application may be **limited**.
 
-drv - f = front-wheel drive, r = rear wheel drive, 4 = 4wd
+* While both methods can handle **skewed data**, **regression** does exceptionally well. Regression can be computationally intensive when applied to **high dimensional data**, whereas **log-linear models show good scalability for up to 10 or so dimensions**.
 
-cty - city miles per gallon
+### Non-parametric methods
+모델을 가정하지 않고 축소된 데이터를 표현하여 저장하기위한 방법입니다.
+histogram, clustering, sampling등을 사용합니다.
 
-hwy - highway miles per gallon
+**Histogram**
 
-fl - fuel type
+* **Histograms** use binning to **approximate data distributions** and are a popular form of data reduction.
 
-class - "type" of car
+* A histogram **partitions** the data distribution into **disjoint subsets**, or buckets.
 
-## Univariate graphical EDA
+* If each bucket represents **only a single attribute-value/frequency pair**, the buckets are called **singleton buckets**.
+
+* Singleton buckets are useful for **storing outliers with high frequency**.
+
+* Histograms are highly effective at **approximating both sparse and dense data**, aswell as **highly skewed and uniform data**.
+
+* The histograms for single attributes can be extended for multiple attributes.
+
+* **Multidimensional histograms** can capture **dependencies** between attributes.
+
+**Clustering**
+
+*  **Cluster**는 유사성에 기반하여 데이터를 군집으로 나눈 후, cluster representation만 남깁니다 (centroid, diameter)
+
+* 데이터가 잘 퍼져있다면 효과적이지 못하지만, 만약 군집이 이루어져있다면 효과적이다.
+
+* Hierarchical clustering(계층적 군집분석)을 이용하면 multi-dimensional index tree structures를 이용하여 저장가능하다.
+
+**Sampling**
+* 데이터 베이스의 크기를 줄여주지는 못합니다.
+
+* Stratified sampling
+
+* 전체 데이터를 표현하는 작은 샘플을 뽑는것
+
+* 데이터의 크기에 sub-linear 한 곳에서 즉 복잡한 곳에서 데이터마이닝 알고리즘이 작동하도록 도와준다.
+
+
+
 * [Visualizaion-Barplot](https://greenjun.github.io/data%20mining/Visualizaion-Barplot/)
 
-### Violinplot
-* central tendency, spread, modality, shape and outliers
-* continous data distribution
-* boxplot보다 많은 정보를 나타낼 수 있고 더 많은 정보를 보여주므로 boxplot보다는 violinplot을 사용하는것을 권합니다.
 
-![boxplotexample](/assets/images/boxplotexample.PNG)
 
-기본적으로 boxplot의 역할은 다음과 같이 median과 Q1, Q3을 표시함으로써 outlier의 존재성을 밝혀줍니다.
-
-**먼저 mpg 데이터에 포함되어 있는 hwy연비의 분포를 확인하여 봅시다.**
-
-```R
-ggplot(mpg, aes(x = drv, y = hwy)) +
-  geom_violin()
-  
-ggplot(mpg, aes(x = drv, y = hwy)) +
-  geom_boxplot()
 ```
 
 ![violinplot1](/assets/images/violinplot1.png)
@@ -109,72 +113,10 @@ ggplot(mpg, aes(x = drv, y = hwy)) +
 ![boxplot1](/assets/images/boxplot1.png)
 
 
-`기존의 boxplot과 비교해 보면 데이터의 분포 모형까지도 함께 알 수 있습니다.`
-
-**이제 기존의 boxplot처럼 median과 mean 등의 summary statistics를 표시해봅시다.**
-
-```R
-ggplot(mpg, aes(x = drv, y = hwy)) +
-  geom_violin() +
-  geom_boxplot(width = 0.1) +
-  stat_summary(fun.y = mean, geom = "point", color = 2, size = 2))
-```
-
-![violinplot2](/assets/images/violinplot2.png)
-
-`stat_summary 함수를 통해 mean, median을 지정하여 plot상에 점을 찍어서 통계량을 알 수 있습니다`
-
-`geom_boxplot()함수를 추가함으로써 violinplot 내에 boxplot을 표시함으로써 많은 정보를 포함 할 수 있습니다`
-
-**그림안에 실제 hwy에 해당되는 케이스를 점을 찍어봅시다**
-
-```R
-ggplot(mpg, aes(x = drv, y = hwy)) +
-  geom_violin() +
-  geom_boxplot(width = 0.1, color = "blue") +
-  stat_summary(fun.y = mean, geom = "point", color = 2, size = 2) +
-  geom_jitter(shape=16, position=position_jitter(0.2))
-```
-
-![violinplot3](/assets/images/violinplot3.png)
-
-`실제 데이터의 점을 찍음으로써 데이터가 어떻게 분포하는지 확인가능합니다`
-
-**그래프 안의 색을 채우는 것은 fill함수, 그래프의 선을 바꾸는 것은 color함수를 통해 가능합니다**
-
-```R
-ggplot(mpg, aes(x = drv, y = hwy, fill = drv, color = drv)) +
-  geom_violin() +
-  scale_color_manual(values=c("#999999", "#E69F00", "#56B4E9")) +
-  scale_fill_brewer(palette="Dark2")
-```
-
-`scale_color_manual() : to use custom colors`
-
-`scale_color_brewer() : to use color palettes from RColorBrewer package`
-
-`scale_color_grey() : to use grey color palettes`
-
-> 제목과 x축 y축 이름을 바꾸고 범례 위치를 바꾸는 참고 코드
-
-```R
-ggplot(mpg, aes(x = drv, y = hwy, fill = drv)) +
-  geom_violin(trim = T) +
-  labs(main = "drv 별 연비 분포",
-       x = "구동방식",
-       y = "연비") +
-  theme(legend.position = "top")
-```
-
-### Quantile-normal plots(QQ-plot)
-* 샘플이 가정한 분포와 얼마나 일치하는지 여부
-* detect left or right skew
-* detect positive or negative kurtosis
-* detect bimodality
 
 >
 ### Reference 
-* [ggplot2_essentials](http://www.sthda.com/english/wiki/ggplot2-violin-plot-quick-start-guide-r-software-and-data-visualization){: .btn .btn--info}
+* http://www.ques10.com/p/158/write-short-notes-on-numerosity-reduction-1/
 
 >
 ### 용어정리 
