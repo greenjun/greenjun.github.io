@@ -13,18 +13,20 @@ toc_label: "My Table of Contents"
 * 최대한 수식을 배제하고 전체적인 흐름을 익히게 했습니다.
 * 따라서 궁금하신 점은 메일이나 검색을 활용해주세요.
 
+***
+
 ## Introduction
 데이터 축소라는 개념이 왜 등장했을까요? database나 datawarehouse를 보면 terabyte 이상의 데이터가 들어있습니다.
 이것을 가지고 분석을 진행한다면 오랜 시간이 걸리겠지요. 그래서 그 중에서 중요한 데이터만 골라내어 분석하려는 시도에서 나왔습니다.
 
 요약하면 **much smaller in volume but yet produces the almost same analytical results**를 하기 위해서 입니다.
 
-##  Data reduction strategies
+## Data reduction strategies
 
 * Dimensionality reduction -  중요하지않은 속성을 제거하는 것
- -Wavelet transforms
- -Principal Components Analysis
- -Feature subset selection, Feature creation
+ * Wavelet transforms
+ * Principal Components Analysis
+ * eature subset selection, Feature creation
 
 
 
