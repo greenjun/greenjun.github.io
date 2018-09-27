@@ -93,11 +93,14 @@ class - "type" of car
 
 ## Univariate graphical EDA
 
-### bar plot
+### Boxplots
+* outlier
+* symmetry (데이터 치우침정도 파악가능)
+* robust measures of location and spread
 * categorical data 데이터 분포 
 * continous data에 사용하면 전체적인 분포를 빼곡히 파악 가능
 
-먼저 하나씩 차근 차근 시작하여보자
+먼저 하나씩 차근 차근 시작하여봅시다
 
 **mpg라는 데이터 셋에서 drv 별로 얼마나 많은 빈도를 가지고 있는지 확인하여 봅시다**
 
@@ -264,10 +267,7 @@ ggplot(data = mpg, aes(x = drv))+
 
 
 
-### Boxplots
-* outlier
-* symmetry (데이터 치우침정도 파악가능)
-* robust measures of location and spread
+
 
 ### Quantile-normal plots(QQ-plot)
 * 샘플이 가정한 분포와 얼마나 일치하는지 여부
