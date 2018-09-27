@@ -211,7 +211,7 @@ ggplot(data = mpg, aes(x = drv, y = hwy, group = manufacturer)) +
 
 `gerom_col과 geom_test의 position은 같은 표시로 해야합니다`
 
-> 참고 코드 
+> stack 사용시 참고 코드 
 
 ```R
 ggplot(data = df, aes(x, y, group = grp)) +
@@ -222,13 +222,26 @@ ggplot(data = df, aes(x, y, group = grp)) +
 **만약 drv 별로 연비의 총합을 알고 싶다면 다음과 같이 y = hwy, stat = 'identity'를 추가하면 됩니다.**
 
 ```R
-ggplot(data = mpg, aes(x = drv, y = hwy))+
-  geom_bar(stat = 'identity')
+ggplot(data = mpg, aes(x = drv, y = hwy, fill = drv))+
+  geom_bar(stat='identity') +
+  labs(x = "drv 별로 hwy의 총합")
 ```
 
+![barplot5](/assets/images/barplo5.png)
 
+> stat의 사용 참고 코드
 
+```R
+labeling
+ggplot(data = mpg, aes(x = drv, y = hwy, fill = drv))+
+  geom_bar(stat='identity') +
+  labs(title = "y - stat identity")
 
+ggplot(data = mpg, aes(x = drv))+
+  geom_bar() +
+  labs(title = "x - default stat bin")
+# the height of the bar represents the count of cases in each category.
+```
 
 **Quiz1. mpg라는 데이터 셋에서 class 별로 얼마나 많은 빈도를 가지고 있는지 확인하여 봅시다**
 
