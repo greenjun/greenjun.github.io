@@ -25,8 +25,6 @@ toc_label: "My Table of Contents"
 
 ### 참고자료
 
-[Visualizaion-Barplot](https://greenjun.github.io/data%20mining/Visualizaion-barplot/)
-
 [ggplot2 공식 메뉴얼](https://cloud.r-project.org/web/packages/ggplot2/ggplot2.pdf)
 
 [ggplot2 개발자 Hadley Wickham의 paper](http://byrneslab.net/classes/biol607/readings/wickham_layered-grammar.pdf)
@@ -94,6 +92,7 @@ fl - fuel type
 class - "type" of car
 
 ## Univariate graphical EDA
+[Visualizaion-Barplot](https://greenjun.github.io/data%20mining/Visualizaion-barplot/)
 
 ### Histogram
 * central tendency, spread, modality, shape and outliers
@@ -101,9 +100,6 @@ class - "type" of car
 
 먼저 하나씩 차근 차근 시작하여봅시다
 
-### Histograms
-* central tendency, spread, modality, shape and outliers
-* continous data 데이터 분포
 
 
 
