@@ -1,5 +1,5 @@
 ---
-title:  "시각화(Visualization)"
+title:  "시각화(Visualization)-Histogram"
 categories:
   - data mining
 tags:
