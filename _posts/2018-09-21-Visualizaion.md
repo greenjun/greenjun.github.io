@@ -99,8 +99,6 @@ class - "type" of car
 
 **mpg라는 데이터 셋에서 drv 별로 얼마나 많은 빈도를 가지고 있는지 확인하여 봅시다**
 
-일단 밑에 코드를 복사 붙여넣기 한 후에 그림을 확인하여 봅시다.
-
 ```R
 ggplot(data = mpg, aes(x = drv)) +
   geom_bar()
@@ -117,63 +115,83 @@ ggplot(data = mpg, aes(x = drv)) +
 
 `geom_bar() 는 막대그래프를 그리라는 함수입니다.`
 
-배경에 격자 무늬를 수정해봅시다.
+**배경에 격자 무늬를 수정해봅시다.**
 
 ```R
-ggplot(data = mpg, aes(x = drv, fill = drv)) +
+ggplot(data = mpg, aes(x = drv)) +
   geom_bar() +
-  theme_minimal()
+  theme_lightl()
 ```
 
 `theme 함수를 통해서 배경의 격자 무늬를 수정할 수 있습니다`
 
-
-
-
-
-
-
-
-
-
-
-
-x축의 이름을 바꾸고 싶다면 labs(x = "움직이는 바퀴")이라는 layer를 추가 해주면 됩니다
-
-```R
-ggplot(data = mpg, aes(x = drv))+
-  geom_bar() +
-  labs(x = "움직이는 바퀴") 
-```
-
-색이 좀 칙칙하다구요? fill=drv는 drv별로 색을 다르게 채우겠다는 뜻입니다.
+**색이 좀 칙칙하다구요? fill=drv는 drv별로 색을 다르게 채우겠다는 뜻입니다.**
 
 ```R
 ggplot(data = mpg, aes(x = drv, fill=drv))+
   geom_bar() +
+  theme_lightl()
+```
+
+**막대를 수정해봅시다**
+
+ggplot(data = mpg, aes(x = drv, fill = drv)) +
+  geom_bar(width = 0.7) +
+  theme_light()
+
+`geom_bar 함수 안에 숫자를 입력하면 됩니다. 만약 aes에 fill을 채우지 않았다면 color, fill함수를 여기에 사용하여 막대를 수정할 수 있습니다`
+
+**x축의 drv에서 원하는 크기 순으로 나열해 봅시다**
+
+```R
+ggplot(data = mpg, aes(x = drv, fill = drv)) +
+  geom_bar(width=0.7) +
+  theme_light() +
+  scale_x_discrete(limits=c("f", "4", "r"))
+```
+
+`x축의 drv를 원하는 숫자만 가져오거나 내가  원하는 순서대로 배열하고 싶다면 다음과 같이 scale_x_discrete(limits=..)) 함수를 사용합니다`
+
+**x축의 이름을 바꾸고 싶다면 labs(x = "움직이는 바퀴")이라는 layer를 추가 해주면 됩니다**
+
+```R
+ggplot(data = mpg, aes(x = drv, fill = drv)) +
+  geom_bar(width=0.7) +
+  theme_light() +
+  scale_x_discrete(limits=c("f", "4", "r")) +
   labs(x = "움직이는 바퀴") 
 ```
 
- 
- 
- 흠...막대기가 위에 숫자도 추가해볼까요? geom_label(stat='count', aes(label=..count..))
+**흠...막대기가 위에 숫자도 추가해볼까요? **
  
  ```R
-ggplot(data = mpg, aes(x = drv, fill=drv))+
-  geom_bar() +
+ggplot(data = mpg, aes(x = drv, fill = drv)) +
+  geom_bar(width=0.7) +
+  theme_light() +
+  scale_x_discrete(limits=c("f", "4", "r")) +
   labs(x = "움직이는 바퀴") +
   geom_label(stat='count', aes(label=..count..))
 ```
 
 ![barplot2](/assets/images/barplot2.png)
 
- 만약 drv별로 어느 회사가 많이 생산하고 있는지 여부를 알고 싶을 때에는 fill = manufacturer로 바꿔주시면 됩니다.
- h죠
+ **만약 drv별로 연료타입이 어떻게 되는지 확인하고 싶다면 fill = fl로 바꿔주시면 됩니다.**
+ 
  ```R
-ggplot(data = mpg, aes(x = drv, fill = manufacturer))+
-  geom_bar(stat='count', position='stack') +
-  labs(x = "drv 별로 어느 회사가 많이 만들고있는지 여부 ")
+ggplot(data = mpg, aes(x = drv, fill = manufacturer)) +
+  geom_bar(width=0.7) +
+  theme_light() +
+  scale_x_discrete(limits=c("f", "4", "r")) +
+  labs(x = "drv별로 연료타입 분포")
 ```
+
+`여기서 한 막대안에 들어 있는 여러개의 분포를 x축위에 나란히 놓고 싶다면 geom_bar(position = "dodge")를 추가하시면 됩니다.`
+
+**geom_bar의 stat 함수 사용**
+
+
+
+
 #만약 drv 별로 연비의 총합을 알고 싶다면 다음과 같이 y = hwy, stat = 'identity'를 추가하면 됩니다.
 ggplot(data = mpg, aes(x = drv, y = hwy))+
   geom_bar(stat = 'identity')
