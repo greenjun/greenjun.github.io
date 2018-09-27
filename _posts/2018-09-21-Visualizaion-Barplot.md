@@ -251,39 +251,12 @@ ggplot(data = mpg, aes(x = drv))+
 
 **Quiz1. mpg라는 데이터 셋에서 class 별로 얼마나 많은 빈도를 가지고 있는지 확인하여 봅시다**
 
-
-
-
-
 ### Histograms
-* central tendency, spread, modality, shape and outliers
-* continous data 데이터 분포
-
-
-
-
-
-
-
-
-
-
 
 ### Quantile-normal plots(QQ-plot)
-* 샘플이 가정한 분포와 얼마나 일치하는지 여부
-* detect left or right skew
-* detect positive or negative kurtosis
-* detect bimodality
-
-
-
-
-
 
 ### Reference 
 * http://www.sthda.com/english/wiki/ggplot2-barplots-quick-start-guide-r-software-and-data-visualization
 
-
-
-
-> 용어정리 barplot
+> 용어정리 
+* barplot
