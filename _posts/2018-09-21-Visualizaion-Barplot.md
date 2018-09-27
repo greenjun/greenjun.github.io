@@ -255,7 +255,7 @@ ggplot(data = mpg, aes(x = drv))+
 
 ### Quantile-normal plots(QQ-plot)
 
-### Reference 
+## Reference 
 * http://www.sthda.com/english/wiki/ggplot2-barplots-quick-start-guide-r-software-and-data-visualization
 
 > 용어정리 
