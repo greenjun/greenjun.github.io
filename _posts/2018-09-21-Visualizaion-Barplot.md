@@ -249,6 +249,23 @@ ggplot(data = mpg, aes(x = drv))+
   labs(title = "x - default stat bin")
 ```
 
+> 크기순으로 라벨링 할떄 참고코드
+
+```R
+
+library(plyr)
+mpg2 <- mpg[,c(7,9)]
+mpg_sorted <- arrange(mpg2, drv, hwy)
+mpg_cumsum <- ddply(mpg_sorted, 
+                    .(drv),
+                    transform,
+                    label_cumsum = cumsum(hwy))
+ggplot(data = mpg_cumsum, aes(x = drv, y = hwy, fill = drv))+
+  geom_bar(stat='identity') +
+  labs(x = "drv 별로 hwy의 총합") +
+  geom_text(aes(y=label_cumsum, label=hwy))
+  ```
+
 **Quiz1. mpg라는 데이터 셋에서 class 별로 얼마나 많은 빈도를 가지고 있는지 확인하여 봅시다**
 
 ### Histograms
