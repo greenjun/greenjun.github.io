@@ -94,7 +94,7 @@ histogram, clustering, sampling등을 사용합니다.
 **Sampling**
 * 데이터 베이스의 크기를 줄여주지는 못합니다.
 
-* Stratified sampling
+* Simple random sampling, Sampling without replacement, Sampling without replacement, [Stratified sampling](https://ko.wikipedia.org/wiki/%EC%B8%B5%ED%99%94%EC%B6%94%EC%B6%9C%EB%B2%95){: .btn .btn--info}
 
 * 전체 데이터를 표현하는 작은 샘플을 뽑는것
 
