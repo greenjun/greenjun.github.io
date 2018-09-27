@@ -24,9 +24,9 @@ toc_label: "My Table of Contents"
 ## Data reduction strategies
 
 * Dimensionality reduction -  중요하지않은 속성을 제거하는 것
- * Wavelet transforms
- * Principal Components Analysis
- * eature subset selection, Feature creation
+   * Wavelet transforms
+   * Principal Components Analysis
+   * eature subset selection, Feature creation
 
 
 
