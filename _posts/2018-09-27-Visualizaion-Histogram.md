@@ -94,9 +94,11 @@ class - "type" of car
 ## Univariate graphical EDA
 * [Visualizaion-Barplot](https://greenjun.github.io/data%20mining/Visualizaion-Barplot/)
 
-### Histogram
+### Violinplot
 * central tendency, spread, modality, shape and outliers
 * continous data distribution
+* boxplot보다 많은 정보를 나타낼 수 있고 더 많은 정보를 보여주므로 boxplot보다는 violinplot을 사용한는것을 권합니다.
+
 
 먼저 하나씩 차근 차근 시작하여봅시다
 
