@@ -92,6 +92,8 @@ histogram, clustering, sampling등을 사용합니다.
 * Hierarchical clustering(계층적 군집분석)을 이용하면 multi-dimensional index tree structures를 이용하여 저장가능하다.
 
 **Sampling**
+* Clustering -> Stratified sampling 하는 식으로 이용함.
+
 * 데이터 베이스의 크기를 줄여주지는 못합니다.
 
 * Simple random sampling, Sampling without replacement, Sampling without replacement, [Stratified sampling](https://ko.wikipedia.org/wiki/%EC%B8%B5%ED%99%94%EC%B6%94%EC%B6%9C%EB%B2%95){: .btn .btn--info}
@@ -99,6 +101,13 @@ histogram, clustering, sampling등을 사용합니다.
 * 전체 데이터를 표현하는 작은 샘플을 뽑는것
 
 * 데이터의 크기에 sub-linear 한 곳에서 즉 복잡한 곳에서 데이터마이닝 알고리즘이 작동하도록 도와준다.
+
+**Data Cube Aggregation**
+
+
+
+
+
 
 
 
