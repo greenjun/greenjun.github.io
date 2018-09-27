@@ -25,7 +25,7 @@ toc_label: "My Table of Contents"
 
 ### 참고자료
 
-[Visualizaion-Boxplot](https://greenjun.github.io/data%20mining/Visualizaion-barplot/)
+[Visualizaion-Barplot](https://greenjun.github.io/data%20mining/Visualizaion-barplot/)
 
 [ggplot2 공식 메뉴얼](https://cloud.r-project.org/web/packages/ggplot2/ggplot2.pdf)
 
