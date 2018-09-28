@@ -112,29 +112,57 @@ histogram, clustering, sampling등을 사용합니다.
 * Group by multiple criteria를 이용하여 그룹을 더 세분화하여 데이터를 보게되면 유용한 인사이트를 얻을수있습니다. 
 
 **Reducing categories**
-* 
+* Problem: Can end up with too many variables
+* Solution: Reduce by combining categories that are close to each other
+* Use pivot tables to assess outcome variable sensitivity to the dummies
+* Exception: Naïve Bayes can handle categorical variables without transforming them into dummie
+* Ex) 만약 방향이라는 변수가 범주형 변수로 4가지의 방향을 표현한다면 3개의 더미 변수로 표현가능합니다.
+   * 동 - 1000
+   * 서 - 0100
+   * 남 - 0010
+   * 북 - 0001
+   * 동서 - 1100
+   * 남북 - 0011
+
+**Combining categories**
+다른 한가지 변수를 기준으로 범주형 변수를 바라 보았을때, 범주형 변수가 같은 특징을 보인다면 묶어서 같은 카테고리내로 두는 것을 고려해볼수있습니다.
+
+**Transform categorical variable to numerical variable**
+Ex) 범주가 나이 20-30인 경우라면, 그냥 25를 사용
 
 
+## Dimensionality reduction
 
+### Wavelet transforms
+[Wavelet transforms](https://hansung.ac.kr/web/multi/510324?p_p_id=EXT_BBS&p_p_lifecycle=1&p_p_state=exclusive&p_p_mode=view&p_p_col_id=column-1&p_p_col_count=1&_EXT_BBS_struts_action=%2Fext%2Fbbs%2Fget_file&_EXT_BBS_extFileId=657507){: .btn .btn--info}
 
+### PCA
+* 단계
+   * Apply PCA to training data
+   * Decide how many PC’s to use
+   * Use variable weights in those PC’s with validation/new data
+   * This creates a new reduced set of predictors in validation/new data
+* 단위에 영향을 받지 않기 위해 먼저 Normalizing 하는 것이 필요합니다.
+* 상관관계가 높은 측정치들이 존재할때, 상관관계가 높은 변수끼리 묶어서 표현하는 것
+* 두 변수간의 정보를 모두 포함하지는 못하지만 대부분은 포함시키는 두 변수의 선형결랍을 찾는 것
+* 새로운 변수는 원래 변수의 선형결합으로 이루어집니다.
+* 새롭게 생긴 변수는 서로간에 상관관계가 없고, 원래 데이터의 대부분을 표현할 수 있습니다.
+* 이 새로운 변수는 principal components 라고 부릅니다.
+[주성분분석](http://elearning.kocw.net/document/lec/2012/DukSung/KimJaehee/09.pdf){: .btn .btn--info}
 
-
-* [Visualizaion-Barplot](https://greenjun.github.io/data%20mining/Visualizaion-Barplot/)
-
-
-
-```
-
-![violinplot1](/assets/images/violinplot1.png)
-
-![boxplot1](/assets/images/boxplot1.png)
-
-
+### Regression-Based Dimension Reduction
+* Multiple Linear Regression or Logistic Regression
+* Use subset selection
+* Algorithm chooses a subset of variables
+* This procedure is integrated directly into the predictive task
+* 통계적으로 유의하지 않은 계수를 가진 변수는 다른 변수와 통합
+* 유사한 계수를 가지는 변수는 하나의 변수로 통합
 
 >
 ### Reference 
 * http://www.ques10.com/p/158/write-short-notes-on-numerosity-reduction-1/
+* http://bsclab.pusan.ac.kr
 
 >
 ### 용어정리 
-* boxplot, violin plot
+* PCA, wavelet transforms
