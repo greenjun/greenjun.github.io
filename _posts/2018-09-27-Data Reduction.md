@@ -104,7 +104,15 @@ histogram, clustering, sampling등을 사용합니다.
 
 **Data Cube Aggregation**
 
+**Categorical data**
+* 빈도나 비율 같은것이 범주형 변수를 요약하는데 유용합니다.
 
+**Grouped numerical data**
+* 평균이 그룹지어진 연속형 변수를 요약하는데 유용합니다.
+* Group by multiple criteria를 이용하여 그룹을 더 세분화하여 데이터를 보게되면 유용한 인사이트를 얻을수있습니다. 
+
+**Reducing categories**
+* 
 
 
 
