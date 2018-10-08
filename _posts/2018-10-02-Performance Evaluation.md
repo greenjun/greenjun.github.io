@@ -40,40 +40,19 @@ toc_label: "My Table of Contents"
 단순히 모두 음성이라고 했을 뿐인데 말이죠. 그래서 일반적으로 모델을 만들었을때 단순히 정확도만으로 평가하는 것은 위헙합니다.
 
 ###  Error measure for prediction
+세부 내용은 위키에 검색하시면 됩니다.
 
-e = 실제값 - 예측값 = yi - xi
+* MAE(Mean absoulute error) - 오차(실제값과 예측값)에 전부 절댓값을 취한 후 평균을 구한 것
+* AE(Average error) - 오차의 평균
+* MAPE(Mean absolute percentage error) - 실제값 중에서 오차가 차지하는 비에 절댓값을 취한 후 평균을 구하여 100을 곱한것
+* RMSE(Root-mean-square deviation) - 오차에 제곱을 취한것의 평균을 구한 후 루트를 취한 것
+* SSE - 오차의 제곱의 합
 
-* MAE(Mean absoulute error) - 1/𝑛 * ∑|𝑒𝑖| 
-* AE(Average error) - 1/𝑛 * ∑𝑒𝑖
-* MAPE(Mean absolute percentage error) - 1/𝑛 * ∑|𝑒𝑖/𝑦𝑖| * 100
-```
-> 모든 예제는 ggplot2 패키지 내의 mpg 데이터를 이용하겠습니다. 데이터 구성은 다음과 같습니다.
+### training, validation, test data
+일반적으로 하나의 데이터 셋을 여러가지 용도에 맞게 나누게 됩니다.
 
-11 variables, 234 row, dataframe
+기본적으로 
 
-variable이름 - 설명
-
-manufacturer
-
-model - model name
-
-displ - engine displacement, in litres
-
-year - year of manufacture
-
-cyl - number of cylinders
-
-trans - type of transmission
-
-drv - f = front-wheel drive, r = rear wheel drive, 4 = 4wd
-
-cty - city miles per gallon
-
-hwy - highway miles per gallon
-
-fl - fuel type
-
-class - "type" of car
 
 ## Univariate graphical EDA
 * [Visualizaion-Barplot](https://greenjun.github.io/data%20mining/Visualizaion-Barplot/)
@@ -167,8 +146,8 @@ ggplot(mpg, aes(x = drv, y = hwy, fill = drv)) +
 
 >
 ### Reference 
-* [ggplot2_essentials](http://www.sthda.com/english/wiki/ggplot2-violin-plot-quick-start-guide-r-software-and-data-visualization){: .btn .btn--info}
+* [About train, validation, test data](https://towardsdatascience.com/train-validation-and-test-sets-72cb40cba9e7){: .btn .btn--info}
 
 >
 ### 용어정리 
-* boxplot, violin plot
+* validation, 
