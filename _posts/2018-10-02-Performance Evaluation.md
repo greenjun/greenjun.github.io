@@ -138,7 +138,22 @@ Specificity는 실제로 0인데 예측을 0으로 해서 맞은 것입니다.
 
 그러면 1 - Specificity는 실제로 0인데 예측을 1로해서 틀린것입니다.
 
+x축에 1 - Specificity = False Positive
+
+y축에 Sensitivity = True Positive
+
+를 그립니다.
+
 ![Lift](https://docs.eyesopen.com/toolkits/cookbook/python/_images/roc-theory-small.png){: width="400" height="400"}
+
+바보에게 케이스를 주면서 맞춰봐라고 하면 그냥 반반의 확률로 찍기때문에 0을 1로 판정할 확률(1-Specificity)과 1인데 1로 판정할 확률(Sensitivity)이 같을 것입니다. 
+
+우리가 만들 모델은 적어도 이 바보 보다는 많이 맞춰야합니다. 즉 0을 1로 판정하는 것보다는 1을 1이라고 더 많이 판정해야합니다.
+
+
+
+
+
 
 
 
