@@ -74,11 +74,20 @@ second, 만들고 있는 모델
 * “Low separation of records” means that using predictor variables does not improve much on naïve rule
 
 ### Threshold logic unit
+그림에서 보는 것처럼 일정 한계값을 넘어서면 1, 아니면 0으로 분류하는 것이 TLU이고, 이를 이용하여 AND, OR 등을 만들 수 있습니다.
 
-<a href="http://present5.com/presentation/f38da7bb0a544eef73457e93f6811f3f/image-2.jpg" width="400px" title="source: http://present5.com" /></a>
+![Threshold logic unit](http://present5.com/presentation/f38da7bb0a544eef73457e93f6811f3f/image-2.jpg){: width="400" height="400"}
 
-## Univariate graphical EDA
-* [Visualizaion-Barplot](https://greenjun.github.io/data%20mining/Visualizaion-Barplot/)
+### Linearly separable functions
+여기에서는 일반적으로 AND나 OR 같은 경우는 한개의 선으로 구별되어지지만, XOR의 경우 어떤 경우에도 하나의 선으로 구별되지 않습니다.
+
+<a href="https://cdn-images-1.medium.com/max/1600/1*wEomny4n9fzKL7X9TABWjw.png" width="400px" title="source: https://medium.com" /></a>
+
+
+
+
+
+
 
 ### Violinplot
 * central tendency, spread, modality, shape and outliers
