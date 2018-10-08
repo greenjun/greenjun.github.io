@@ -51,8 +51,31 @@ toc_label: "My Table of Contents"
 ### training, validation, test data
 일반적으로 하나의 데이터 셋을 여러가지 용도에 맞게 나누게 됩니다.
 
-기본적으로 
+기본적으로 train data로 모델을 만들고
 
+validation data로 모델 검증을 하게 됩니다. 이때 모델은 이 validation data로 배우는 것이 아니라 parameter를 수정하는데 사용하게 됩니다. 간접적으로는 모델에 영향을 주긴하지만 이 모델로부터 배우는 것은 아닙니다.
+
+모델을 평가할 때 사용하는 것이 바로  test data입니다. 모델이 완전히 만들어진 후 오직 한번만 사용됩니다. 
+
+### Ratio of splited datasets
+아마도 하나의 데이터 셋을 나눈다고 말했기때문에 어떤 비율로 데이터를 나누는 게 좋을지 고민할것이라고 생각이듭니다. 여기서 고민해야 할 것은 두가지가 있습니다. 
+
+First, 데이터의 총 샘플수
+
+second, 만들고 있는 모델
+
+만약에 여러분들이 만들고 있는 모델이 엄청나게 많은 train data를 필요로 하고 parameter tuning이 적게 필요하다면 아마도 데이터 비율이 train data에 집중이 되고 validation에는 데이터가 적을 것입니다. 반대의 경우도 마찬가지입니다. 만약에 많은 tuning해야 될 많은 parameters가 있다면 validation 데이터가 많이 필요하겠죠. cross-validation을 검색해보면 이와 관련된 아이디어를 얻을 수 있을겁니다. 즉, 비율에 관한 정확한 정답을 없기에 여러분들이 많은 모델을 만들어 본 후에 많은 use-case가 생긴다면 비율에 관해서 know-how가 생길 것 입니다.
+
+<a href="http://imgur.com/3PVaEXE"><img src="https://i.stack.imgur.com/1fXzJ.png" width="400px" title="source: imgur.com" /></a>
+
+### Separation of Records
+* “High separation of records” means that using predictor variables attains low error
+
+* “Low separation of records” means that using predictor variables does not improve much on naïve rule
+
+### Threshold logic unit
+
+<a href="http://www.aistudy.co.kr/ai/ains/threshold_unit.gif" width="400px" title="source: aistudy.co.kr" /></a>
 
 ## Univariate graphical EDA
 * [Visualizaion-Barplot](https://greenjun.github.io/data%20mining/Visualizaion-Barplot/)
@@ -147,7 +170,8 @@ ggplot(mpg, aes(x = drv, y = hwy, fill = drv)) +
 >
 ### Reference 
 * [About train, validation, test data](https://towardsdatascience.com/train-validation-and-test-sets-72cb40cba9e7){: .btn .btn--info}
-
+* www.washburn.edu/faculty/boncella/XLMiner/Lecture%204%20-%20Model%20Evaluation.ppt
+$${ c }_{ 1 }=5,\quad Y=\begin{pmatrix} { 1 } \\ { 2 } \\ { 3 } \end{pmatrix}$$
 >
 ### 용어정리 
 * validation, 
