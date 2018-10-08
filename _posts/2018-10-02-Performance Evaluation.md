@@ -88,9 +88,6 @@ second, 만들고 있는 모델
 
 ![Cutoff](https://www.cansfordlabs.co.uk/wp-content/uploads/2016/01/CutoffPic-800x568.png){: width="400" height="400"}
 
-
-
-
 ## 성과 분석 척도
 자 드디어 introduction을 마치고 본격적으로 어떤 것으로 성능을 평가하는 지 알아봅시다.
 
@@ -108,6 +105,10 @@ Accuracy = 1 - error rate
 Sensitivity = 실제로 Positive 중에 예측이 맞은 것
 
 Specificity = 실제로 Negative 중에 예측이 맞은 것
+
+### Lift
+이 경우를 생각해 봅시다. 음..예를 들어 dufj
+
 
 
 
