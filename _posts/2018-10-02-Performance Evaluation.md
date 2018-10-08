@@ -4,7 +4,6 @@ categories:
   - data mining
 tags:
   - Performance
-  - EDA
   - R
   - Evaluations
   
@@ -16,51 +15,37 @@ toc_label: "My Table of Contents"
 * 따라서 궁금하신 점은 메일이나 검색을 활용해주세요.
 
 ## Introduction
-이전 포스팅 [탐색적자료분석(EDA)](https://greenjun.github.io/data%20mining/EDA/) 에 이어서
-데이터를 시각화하는 방법에 대해 알아보겠습니다
-이 글에서 이해가 안되시는 분은 이전 포스팅을 참고해주세요
-전에도 말했다시피  EDA하는 방법에는 크게 4가지가 있다고 했고, 
-이번 글은 그 중에서 graphic으로 표현하는 것은 포스팅 하겠습니다.
+한개의 데이터 셋에 대해서도 사용할 수 있는 모델의 수가 굉장히 많습니다. 따라서 모델을 만든 후에 어떤 모델이 좋은 지 확인하는 과정이 필요합니다. 그래서 모델을 평가하는 성과분석(performance analysis)를 하게 됩니다. 
 
-### 참고자료
+### Typers of output
+모델을 통해 나온는 결과는 다음과 같이 세가지가 있습니다.
 
-[ggplot2 공식 메뉴얼](https://cloud.r-project.org/web/packages/ggplot2/ggplot2.pdf)
+* 일반적인 회귀분석의 결과로 나오는 Numerical value
+* 일반적인 의사결정나무의 결과로 나오는 Class
+* 그리고 Class가 될 확률로 나오는 Tendancy
 
-[ggplot2 개발자 Hadley Wickham의 paper](http://byrneslab.net/classes/biol607/readings/wickham_layered-grammar.pdf)
+### Misclassification error
+기본적으로 에러는 맞는데 틀리게 분류하였거나,틀렸는데 맞게 분류한것을 말합니다. 용어로는 error, error rate를 쓰게 됩니다.
 
+### Benchmark
+* 분류 벤치마크 - 가장 빈도가 많은 class로 모든 값을 분류해 버리는 것
+* 예측 벤치마크 - 학습 데이터들의 평균 값을 예측 값으로 사용하는 것 
 
-## ggplot2
-수많은 책과 포스팅을 보면 시각화하는 수많은 패키지와 프로그램이 있지만
+다음과 같은 경우를 생각해봅시다. 여러분들이 암을 예측하는 모델을 만들었다고 합시다. 이 모델은 0이면 음성, 1이면 양성으로 분류합니다.
 
-여기서 소개해드릴 것은 R에서 사용하는  **ggplot2** 입니다.
+검사한 사람들 10,000명 중에 양성인 사람들은 100명이라고 합시다. 
 
-제가 시각화하는 책과 여러가지 프로젝트를 보았지만 ggplot2 만큼 많은 것을 커버할수있고 
+이 경우 이 사람들에 대해서 10,000을 모두 음성이라고 판단을 내리는 모델에 대해서 단순히  error rate로 측정을 하게되면 정확도가 99%가 됩니다.
 
-활용하는 패키지는 없는 것 같았습니다.
+단순히 모두 음성이라고 했을 뿐인데 말이죠. 그래서 일반적으로 모델을 만들었을때 단순히 정확도만으로 평가하는 것은 위헙합니다.
 
-그래서 만약 데이터 시각화에 관심이 있으시고 R을 사용하신다면 ggplot2만 익혀도 표현하고자 하는 
+###  Error measure for prediction
 
-수 많은 생각을 시각화 하는데 도움이 될 것입니다.
+e = 실제값 - 예측값 = yi - xi
 
-
-### ggplot2 구성 방식
-* 레이어를 하나씩 쌓아가면서 그림을 그리는 방식
-* 이때 레이어를 연결시키는 방법이 `+` 라는 기호를 사용하여 연결
-
-ex)
-```R
-ggplot(data = mpg, aes(x = displ, y = hwy))+  #배경레이어 - 이용할 데이터와 축을 명시한다.
-  geom_point()+                               #그래프레이어 - 배경레이어 위에 어떤 그래프를 그릴지 선택한다.
-  xlim(3, 6)+                                 #기타 레이어 - 그외의 축범위 조정 외 수많은 기능들을 실행한다.
-  ylim(10,30)``
-```
-
-### 설치
-```R
-install.packages("ggplot2")
-install.packages("ggplot2")
-library(ggplot2) #시각화 
-library(dplyr)   #데이터 프레임 조작
+* MAE(Mean absoulute error) - 1/𝑛 * ∑|𝑒𝑖| 
+* AE(Average error) - 1/𝑛 * ∑𝑒𝑖
+* MAPE(Mean absolute percentage error) - 1/𝑛 * ∑|𝑒𝑖/𝑦𝑖| * 100
 ```
 > 모든 예제는 ggplot2 패키지 내의 mpg 데이터를 이용하겠습니다. 데이터 구성은 다음과 같습니다.
 
