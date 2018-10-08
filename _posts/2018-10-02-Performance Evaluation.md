@@ -79,11 +79,9 @@ second, 만들고 있는 모델
 ![Threshold logic unit](http://present5.com/presentation/f38da7bb0a544eef73457e93f6811f3f/image-2.jpg){: width="400" height="400"}
 
 ### Linearly separable functions
-여기에서는 일반적으로 AND나 OR 같은 경우는 한개의 선으로 구별되어지지만, XOR의 경우 어떤 경우에도 하나의 선으로 구별되지 않습니다.
+여기에서는 일반적으로 AND나 OR 같은 경우는 한개의 선으로 구별되어지지만, XOR의 경우 어떤 경우에도 하나의 선으로 구별되지 않습니다. 이때, 하나의 선으로 구별된다면 linearly separable function이라고 말합니다.
 
-<a href="https://cdn-images-1.medium.com/max/1600/1*wEomny4n9fzKL7X9TABWjw.png" width="400px" title="source: https://medium.com" /></a>
-
-
+![Lineary separable functions](https://cdn-images-1.medium.com/max/1600/1*wEomny4n9fzKL7X9TABWjw.png){: width="400" height="400"}
 
 
 
