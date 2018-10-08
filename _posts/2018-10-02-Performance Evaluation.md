@@ -83,7 +83,31 @@ second, 만들고 있는 모델
 
 ![Lineary separable functions](https://cdn-images-1.medium.com/max/1600/1*wEomny4n9fzKL7X9TABWjw.png){: width="400" height="400"}
 
+### Cutoff
+실제로 데이털르 예측하게 되면 거의 대부분의 데이터마이닝 알고리즘은 1로 분류할 확률을 결과 값으로 내놓게 됩니다. 그런 후에 이 확률을 cutoff를 기준으로 0인지 1인지 분류하게 되죠.
 
+![Cutoff](https://www.cansfordlabs.co.uk/wp-content/uploads/2016/01/CutoffPic-800x568.png){: width="400" height="400"}
+
+
+
+
+## 성과 분석 척도
+자 드디어 introduction을 마치고 본격적으로 어떤 것으로 성능을 평가하는 지 알아봅시다.
+
+### Confusion matrix
+![Confusion Matrix](https://3.bp.blogspot.com/--jLXutUe5Ss/VvPIO6ZH2tI/AAAAAAAACkU/pvVL4L-a70gnFEURcfBbL_R-GnhBR6f1Q/s1600/ConfusionMatrix.png){: width="400" height="400"}
+
+여기서 용어를 쉽게 외우려면 일단 틀리면 앞에 False를 붙입니다. 그런후에 내가 예측을 positive로 했냐, negative로 했냐를 확인하면 됩니다.
+
+이제 본격적으로 들어가봅시다. 
+
+Overall error rate = 전체 경우 중에 예측이 틀린 것의 비율
+
+Accuracy = 1 - error rate
+
+Sensitivity = 실제로 Positive 중에 예측이 맞은 것
+
+Specificity = 실제로 Negative 중에 예측이 맞은 것
 
 
 
