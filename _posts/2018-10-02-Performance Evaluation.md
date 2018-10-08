@@ -75,7 +75,7 @@ second, 만들고 있는 모델
 
 ### Threshold logic unit
 
-<a href="http://www.aistudy.co.kr/ai/ains/threshold_unit.gif" width="400px" title="source: aistudy.co.kr" /></a>
+<a href="http://present5.com/presentation/f38da7bb0a544eef73457e93f6811f3f/image-2.jpg" width="400px" title="source: http://present5.com" /></a>
 
 ## Univariate graphical EDA
 * [Visualizaion-Barplot](https://greenjun.github.io/data%20mining/Visualizaion-Barplot/)
