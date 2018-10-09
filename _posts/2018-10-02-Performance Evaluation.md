@@ -183,85 +183,23 @@ C(FP) - 실제 0 을 1로 잘못 분류하는 비용
 
 따라서 평균 오분류 비용은 = $$${{C(FN) * (0을 1으로 분류한 케이스 수)} + {C(FP) * (1을 0으로 분류한 케이스 수)}}/총케이스수$$$
 
+> 실제 비용을 추산 할때 기회비용같은 것을 포함하여 성능을 평가할수도 있지만 비용만을 넣는 것이 다양한 곳에 적용할수있게 해줍니다.
+
+### Adding Cost/Benefit to lift Curve
+X-axis is index number (1 for 1st case, n for nth case)
+
+Y-axis is cumulative cost/benefit
+
+Reference line from origin to yn  ( yn = total net benefit)
+
+* 한사람에게 우편물 보내는 비용은 0.65$, 응답자의 가치는 25$, 응답율 2%일 때, 10,000명에게 우편물 보내면? (0.02*$25*10,000) – (0.65*10,000) = - 1500 
+
+![Cost plot](https://image.slidesharecdn.com/lift-171015094055/95/predictive-classification-using-lift-chart-16-638.jpg?cb=1508060774){: width="400" height="400"}
 
 
-**먼저 mpg 데이터에 포함되어 있는 hwy연비의 분포를 확인하여 봅시다.**
-
-```R
-ggplot(mpg, aes(x = drv, y = hwy)) +
-  geom_violin()
-  
-ggplot(mpg, aes(x = drv, y = hwy)) +
-  geom_boxplot()
-```
 
 
 
-![boxplot1](/assets/images/boxplot1.png)
-
-
-`기존의 boxplot과 비교해 보면 데이터의 분포 모형까지도 함께 알 수 있습니다.`
-
-**이제 기존의 boxplot처럼 median과 mean 등의 summary statistics를 표시해봅시다.**
-
-```R
-ggplot(mpg, aes(x = drv, y = hwy)) +
-  geom_violin() +
-  geom_boxplot(width = 0.1) +
-  stat_summary(fun.y = mean, geom = "point", color = 2, size = 2))
-```
-
-![violinplot2](/assets/images/violinplot2.png)
-
-`stat_summary 함수를 통해 mean, median을 지정하여 plot상에 점을 찍어서 통계량을 알 수 있습니다`
-
-`geom_boxplot()함수를 추가함으로써 violinplot 내에 boxplot을 표시함으로써 많은 정보를 포함 할 수 있습니다`
-
-**그림안에 실제 hwy에 해당되는 케이스를 점을 찍어봅시다**
-
-```R
-ggplot(mpg, aes(x = drv, y = hwy)) +
-  geom_violin() +
-  geom_boxplot(width = 0.1, color = "blue") +
-  stat_summary(fun.y = mean, geom = "point", color = 2, size = 2) +
-  geom_jitter(shape=16, position=position_jitter(0.2))
-```
-
-![violinplot3](/assets/images/violinplot3.png)
-
-`실제 데이터의 점을 찍음으로써 데이터가 어떻게 분포하는지 확인가능합니다`
-
-**그래프 안의 색을 채우는 것은 fill함수, 그래프의 선을 바꾸는 것은 color함수를 통해 가능합니다**
-
-```R
-ggplot(mpg, aes(x = drv, y = hwy, fill = drv, color = drv)) +
-  geom_violin() +
-  scale_color_manual(values=c("#999999", "#E69F00", "#56B4E9")) +
-  scale_fill_brewer(palette="Dark2")
-```
-
-`scale_color_manual() : to use custom colors`
-
-`scale_color_brewer() : to use color palettes from RColorBrewer package`
-
-`scale_color_grey() : to use grey color palettes`
-
-> 제목과 x축 y축 이름을 바꾸고 범례 위치를 바꾸는 참고 코드
-
-```R
-ggplot(mpg, aes(x = drv, y = hwy, fill = drv)) +
-  geom_violin(trim = T) +
-  labs(main = "drv 별 연비 분포",
-       x = "구동방식",
-       y = "연비") +
-  theme(legend.position = "top")
-```
-
-### Quantile-normal plots(QQ-plot)
-* 샘플이 가정한 분포와 얼마나 일치하는지 여부
-* detect left or right skew
-* detect positive or negative kurtosis
-* detect bimodality
 
 >
 ### Reference 
