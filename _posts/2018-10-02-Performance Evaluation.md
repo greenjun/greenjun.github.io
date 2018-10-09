@@ -197,7 +197,7 @@ Reference line from origin to yn  ( yn = total net benefit)
 ![Cost plot](https://image.slidesharecdn.com/lift-171015094055/95/predictive-classification-using-lift-chart-16-638.jpg?cb=1508060774){: width="400" height="400"}
 
 ## Oversampling
-
+이 oversampling은 오분류비용을 모형의 학습과정에 포함시키는 하나의 방법입니다.
 
 
 
@@ -205,8 +205,8 @@ Reference line from origin to yn  ( yn = total net benefit)
 >
 ### Reference 
 * [About train, validation, test data](https://towardsdatascience.com/train-validation-and-test-sets-72cb40cba9e7){: .btn .btn--info}
-* www.washburn.edu/faculty/boncella/XLMiner/Lecture%204%20-%20Model%20Evaluation.ppt
-$${ c }_{ 1 }=5,\quad Y=\begin{pmatrix} { 1 } \\ { 2 } \\ { 3 } \end{pmatrix}$$
+* [Lecture materials](www.washburn.edu/faculty/boncella/XLMiner/Lecture%204%20-%20Model%20Evaluation.ppt){: .btn .btn--info}
+* [oversampling](https://www.youtube.com/watch?v=yDe6mw3rQ8g){: .btn .btn--info}
 >
 ### 용어정리 
 * validation, 
