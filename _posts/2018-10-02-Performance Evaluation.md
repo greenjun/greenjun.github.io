@@ -253,7 +253,6 @@ validaion data는 oversampling되지않았고 원래의 데이터의 비율을 �
 >
 ### Reference 
 * [About train, validation, test data](https://towardsdatascience.com/train-validation-and-test-sets-72cb40cba9e7){: .btn .btn--info}
-* [Lecture materials](www.washburn.edu/faculty/boncella/XLMiner/Lecture%204%20-%20Model%20Evaluation.ppt){: .btn .btn--info}
 * [oversampling](https://www.youtube.com/watch?v=yDe6mw3rQ8g){: .btn .btn--info}
 * [Handling imbalanced dataset in supervised learning using family of SMOTE algorithm](https://www.datasciencecentral.com/profiles/blogs/handling-imbalanced-data-sets-in-supervised-learning-using-family){: .btn .btn--info}
 
