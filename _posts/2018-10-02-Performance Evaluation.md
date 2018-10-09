@@ -167,7 +167,7 @@ ROC curve를 보게 되면 좋은 분류기는 그래프가 위로 점점 올라
 
 1. 1000명 모두에게 메일을 보내진 않는 경우 0$
 
-![costperspective](/assets/images/costperspective.png){: width="400" height="400"}
+![costperspective](/assets/images/costperspective.PNG){: width="400" height="400"}
 
 2. 모델을 이용하여 답장 할 것이라고 예측한 사람인 28명에게만 메일을 보내는 경우 8 * 10 - 20 = 60$
 
@@ -181,7 +181,7 @@ C(FP) - 실제 0 을 1로 잘못 분류하는 비용
 
 목표 - C(FN)/C(FP)를 Minimize하는 것이 케이스 당 평균 비용을 최소화하는데 좋음.
 
-따라서 평균 오분류 비용은 = $$${{C(FN) * (0을 1으로 분류한 케이스 수)} + {C(FP) * (1을 0으로 분류한 케이스 수)}}/총케이스수$$$
+따라서 평균 오분류 비용은 = {{C(FN) * (0을 1으로 분류한 케이스 수)} + {C(FP) * (1을 0으로 분류한 케이스 수)}}/총케이스수
 
 > 실제 비용을 추산 할때 기회비용같은 것을 포함하여 성능을 평가할수도 있지만 비용만을 넣는 것이 다양한 곳에 적용할수있게 해줍니다.
 
@@ -196,6 +196,7 @@ Reference line from origin to yn  ( yn = total net benefit)
 
 ![Cost plot](https://image.slidesharecdn.com/lift-171015094055/95/predictive-classification-using-lift-chart-16-638.jpg?cb=1508060774){: width="400" height="400"}
 
+## Oversampling
 
 
 
