@@ -197,7 +197,9 @@ Reference line from origin to yn  ( yn = total net benefit)
 ![Cost plot](https://image.slidesharecdn.com/lift-171015094055/95/predictive-classification-using-lift-chart-16-638.jpg?cb=1508060774){: width="400" height="400"}
 
 ## Oversampling
-이 oversampling은 오분류비용을 모형의 학습과정에 포함시키는 하나의 방법입니다.
+* 오분류비용을 모형의 학습과정에 포함시키는 하나의 방법입니다.
+
+실제 샘플링을 하게 되면 샘플링 된 데이터는 모집단의 클래스간의 비율을 잘반영하지 못합니다.
 
 
 
@@ -207,6 +209,9 @@ Reference line from origin to yn  ( yn = total net benefit)
 * [About train, validation, test data](https://towardsdatascience.com/train-validation-and-test-sets-72cb40cba9e7){: .btn .btn--info}
 * [Lecture materials](www.washburn.edu/faculty/boncella/XLMiner/Lecture%204%20-%20Model%20Evaluation.ppt){: .btn .btn--info}
 * [oversampling](https://www.youtube.com/watch?v=yDe6mw3rQ8g){: .btn .btn--info}
+* [Handling imbalanced dataset in supervised learning using family of SMOTE algorithm](https://www.datasciencecentral.com/profiles/blogs/handling-imbalanced-data-sets-in-supervised-learning-using-family){: .btn .btn--info}
+
+
 >
 ### 용어정리 
-* validation, 
+* validation, imbalanced
