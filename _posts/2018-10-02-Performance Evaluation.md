@@ -146,15 +146,42 @@ y축에 Sensitivity = True Positive
 
 ![Lift](https://docs.eyesopen.com/toolkits/cookbook/python/_images/roc-theory-small.png){: width="400" height="400"}
 
-바보에게 케이스를 주면서 맞춰봐라고 하면 그냥 반반의 확률로 찍기때문에 0을 1로 판정할 확률(1-Specificity)과 1인데 1로 판정할 확률(Sensitivity)이 같을 것입니다. 
+바보에게 케이스를 주면서 맞춰봐라고 하면 그냥 기준없이 반반의 확률로 찍기때문에 0을 1로 판정할 확률(1-Specificity)과 1인데 1로 판정할 확률(Sensitivity)이 같을 것입니다. 
 
-우리가 만들 모델은 적어도 이 바보 보다는 많이 맞춰야합니다. 즉 0을 1로 판정하는 것보다는 1을 1이라고 더 많이 판정해야합니다.
-
-
+따라서 만약 최상의 좋은 분류기는 0을 1로 잘못 분류하는 확률이 0일때, 1을 1이라고 모두다 분류해버려야합니다.
 
 
+### AUROC 
+ROC curve를 보게 되면 좋은 분류기는 그래프가 위로 점점 올라가게 됩니다. 따라서 좋은 분류기일수록 밑의 넓이가 넓어지게 됩니다. 이 원리를 이용한것이 area under ROC입니다.
 
+![AUROC](https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/ROC_curves.svg/300px-ROC_curves.svg.png){: width="400" height="400"}
 
+### Cost perspective
+* 모델의 목표는 먼저 케이스 당 평균 비용을 최소화하는 것입니다.
+
+여러분들이 메일을 보내는 마케팅 담당자라고 생각해봅시다. 1000명의 사람에게 메일을 보내는 데 그 중에 오직 1퍼센트만이 응답할것으로 기대됩니다. 이 경우 예측을, 모두 다 응답하지 않을 것이다라고 예측을 해버리면 정확도는 99%로 좋아보이는(?) 모델이 만들어지게 됩니다. 
+
+하지만 여러분은 답장할 사람을 답장 할것이다라고 분류하는 것이 이득이 되는 것을 비용의 관점으로 살펴보려고 합니다.
+
+메일을 보내는 비용은 답장하지 않은 사람 당 1$이고 답장을 받는다면 답장한 사람 당 총 10$의 비용을 회수할수있습니다. 다음과 같은 2가지 경우를 생각해봅시다
+
+1. 1000명 모두에게 메일을 보내진 않는 경우 0$
+
+![costperspective](/assets/images/costperspective.png){: width="400" height="400"}
+
+2. 모델을 이용하여 답장 할 것이라고 예측한 사람인 28명에게만 메일을 보내는 경우 8 * 10 - 20 = 60$
+
+하지만 현실에서는 이렇게 모든 것은 비용으로 산정하기 어렵습니다. 따라서 코스트의 관점으로 성능을 평가하기 위해서는 케이스 당 어떤 비용이 드는지 모든 것은 따져봐야됩니다. 만약에 이런것이 어렵다면 대안책이 하나 있습니다. 그것은 바로 오분류 비용의 비율입니다. 예를 들어, 어떤 기업의 신용도를 평가하는데 사기를 치는 기업을 평가하는 것을 잘못분류하여 좋은기업으로 평가하는 것은, 좋은 기업을 안좋게 분류하는 것보다 5배 나쁘다 이런 식으로 말이죠.
+
+![misclassifying cost](http://albahnsen.github.io/CostSensitiveClassification/_images/cost_mat.png){: width="400" height="400"}
+
+C(FN) - 실제 1을 0으로 잘못 분류하는 비용
+
+C(FP) - 실제 0 을 1로 잘못 분류하는 비용
+
+목표 - C(FN)/C(FP)를 Minimize하는 것이 케이스 당 평균 비용을 최소화하는데 좋음.
+
+따라서 평균 오분류 비용은 = $$${{C(FN) * (0을 1으로 분류한 케이스 수)} + {C(FP) * (1을 0으로 분류한 케이스 수)}}/총케이스수$$$
 
 
 
@@ -168,7 +195,7 @@ ggplot(mpg, aes(x = drv, y = hwy)) +
   geom_boxplot()
 ```
 
-![violinplot1](/assets/images/violinplot1.png)
+
 
 ![boxplot1](/assets/images/boxplot1.png)
 
