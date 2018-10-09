@@ -197,9 +197,55 @@ Reference line from origin to yn  ( yn = total net benefit)
 ![Cost plot](https://image.slidesharecdn.com/lift-171015094055/95/predictive-classification-using-lift-chart-16-638.jpg?cb=1508060774){: width="400" height="400"}
 
 ## Oversampling
-* 오분류비용을 모형의 학습과정에 포함시키는 하나의 방법입니다.
+* oversampling하는 경우는 모델을 만들때 데이터의 비율이 차이가 크다면, 모델은 예측을 할때 다수의 클래스가 포함된 쪽으로 많은 예측을 할것입니다. 따라서 만약 매우 소수의 클래스 수가 있지만 그 경우가 매우 중요한 경우. 예를 들어 어떤 사람이 금융사기의 위험이 있는지를 예측하고자 할 때, 금융사기의 케이스 수는 매우 작지만 그것을 예측하는 것은 매우 중요하게 됩니다. 이 경우 oversampling을 하게 됩니다.
 
-실제 샘플링을 하게 되면 샘플링 된 데이터는 모집단의 클래스간의 비율을 잘반영하지 못합니다.
+일반적으로 train할때에는 50%는 1로 50%는 0으로 합니다.
+
+세가지의 경우를 살펴봅시다
+
+1. assuming equal costs of misclassification
+
+![oversampling1](/assets/images/oversampling1.PNG){: width="400" height="400"}
+
+이 경우 비용이 모두 같으므로 오분류가 최소가 되는 모델을 택했습니다. 총8개 중에 1개를 잘못분류했습니다.
+
+2. assuming that misclassifying “o” is five times the cost of misclassifying “x”
+
+![oversampling2](/assets/images/oversampling2.PNG){: width="400" height="400"}
+
+이 경우 0을 잘못 분류하는 비용이 매우 크므로 0을 모두 정확하게 맞추고, x를 잘못 분류하는 모델을 택했습니다. 총 8개중에 2개를 잘못분류했습니다
+
+3. Oversampling scheme allowing DM methods to incorporate asymmetric costs
+
+![oversampling3](/assets/images/oversampling3.PNG){: width="400" height="400"}
+
+0으로 잘못분류하는 비용이 5배 더 많으므로 0을 5배 만큼 수를 더하면 오분류비용을 같은 비용으로 산정하더라도 5배를 반영한느 형식이 됩니다. 그래서 이 경우 총 16개 중에 2개를 잘못 택하게 되는것입니다.
+
+###  Oversampling Procedure
+1. 전체 데이터 셋을 0 과 1 클래스로 구분합니다. 
+
+2. 케이스 수가 적은 1의 절반을 랜덤으로 선택하여 training sample에 넣고, 같은 수만큼 0을 넣습니다.
+
+3. 샘플에 넣고 남은 1의 케이스를 validation sample에 넣습니다.
+
+4. 원래 0과 1의 비율이 80:30이었다면 validation sample에 이 비율이 유지되도록 0을 validaion sample에 넣습니다.
+
+5. 필요하면 검증 데이터로부터 무작위적으로 테스트 셋을 취합니다.
+
+이렇게 데이터셋을 만든후에 다음과 같이 두가지 경우로 나누어 
+
+* 비과샘플된 검증세트이용하는 경우
+
+validaion data는 oversampling되지않았고 원래의 데이터의 비율을 유지하고 있으므로 모델을 검증할때 이용하고 모델은 oversamped 된 데이터에서 만듭니다.
+
+* 과샘플된 검증데이터만 존재하는 경우
+
+먼저 모델을 과샘플집합에서 만들고, oversampling의 효과를 제거하기위해 비과샘플 세트를 이용해서 모델을 수정합니다.
+
+
+
+
+
 
 
 
