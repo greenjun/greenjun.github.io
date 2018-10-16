@@ -207,9 +207,13 @@ Reference line from origin to yn  ( yn = total net benefit)
 ![Cost plot](https://image.slidesharecdn.com/lift-171015094055/95/predictive-classification-using-lift-chart-16-638.jpg?cb=1508060774){: width="400" height="400"}
 
 ## Oversampling
-* oversampling하는 경우는 모델을 만들때 데이터의 비율이 차이가 크다면, 모델은 예측을 할때 다수의 클래스가 포함된 쪽으로 많은 예측을 할것입니다. 따라서 만약 매우 소수의 클래스 수가 있지만 그 경우가 매우 중요한 경우. 예를 들어 어떤 사람이 금융사기의 위험이 있는지를 예측하고자 할 때, 금융사기의 케이스 수는 매우 작지만 그것을 예측하는 것은 매우 중요하게 됩니다. 이 경우 oversampling을 하게 됩니다.
+* oversampling하는 경우는 언제일까요?
 
-일반적으로 train할때에는 50%는 1로 50%는 0으로 합니다.
+데이터 클래스간의(0,1)의 비율 차이가 크다면, 모델은 예측을 할때 다수의 클래스가 포함된 쪽으로 많은 예측을 할것입니다.
+
+따라서 만약 매우 소수의 클래스가 있지만 그 경우가 매우 중요한 경우(예를 들어 어떤 사람이 금융사기의 위험이 있는지를 예측하고자 할 때, 금융사기의 케이스 수는 매우 작지만 그것을 예측하는 것은 매우 중요하게 됩니다) 이 경우 oversampling을 하게 됩니다.
+
+일반적으로 train할때에는 response의 비율은 50%는 1로 50%는 0으로 합니다.
 
 세가지의 경우를 살펴봅시다
 
