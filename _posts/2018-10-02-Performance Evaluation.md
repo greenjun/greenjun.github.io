@@ -233,7 +233,7 @@ Reference line from origin to yn  ( yn = total net benefit)
 
 ![oversampling3](/assets/images/oversampling3.PNG){: width="400" height="400"}
 
-0으로 잘못분류하는 비용이 5배 더 많으므로 0을 5배 만큼 수를 더하면 오분류비용을 같은 비용으로 산정하더라도 5배를 반영한느 형식이 됩니다. 그래서 이 경우 총 16개 중에 2개를 잘못 택하게 되는것입니다.
+0으로 잘못분류하는 비용이 5배 더 많으므로 0을 5배 만큼 수를 더하면 오분류비용을 같은 비용으로 산정하더라도 5배를 반영하는 형식이 됩니다. 그래서 이 경우 총 16개 중에 2개를 잘못 택하게 되는것입니다.
 
 ###  Oversampling Procedure
 1. 전체 데이터 셋을 0 과 1 클래스로 구분합니다. 
