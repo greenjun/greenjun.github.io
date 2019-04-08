@@ -100,9 +100,9 @@ analytics:
 
 # Site Author
 author:
-  name             : "YunJunhyuck"
+  name             : "Junhyeok Yun"
   avatar           : # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              : "I am an amazing person"
+  bio              : ""
   location         : "Busan, Korea"
   email            : "junhyuck147@gmail.com"
   links:
