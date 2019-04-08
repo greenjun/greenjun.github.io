@@ -1,5 +1,5 @@
 ---
-title: "YunJunhyuck"
+title: "Junhyeok Yun"
 layout: splash
 permalink: /about/
 header:
