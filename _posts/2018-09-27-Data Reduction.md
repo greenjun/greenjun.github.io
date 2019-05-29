@@ -6,6 +6,8 @@ tags:
   - R
   - data reduction
   
+classes: wide
+
 toc: true
 toc_label: "My Table of Contents"
 ---
