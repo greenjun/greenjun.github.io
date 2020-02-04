@@ -105,6 +105,8 @@ author:
   bio              : ""
   location         : "Busan, Korea"
   email            : "junhyuck147@gmail.com"
+  researchgate: "https://www.researchgate.net/profile/Junhyeok_Yun"
+  
   links:
     - label: "Email"
       icon: "fas fa-fw fa-envelope-square"
@@ -117,13 +119,14 @@ author:
       # url: "https://twitter.com/"
     - label: "Facebook"
       icon: "fab fa-fw fa-facebook-square"
-      url: "https://facebook.com/YunJunhyuck12"
+      # url: "https://facebook.com/YunJunhyuck12"
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
       url: "https://github.com/greenjun/greenjun.github.io"
     - label: "Instagram"
       icon: "fab fa-fw fa-instagram"
-      # url: "https://instagram.com/"
+      url: "https://www.instagram.com/green.junn/"
+  
 
 # Site Footer
 footer:
