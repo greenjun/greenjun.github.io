@@ -1,8 +1,10 @@
 ---
-title: ""
+title: "About"
+layout: Wide
 permalink: /about/
 author_profile: true
 ---
+
 
 Current Position
 ------
