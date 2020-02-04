@@ -128,7 +128,9 @@ author:
     - label: "Researchgate"
       icon: "fab fa-fw fa-researchgate"
       url: "https://www.researchgate.net/profile/Junhyeok_Yun"
-  
+    - label: "Linkedln"
+      icon: "fab fa-fw fa-linkedin"
+      url: "https://www.linkedin.com/in/junhyeok-yun-548764163/"
 
 # Site Footer
 footer:
