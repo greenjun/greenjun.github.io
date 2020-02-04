@@ -131,6 +131,10 @@ author:
     - label: "Linkedln"
       icon: "fab fa-fw fa-linkedin"
       url: "https://www.linkedin.com/in/junhyeok-yun-548764163/"
+    - label: "ORCID"
+      icon: "fab fa-fw fa-orcid"
+      url: "https://orcid.org/0000-0002-9035-531X" 
+
 
 # Site Footer
 footer:
