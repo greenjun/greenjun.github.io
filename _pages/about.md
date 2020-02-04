@@ -5,25 +5,9 @@ layout: single
 author_profile: true
 ---
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 Current Position
 ------
-
+* 
 
 Education
 ------
