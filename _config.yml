@@ -16,7 +16,7 @@ minimal_mistakes_skin    : "contrast" # "air", "aqua", "contrast", "dark", "dirt
 
 # Site Settings
 locale                   : "Ko"
-title                    : "Green Jun"
+title                    : "GreenJun"
 title_separator          : "-"
 name                     : "greenjun"
 description              : "From Dream to Reality"
@@ -100,7 +100,7 @@ analytics:
 
 # Site Author
 author:
-  name             : "Junhyeok Yun"
+  name             : "Yun Junhyeok"
   avatar           : "/assets/images/bio-photo.jpg"
   bio              : ""
   location         : "Busan, Korea"
