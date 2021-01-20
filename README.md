@@ -1,3 +1,3 @@
 This is my blog.
 
-Email: junhyuck147@gmail.com
+Email: junhyuck147@gmail.com.
