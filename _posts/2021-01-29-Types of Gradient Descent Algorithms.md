@@ -7,9 +7,10 @@ tags:
   - deep learning
   - gradient descent algorithm
   
-use_math: true
 classes: wide
-  
+
+use_math: true
+comments: true
 toc: true
 toc_label: "Contents"
 ---
