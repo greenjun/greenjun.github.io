@@ -10,6 +10,7 @@ tags:
   - violinplot
   
 classes: wide
+author_profile: false
 
 toc: true
 toc_label: "Contents"
