@@ -7,9 +7,9 @@ tags:
   - deep learning
   - gradient descent algorithm
   
-classes: wide
-
-use_math: true
+classes: single
+author_profile: false
+mathjax: true
 comments: true
 toc: true
 toc_label: "Contents"
@@ -36,7 +36,7 @@ Neural network에서는 비용함수를 최소화하는 파라미터를 찾기�
 ## Adagrad
 https://jmlr.org/papers/v12/duchi11a.html
 
-$$G_{t}=G_{t-1}+\left( \nabla _{\theta }JJ\left( \theta _{t}\right) \right) ^{2}$$
+This formula $f(x) = x^2$ is an example.
 
 ## RMSprop
 * Adagrad의 단점 극복

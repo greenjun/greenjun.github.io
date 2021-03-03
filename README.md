@@ -1,3 +1,4 @@
 This is my blog.
 
-Email: junhyuck147@gmail.com.
+Blog: https://greenjun.github.io/
+Email: junhyuck@pusan.ac.kr

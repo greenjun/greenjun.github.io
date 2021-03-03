@@ -100,11 +100,11 @@ analytics:
 
 # Site Author
 author:
-  name             : "Yun Junhyeok"
+  name             : "Junhyeok Yun"
   avatar           : "/assets/images/bio-photo.jpg"
-  bio              : ""
+  bio              : "From dream to reality"
   location         : "Busan, Korea"
-  email            : "junhyuck147@gmail.com"
+  email            : "junhyuck@pusan.ac.kr"
   
   links:
     - label: "Email"

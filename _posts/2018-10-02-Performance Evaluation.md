@@ -7,14 +7,16 @@ tags:
   - R
   - Evaluations
   
-classes: wide
-  
+classes: single
+author_profile: false
+mathjax: true
+comments: true
 toc: true
 toc_label: "Contents"
 ---
-* 내용은 지속적으로 업데이트 될것입니다.
-* 최대한 수식을 배제하고 전체적인 흐름을 익히게 했습니다.
-* 따라서 궁금하신 점은 메일이나 검색을 활용해주세요.
+* 방문해주셔서 감사합니다. 
+* 내용은 지속적으로 업데이트 될 것입니다.
+* 궁금한 내용은 댓글로 남겨주세요. 
 
 ## Introduction
 한개의 데이터 셋에 대해서도 사용할 수 있는 모델의 수가 굉장히 많습니다. 따라서 모델을 만든 후에 어떤 모델이 좋은 지 확인하는 과정이 필요합니다. 그래서 모델을 평가하는 성과분석(performance analysis)를 하게 됩니다. 
