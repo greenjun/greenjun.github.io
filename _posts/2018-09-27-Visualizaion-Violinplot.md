@@ -9,9 +9,10 @@ tags:
   - R
   - violinplot
   
-classes: wide
+classes: single
 author_profile: false
-
+mathjax: true
+comments: true
 toc: true
 toc_label: "Contents"
 ---
