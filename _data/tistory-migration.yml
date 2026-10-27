@@ -34,7 +34,9 @@ entries:
   source_title: '[자료조사] 1. 산업 동향'
   source_published_at: '2022-05-13T15:17:55+09:00'
   source_modified_at: '2022-05-13T15:17:55+09:00'
-  target: _posts/2022-05-13-Industry-Research-Sources.md
+  target: _posts/2020-05-25-Industry-Research-Sources.md
+  target_published_at: '2020-05-25'
+  target_modified_at: '2020-05-27'
   disposition: Full subject matter migrated and edited for mathematical accuracy and
     house style
 - source_url: https://dabuncon.tistory.com/pages/About
