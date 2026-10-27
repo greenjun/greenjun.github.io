@@ -1,7 +1,7 @@
 ---
 title: "시계열 분석 3. 자기상관으로 무엇을 알 수 있을까요?"
-date: 2022-03-18 14:38:56 +0900
-last_modified_at: 2022-09-23
+date: 2020-03-16 09:03:00 +0900
+last_modified_at: 2020-03-18
 categories: [Time Series]
 tags: [R, time series, ACF, PACF]
 classes: single
@@ -17,7 +17,7 @@ excerpt: "자기공분산을 자기상관으로 바꾸는 이유를 수식으로
 
 기온처럼 가까운 시점의 값이 비슷한 자료가 있습니다. 반대로 한 번 증가한 뒤 바로 감소하는 자료도 있겠죠. 이런 시간 사이의 선형 관계를 **자기상관(autocorrelation)**으로 살펴볼 수 있습니다.
 
-[정상성 글]({% post_url 2022-03-11-Time-Series-Stationarity %})에서 자기공분산이 시간 간격에만 의존한다고 했는데요. 그 함수부터 하나씩 정리해 보겠습니다.
+[정상성 글]({% post_url 2020-03-09-Time-Series-Stationarity %})에서 자기공분산이 시간 간격에만 의존한다고 했는데요. 그 함수부터 하나씩 정리해 보겠습니다.
 
 ## 자기공분산은 어떤 함수인가요?
 
@@ -102,4 +102,4 @@ head(as.numeric(acf(x, lag.max = 5, plot = FALSE)$acf))
 - [연재 목차]({{ '/time-series/' | relative_url }})
 - [R: acf와 pacf](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/acf.html)
 
-이 글은 티스토리에서 2022년 3월 18일 처음 게시한 글을 옮기고, 자기공분산의 성질과 R² 해석의 조건을 보완한 것입니다.
+이 글은 기존 티스토리 글을 옮기고, 자기공분산의 성질과 R² 해석의 조건을 보완한 것입니다.

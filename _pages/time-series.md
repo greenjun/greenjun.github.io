@@ -12,9 +12,9 @@ toc: false
 
 | 순서 | 글 | 읽고 나면 설명할 수 있는 질문 |
 | --- | --- | --- |
-| 1 | [백색소음]({% post_url 2022-03-08-Time-Series-White-Noise %}) | 관측값과 확률과정, 무상관과 독립은 어떻게 다른가요? |
-| 2 | [정상성]({% post_url 2022-03-11-Time-Series-Stationarity %}) | 시간이 지나도 무엇이 유지되어야 하나요? |
-| 3 | [자기상관·ACF·PACF]({% post_url 2022-03-18-Time-Series-Autocorrelation %}) | 시점 사이의 관계를 어떻게 요약하나요? |
+| 1 | [백색소음]({% post_url 2020-03-02-Time-Series-White-Noise %}) | 관측값과 확률과정, 무상관과 독립은 어떻게 다른가요? |
+| 2 | [정상성]({% post_url 2020-03-09-Time-Series-Stationarity %}) | 시간이 지나도 무엇이 유지되어야 하나요? |
+| 3 | [자기상관·ACF·PACF]({% post_url 2020-03-16-Time-Series-Autocorrelation %}) | 시점 사이의 관계를 어떻게 요약하나요? |
 | 4 | [이동평균 모형 MA]({% post_url 2020-03-23-Time-Series-MA %}) | 과거 충격의 영향과 가역성은 무엇인가요? |
 | 5 | [자기회귀 모형 AR]({% post_url 2020-03-30-Time-Series-AR %}) | 과거 값의 영향과 정상성은 어떻게 연결되나요? |
 | 6 | [ARMA와 모형 비교]({% post_url 2020-04-06-Time-Series-ARMA %}) | ACF·PACF·AIC를 어떻게 함께 읽나요? |

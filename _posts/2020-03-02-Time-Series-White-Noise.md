@@ -1,7 +1,7 @@
 ---
 title: "시계열 분석 1. 백색소음은 무엇일까요?"
-date: 2022-03-08 11:29:27 +0900
-last_modified_at: 2022-11-25
+date: 2020-03-02 09:01:00 +0900
+last_modified_at: 2020-03-04
 categories: [Time Series]
 tags: [R, time series, white noise, stochastic process]
 classes: single
@@ -97,7 +97,7 @@ par(old_par)
 
 백색소음은 잡음을 다루기 위한 구체적인 확률 모형입니다. 평균 0·유한한 일정 분산·시점 간 무상관이 핵심이고, 독립이나 정규성은 추가로 구분해야 합니다. 잔차가 백색소음에 가까운지는 나중에 모형을 진단할 때도 중요한 질문이 됩니다.
 
-다음 글에서는 시간이 지나도 어떤 성질이 유지되어야 하는지, [정상성]({% post_url 2022-03-11-Time-Series-Stationarity %})을 살펴보겠습니다.
+다음 글에서는 시간이 지나도 어떤 성질이 유지되어야 하는지, [정상성]({% post_url 2020-03-09-Time-Series-Stationarity %})을 살펴보겠습니다.
 
 ## 직접 생각해 보기와 참고 자료
 
@@ -108,4 +108,4 @@ par(old_par)
 - [R: rnorm](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/Normal.html)
 - [Forecasting: Principles and Practice — White noise](https://otexts.com/fpp3/wn.html)
 
-이 글은 티스토리에서 2022년 3월 8일 처음 게시한 글을 옮기고, 중심화·무상관·독립에 관한 설명을 보완한 것입니다.
+이 글은 기존 티스토리 글을 옮기고, 중심화·무상관·독립에 관한 설명을 보완한 것입니다.

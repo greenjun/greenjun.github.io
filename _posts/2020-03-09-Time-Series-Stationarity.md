@@ -1,7 +1,7 @@
 ---
 title: "시계열 분석 2. 정상성은 왜 필요할까요?"
-date: 2022-03-11 17:25:51 +0900
-last_modified_at: 2022-03-17
+date: 2020-03-09 09:02:00 +0900
+last_modified_at: 2020-03-11
 categories: [Time Series]
 tags: [R, time series, stationarity, random walk]
 classes: single
@@ -17,7 +17,7 @@ excerpt: "시간이 지나도 유지되는 확률적 성질을 이해하고, 강
 
 작년에 배운 규칙이 올해에도 통하려면 무엇이 필요할까요? 적어도 자료가 만들어지는 방식의 일부는 유지되어야겠죠. 시계열에서는 이런 생각을 **정상성(stationarity)**이라는 개념으로 정리합니다.
 
-stationary는 ‘변하지 않는’이라는 뜻인데요. 관측값이 매번 같다는 뜻은 아닙니다. 관측값은 계속 움직이더라도, 그 뒤에 있는 평균이나 시점 사이의 관계가 일정할 수 있습니다. 먼저 [백색소음]({% post_url 2022-03-08-Time-Series-White-Noise %})의 조건을 떠올려 보세요.
+stationary는 ‘변하지 않는’이라는 뜻인데요. 관측값이 매번 같다는 뜻은 아닙니다. 관측값은 계속 움직이더라도, 그 뒤에 있는 평균이나 시점 사이의 관계가 일정할 수 있습니다. 먼저 [백색소음]({% post_url 2020-03-02-Time-Series-White-Noise %})의 조건을 떠올려 보세요.
 
 ## 예측과 분석에서 어떤 도움이 될까요?
 
@@ -102,7 +102,7 @@ round(apply(paths[c(10, 50, 100), ], 1, var), 1)
 
 정상성은 ‘시간이 지나도 같은 값’이 아니라 ‘시간을 옮겨도 같은 확률적 성질’에 관한 조건입니다. 앞으로 특별한 언급이 없으면 정상성은 유한한 이차 모멘트를 가진 약정상성을 뜻하겠습니다.
 
-다음 글에서는 $\gamma(h)$를 구체적으로 해석하는 [자기상관]({% post_url 2022-03-18-Time-Series-Autocorrelation %})을 알아보겠습니다.
+다음 글에서는 $\gamma(h)$를 구체적으로 해석하는 [자기상관]({% post_url 2020-03-16-Time-Series-Autocorrelation %})을 알아보겠습니다.
 
 ## 직접 생각해 보기와 참고 자료
 
@@ -112,4 +112,4 @@ round(apply(paths[c(10, 50, 100), ], 1, var), 1)
 - [연재 목차]({{ '/time-series/' | relative_url }})
 - [Forecasting: Principles and Practice — Stationarity](https://otexts.com/fpp3/stationarity.html)
 
-이 글은 티스토리에서 2022년 3월 11일 처음 게시한 글을 옮기고, 정상성의 조건과 예외를 보완한 것입니다.
+이 글은 기존 티스토리 글을 옮기고, 정상성의 조건과 예외를 보완한 것입니다.
