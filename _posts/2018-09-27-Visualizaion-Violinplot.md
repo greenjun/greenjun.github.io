@@ -16,7 +16,7 @@ comments: true
 toc: true
 toc_label: "이 글의 순서"
 excerpt: "바이올린 플롯, 상자그림, 실제 관측값을 함께 그려 집단별 분포를 해석하는 방법을 알아봅니다."
-last_modified_at: 2026-10-26
+last_modified_at: 2018-09-27
 ---
 
 > **핵심 요약** — 바이올린 플롯은 값이 모인 구간을 폭으로 표현합니다. 상자그림과 실제 관측값을 함께 보면 집단의 중심, 퍼짐, 표본 수를 이해하기 쉽습니다.
@@ -110,6 +110,8 @@ ggplot(mpg, aes(x = drv, y = hwy)) +
 
 ## 참고 자료
 
+- [이상치는 언제 제거해야 할까?]({% post_url 2019-02-11-Outliers %})
+- [R로 두 집단 비교하기]({% post_url 2019-02-18-Two-Group-Tests %})
 - [ggplot2: geom_violin()](https://ggplot2.tidyverse.org/reference/geom_violin.html)
 - [ggplot2: stat_summary()](https://ggplot2.tidyverse.org/reference/stat_summary.html)
 - [ggplot2: geom_jitter()](https://ggplot2.tidyverse.org/reference/geom_jitter.html)

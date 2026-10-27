@@ -14,7 +14,7 @@ comments: true
 toc: true
 toc_label: "이 글의 순서"
 excerpt: "학습·검증·테스트 데이터의 역할과 분류 지표, ROC-AUC, 오분류 비용, 과표집의 주의점을 설명합니다."
-last_modified_at: 2026-10-26
+last_modified_at: 2018-10-02
 ---
 
 > **핵심 요약** — 좋은 모델의 기준은 분석 목적에 따라 달라집니다. 데이터 분할을 먼저 하고, 정확도뿐 아니라 놓친 양성·잘못된 경보·오분류 비용을 함께 확인하세요.
@@ -141,6 +141,9 @@ $$
 
 ## 참고 자료
 
+- [교차검증과 데이터 누수 실습]({% post_url 2019-03-04-Cross-Validation-Leakage %})
+- [불균형 분류에서 ROC와 PR 함께 읽기]({% post_url 2019-03-11-ROC-PR-Imbalanced %})
+- [공개 데이터 하나로 끝내는 R 분석 프로젝트]({% post_url 2019-03-25-R-Analysis-Project %})
 - [scikit-learn: 모델 평가 지표](https://scikit-learn.org/stable/modules/model_evaluation.html)
 - [scikit-learn: 교차검증](https://scikit-learn.org/stable/modules/cross_validation.html)
 - [imbalanced-learn: 데이터 누수 주의점](https://imbalanced-learn.org/stable/common_pitfalls.html)

@@ -16,7 +16,7 @@ comments: true
 toc: true
 toc_label: "이 글의 순서"
 excerpt: "범주별 개수를 세는 geom_bar()와 요약한 값을 그리는 geom_col()의 차이를 예제로 알아봅니다."
-last_modified_at: 2026-10-26
+last_modified_at: 2018-09-21
 ---
 
 > **핵심 요약** — 범주별 관측값의 개수를 세려면 `geom_bar()`, 미리 계산한 평균이나 합계를 그리려면 `geom_col()`을 사용합니다.
@@ -133,6 +133,7 @@ ggplot(mpg_summary, aes(x = drv, y = mean_hwy, fill = manufacturer)) +
 
 ## 이어서 읽기와 참고 자료
 
+- [dplyr로 분석용 데이터 만들기]({% post_url 2019-01-28-Dplyr-Data-Preparation %})
 - [바이올린 플롯으로 연비 분포 비교하기]({% post_url 2018-09-27-Visualizaion-Violinplot %})
 - [ggplot2: geom_bar()와 geom_col()](https://ggplot2.tidyverse.org/reference/geom_bar.html)
 - [ggplot2: 그래프 라벨](https://ggplot2.tidyverse.org/reference/labs.html)

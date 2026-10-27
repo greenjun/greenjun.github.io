@@ -13,7 +13,7 @@ comments: true
 toc: true
 toc_label: "이 글의 순서"
 excerpt: "데이터의 핵심 정보를 유지하면서 분석량을 줄이는 집계, 표본 추출, 차원 축소의 차이를 정리합니다."
-last_modified_at: 2026-10-26
+last_modified_at: 2018-09-27
 ---
 
 > **핵심 요약** — 데이터 축소는 필요한 정보를 최대한 유지하면서 저장량이나 계산량을 줄이는 방법입니다. 줄이기 전후의 분석 결과를 비교해야 효과를 판단할 수 있습니다.
@@ -106,6 +106,7 @@ PCA는 기존 변수의 선형결합으로 새로운 축인 **주성분**을 만
 
 ## 참고 자료
 
+- [R로 PCA 실습하기]({% post_url 2019-03-18-PCA-Practice %})
 - [scikit-learn: PCA](https://scikit-learn.org/stable/modules/decomposition.html#pca)
 - [scikit-learn: 전처리와 데이터 누수](https://scikit-learn.org/stable/common_pitfalls.html)
 - [모델 성능 평가와 데이터 분할]({% post_url 2018-10-02-Performance Evaluation %})
