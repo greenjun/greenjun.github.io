@@ -1,5 +1,5 @@
 ---
-title:  "데이터 축소(Data Reduction) - 개요"
+title: "데이터 축소: 표본 추출부터 PCA까지"
 categories:
   - data mining
 tags:
@@ -8,164 +8,104 @@ tags:
   
 classes: single
 author_profile: false
-mathjax: true
+mathjax: false
 comments: true
 toc: true
-toc_label: "Contents"
+toc_label: "이 글의 순서"
+excerpt: "데이터의 핵심 정보를 유지하면서 분석량을 줄이는 집계, 표본 추출, 차원 축소의 차이를 정리합니다."
+last_modified_at: 2026-10-26
 ---
-* 방문해주셔서 감사합니다. 
-* 내용은 지속적으로 업데이트 될 것입니다.
-* 궁금한 내용은 댓글로 남겨주세요. 
-***
 
-# Introduction
-데이터 축소라는 개념이 왜 등장했을까요? database나 datawarehouse를 보면 terabyte 이상의 데이터가 들어있습니다.
-이것을 가지고 분석을 진행한다면 오랜 시간이 걸리겠지요. 그래서 그 중에서 중요한 데이터만 골라내어 분석하려는 시도에서 나왔습니다.
+> **핵심 요약** — 데이터 축소는 필요한 정보를 최대한 유지하면서 저장량이나 계산량을 줄이는 방법입니다. 줄이기 전후의 분석 결과를 비교해야 효과를 판단할 수 있습니다.
 
-요약하면 **much smaller in volume but yet produces the almost same analytical results**를 하기 위해서 입니다.
+## 왜 데이터를 줄이나요?
 
-# Data reduction strategies
+데이터의 행이나 변수가 많으면 저장과 계산에 드는 비용이 커집니다. 분석 목적에 맞게 데이터를 요약하면 탐색과 모델 학습을 더 효율적으로 진행할 수 있습니다.
 
-* Numerosity reduction
-   * Regression and Log-Linear Models
-   * Histograms, clustering, sampling
-   * Data cube aggregation
+다만 작은 데이터가 원자료와 항상 같은 결과를 내는 것은 아닙니다. 희귀한 사례나 중요한 변수를 잃지 않는지 확인해야 합니다.
 
-* Dimensionality reduction -  중요하지않은 속성을 제거하는 것
-   * Wavelet transforms
-   * Principal Components Analysis
-   * eature subset selection, Feature creation
-   
-* Data compression
+## 세 가지 접근 비교하기
 
-## Numerosity reduction
-수 많은 데이터 대신에 그 데이터를 표현할 수 있는 작은 형태로 표현하여 기존의 데이터를 대신하는 테크닉입니다.
+| 접근 | 무엇을 줄이나요? | 예시 |
+| --- | --- | --- |
+| 데이터 요약(Numerosity reduction) | 관측값의 수 또는 표현의 복잡도 | 표본 추출, 집계, 히스토그램, 군집 대표값 |
+| 차원 축소(Dimensionality reduction) | 변수의 수 | 변수 선택, 주성분 분석(PCA) |
+| 압축(Data compression) | 저장에 필요한 비트 수 | 무손실 압축, 일부 정보를 버리는 손실 압축 |
 
-parametric과 nonparametric 두가지가 있습니다.
+## 관측값을 요약하는 방법
 
-### Parametric methods
-데이터를 표현할수있는 모델을 만든 후에 data는 지우고 parameter만 남겨 놓는 것입니다. 이때, outlier는 남겨 놓아야 합니다
+### 모델로 요약하기
 
-**Regression and Log-Linear Models**
+회귀모형은 변수 사이의 관계를 소수의 계수로 나타냅니다. 로그선형모형은 범주형 변수의 다차원 빈도표를 모형화하는 데 사용할 수 있습니다.
 
-* To approximate the given data.
+모형이 데이터를 잘 설명하지 못하면 중요한 정보가 빠질 수 있습니다. 요약 모형을 만들었다는 이유만으로 원자료를 삭제해서는 안 됩니다.
 
-* In **(simple) linear regression**, the data are modeled to fit a straight line.
+### 히스토그램과 군집 대표값
 
-* **Multiple linear regression** is an extension of (simple) linear regression, which allows a response variable y to be modeled as a linear function of two or more predictor variables.
+히스토그램은 값을 구간으로 묶어 분포를 요약합니다. 구간 수를 줄일수록 표현은 단순해지지만 세부 차이를 놓칠 수 있습니다.
 
-* **Log-linear models** approximate **discrete multidimensional probability distributions**.
+군집화는 비슷한 관측값을 묶고 중심점 등의 대표값으로 표현합니다. 군집별 크기와 퍼짐도 함께 저장하면 해석에 도움이 됩니다. 군집으로 잘 나뉘지 않는 데이터에는 요약 효과가 제한될 수 있습니다.
 
-* Log-linear models can be used to **estimate the probability of each point** in a multidimensional space for a set of discretized attributes, based on a smaller subset of **dimensional combinations**.
+### 표본 추출
 
-* This allows a higher-dimensional data space to be **constructed from lower dimensional spaces**.
+전체 데이터에서 일부를 선택해 분석합니다.
 
-* **Log-linear models are therefore also useful for dimensionality reduction and data smoothing**
+- **단순 무작위 추출**: 각 관측값이 선택될 기회를 무작위로 부여합니다.
+- **복원 추출**: 선택한 관측값을 다시 뽑을 수 있습니다.
+- **비복원 추출**: 같은 관측값을 중복해서 뽑지 않습니다.
+- **층화 추출**: 집단을 나눈 뒤 각 집단에서 표본을 뽑습니다.
 
-* Regression and log-linear models can both be used on [sparse data](https://gerardnico.com/data/modeling/dense_sparse){: .btn .btn--info}, although their application may be **limited**.
+표본 추출은 **분석에 사용하는 데이터의 크기**를 줄입니다. 원본 데이터베이스의 크기가 자동으로 줄어드는 것은 아닙니다. 희귀 집단이 중요한 경우 집단별 표본 수와 가중치도 검토해야 합니다.
 
-* While both methods can handle **skewed data**, **regression** does exceptionally well. Regression can be computationally intensive when applied to **high dimensional data**, whereas **log-linear models show good scalability for up to 10 or so dimensions**.
+### 집계
 
-### Non-parametric methods
-모델을 가정하지 않고 축소된 데이터를 표현하여 저장하기위한 방법입니다.
-histogram, clustering, sampling등을 사용합니다.
+일별 매출을 월별로 더하거나 지역별 평균을 계산하는 방법입니다. 더 큰 단위의 패턴을 보기 쉬워지지만, 개별 관측값이나 세부 집단의 차이를 잃을 수 있습니다.
 
-**Histogram**
+## 변수의 수를 줄이는 방법
 
-* **Histograms** use binning to **approximate data distributions** and are a popular form of data reduction.
+### 변수 선택과 변수 생성
 
-* A histogram **partitions** the data distribution into **disjoint subsets**, or buckets.
+변수 선택은 기존 변수 중 목적에 도움이 되는 일부를 남기는 방법입니다. 변수 생성은 기존 변수를 조합해 새 변수를 만드는 방법입니다.
 
-* If each bucket represents **only a single attribute-value/frequency pair**, the buckets are called **singleton buckets**.
+범주형 변수를 더미 변수로 바꿀 때도 구분이 필요합니다. 네 가지 범주를 one-hot 인코딩하면 보통 네 개의 열을 만듭니다. 절편을 포함한 회귀모형에서 기준 범주를 두면 세 개의 더미 변수를 사용합니다.
 
-* Singleton buckets are useful for **storing outliers with high frequency**.
+| 방향 | 동 기준 더미: 서 | 남 | 북 |
+| --- | ---: | ---: | ---: |
+| 동 | 0 | 0 | 0 |
+| 서 | 1 | 0 | 0 |
+| 남 | 0 | 1 | 0 |
+| 북 | 0 | 0 | 1 |
 
-* Histograms are highly effective at **approximating both sparse and dense data**, aswell as **highly skewed and uniform data**.
+서로 다른 범주를 합치거나 나이 구간을 중간값으로 바꾸면 정보가 사라집니다. 단순히 열 수를 줄이기 위해 변환하기보다, 분석 목적과 그 가정이 타당한지 확인하세요.
 
-* The histograms for single attributes can be extended for multiple attributes.
+### 주성분 분석(PCA)
 
-* **Multidimensional histograms** can capture **dependencies** between attributes.
+PCA는 기존 변수의 선형결합으로 새로운 축인 **주성분**을 만듭니다. 첫 번째 주성분부터 순서대로 데이터의 분산을 많이 설명하도록 구성합니다.
 
-**Clustering**
+1. 학습 데이터에서 변수의 중심을 맞추고, 필요하면 표준화합니다.
+2. 학습 데이터로 주성분 축을 계산합니다.
+3. 설명 분산과 검증 성능을 살펴 사용할 주성분 수를 정합니다.
+4. 검증·테스트 데이터에는 학습 데이터에서 구한 중심, 척도, 주성분 축을 그대로 적용합니다.
 
-*  **Cluster**는 유사성에 기반하여 데이터를 군집으로 나눈 후, cluster representation만 남깁니다 (centroid, diameter)
+단위나 척도가 크게 다르면 표준화를 고려하세요. 표준화가 항상 필수인 것은 아니며 분석 목적에 따라 결정합니다.
 
-* 데이터가 잘 퍼져있다면 효과적이지 못하지만, 만약 군집이 이루어져있다면 효과적이다.
+주성분 점수들은 학습 표본에서 서로 상관이 없도록 구성되지만, 이것이 통계적 독립을 보장하지는 않습니다. 또 PCA는 **분산**을 보존하는 방법이므로 예측에 중요한 정보가 반드시 보존되는 것은 아닙니다.
 
-* Hierarchical clustering(계층적 군집분석)을 이용하면 multi-dimensional index tree structures를 이용하여 저장가능하다.
+### 웨이블릿 변환
 
-**Sampling**
-* Clustering -> Stratified sampling 하는 식으로 이용함.
+시계열이나 신호를 여러 규모의 성분으로 분해하는 방법입니다. 작은 계수를 생략하면 압축이나 잡음 제거에 활용할 수 있지만, 생략 기준에 따라 정보를 잃을 수 있습니다.
 
-* 데이터 베이스의 크기를 줄여주지는 못합니다.
+## 축소 후에는 무엇을 확인하나요?
 
-* Simple random sampling, Sampling without replacement, Sampling without replacement, [Stratified sampling](https://ko.wikipedia.org/wiki/%EC%B8%B5%ED%99%94%EC%B6%94%EC%B6%9C%EB%B2%95){: .btn .btn--info}
+- 원자료와 요약 데이터의 분포가 얼마나 다른가요?
+- 중요한 집단, 이상치, 희귀 사례가 유지되었나요?
+- 저장량과 실행 시간이 얼마나 줄었나요?
+- 같은 평가 데이터에서 분석·예측 성능이 유지되나요?
 
-* 전체 데이터를 표현하는 작은 샘플을 뽑는것
+전처리와 축소 방법은 학습 데이터에서 결정하고, 최종 테스트 데이터는 성능 평가를 위해 남겨두세요.
 
-* 데이터의 크기에 sub-linear 한 곳에서 즉 복잡한 곳에서 데이터마이닝 알고리즘이 작동하도록 도와준다.
+## 참고 자료
 
-**Data Cube Aggregation**
-
-**Categorical data**
-* 빈도나 비율 같은것이 범주형 변수를 요약하는데 유용합니다.
-
-**Grouped numerical data**
-* 평균이 그룹지어진 연속형 변수를 요약하는데 유용합니다.
-* Group by multiple criteria를 이용하여 그룹을 더 세분화하여 데이터를 보게되면 유용한 인사이트를 얻을수있습니다. 
-
-**Reducing categories**
-* Problem: Can end up with too many variables
-* Solution: Reduce by combining categories that are close to each other
-* Use pivot tables to assess outcome variable sensitivity to the dummies
-* Exception: Naïve Bayes can handle categorical variables without transforming them into dummie
-* Ex) 만약 방향이라는 변수가 범주형 변수로 4가지의 방향을 표현한다면 3개의 더미 변수로 표현가능합니다.
-   * 동 - 1000
-   * 서 - 0100
-   * 남 - 0010
-   * 북 - 0001
-   * 동서 - 1100
-   * 남북 - 0011
-
-**Combining categories**
-다른 한가지 변수를 기준으로 범주형 변수를 바라 보았을때, 범주형 변수가 같은 특징을 보인다면 묶어서 같은 카테고리내로 두는 것을 고려해볼수있습니다.
-
-**Transform categorical variable to numerical variable**
-Ex) 범주가 나이 20-30인 경우라면, 그냥 25를 사용
-
-
-## Dimensionality reduction
-
-### Wavelet transforms
-[Wavelet transforms](https://hansung.ac.kr/web/multi/510324?p_p_id=EXT_BBS&p_p_lifecycle=1&p_p_state=exclusive&p_p_mode=view&p_p_col_id=column-1&p_p_col_count=1&_EXT_BBS_struts_action=%2Fext%2Fbbs%2Fget_file&_EXT_BBS_extFileId=657507){: .btn .btn--info}
-
-### PCA
-* 단계
-   * Apply PCA to training data
-   * Decide how many PC’s to use
-   * Use variable weights in those PC’s with validation/new data
-   * This creates a new reduced set of predictors in validation/new data
-* 단위에 영향을 받지 않기 위해 먼저 Normalizing 하는 것이 필요합니다.
-* 상관관계가 높은 측정치들이 존재할때, 상관관계가 높은 변수끼리 묶어서 표현하는 것
-* 두 변수간의 정보를 모두 포함하지는 못하지만 대부분은 포함시키는 두 변수의 선형결랍을 찾는 것
-* 새로운 변수는 원래 변수의 선형결합으로 이루어집니다.
-* 새롭게 생긴 변수는 서로간에 상관관계가 없고, 원래 데이터의 대부분을 표현할 수 있습니다.
-* 이 새로운 변수는 principal components 라고 부릅니다.
-[주성분분석](http://elearning.kocw.net/document/lec/2012/DukSung/KimJaehee/09.pdf){: .btn .btn--info}
-
-### Regression-Based Dimension Reduction
-* Multiple Linear Regression or Logistic Regression
-* Use subset selection
-* Algorithm chooses a subset of variables
-* This procedure is integrated directly into the predictive task
-* 통계적으로 유의하지 않은 계수를 가진 변수는 다른 변수와 통합
-* 유사한 계수를 가지는 변수는 하나의 변수로 통합
-
->
-### Reference 
-* http://www.ques10.com/p/158/write-short-notes-on-numerosity-reduction-1/
-* http://bsclab.pusan.ac.kr
-
->
-### 용어정리 
-* PCA, wavelet transforms
+- [scikit-learn: PCA](https://scikit-learn.org/stable/modules/decomposition.html#pca)
+- [scikit-learn: 전처리와 데이터 누수](https://scikit-learn.org/stable/common_pitfalls.html)
+- [모델 성능 평가와 데이터 분할]({% post_url 2018-10-02-Performance Evaluation %})

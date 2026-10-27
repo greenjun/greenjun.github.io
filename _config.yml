@@ -15,11 +15,11 @@
 minimal_mistakes_skin    : "contrast" # "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum", "sunrise"
 
 # Site Settings
-locale                   : "Ko"
+locale                   : "ko-KR"
 title                    : "GreenJun"
 title_separator          : "-"
 name                     : "greenjun"
-description              : "Data scientist"
+description              : "통계, 데이터 분석, R 시각화를 쉽게 정리하는 GreenJun의 학습 기록입니다."
 url                      : "https://greenjun.github.io" # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : "" # the subpath of your site, e.g. "/blog"
 repository               : "greenjun/greenjun.github.io" # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
@@ -59,7 +59,7 @@ reCaptcha:
 atom_feed:
   path                   : # blank (default) uses feed.xml
 search                   : true # true, false (default)
-search_full_content      : # true, false (default)
+search_full_content      : true
 search_provider          : # lunr (default), algolia, google
 algolia:
   application_id         : # YOUR_APPLICATION_ID
@@ -125,14 +125,14 @@ author:
     - label: "Instagram"
       icon: "fab fa-fw fa-instagram"
       url: "https://www.instagram.com/green.junn/"
-    - label: "Researchgate"
+    - label: "ResearchGate"
       icon: "fab fa-fw fa-researchgate"
       url: "https://www.researchgate.net/profile/Junhyeok_Yun"
-    - label: "Linkedln"
+    - label: "LinkedIn"
       icon: "fab fa-fw fa-linkedin"
       url: "https://www.linkedin.com/in/junhyeok-yun-548764163/"
     - label: "ORCID"
-      icon: "fab fa-fw fa-ORCID"
+      icon: "fas fa-fw fa-id-badge"
       url: "https://orcid.org/0000-0002-9035-531X" 
 
 
@@ -226,7 +226,7 @@ sass:
 permalink: /:categories/:title/
 paginate: 5 # amount of posts to show
 paginate_path: /page:num/
-timezone: # https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+timezone: Asia/Seoul
 
 
 # Plugins (previously gems:)
@@ -261,7 +261,7 @@ category_archive:
   path: /categories/
 tag_archive:
   type: liquid
-  path: /tags/
+  path: /tags-archive/
 # https://github.com/jekyll/jekyll-archives
 # jekyll-archives:
 #   enabled:
@@ -298,9 +298,3 @@ defaults:
       share: true
       related: true
 
-# Math equation
-markdown: kramdown
-highlighter: rouge
-lsi: false
-excerpt_separator: "\n\n"
-incremental: false

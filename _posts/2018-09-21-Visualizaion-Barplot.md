@@ -1,5 +1,5 @@
 ---
-title:  "시각화(Visualization)-Barplot"
+title: "R 시각화: ggplot2로 막대그래프 그리기"
 categories:
   - data mining
 tags:
@@ -11,273 +11,130 @@ tags:
   
 classes: single
 author_profile: false
-mathjax: true
+mathjax: false
 comments: true
 toc: true
-toc_label: "Contents"
+toc_label: "이 글의 순서"
+excerpt: "범주별 개수를 세는 geom_bar()와 요약한 값을 그리는 geom_col()의 차이를 예제로 알아봅니다."
+last_modified_at: 2026-10-26
 ---
-* 방문해주셔서 감사합니다. 
-* 내용은 지속적으로 업데이트 될 것입니다.
-* 궁금한 내용은 댓글로 남겨주세요. 
 
-## Introduction
-이전 포스팅 [탐색적자료분석(EDA)](https://greenjun.github.io/data%20mining/EDA/) 에 이어서
-데이터를 시각화하는 방법에 대해 알아보겠습니다
-이 글에서 이해가 안되시는 분은 이전 포스팅을 참고해주세요
-전에도 말했다시피  EDA하는 방법에는 크게 4가지가 있다고 했고, 
-이번 글은 그 중에서 graphic으로 표현하는 것은 포스팅 하겠습니다.
+> **핵심 요약** — 범주별 관측값의 개수를 세려면 `geom_bar()`, 미리 계산한 평균이나 합계를 그리려면 `geom_col()`을 사용합니다.
 
-### 참고자료
+## 예제 준비하기
 
-[ggplot2 공식 메뉴얼](https://cloud.r-project.org/web/packages/ggplot2/ggplot2.pdf)
+[EDA의 기본 개념]({% post_url 2018-09-19-EDA %})에 이어 R의 ggplot2로 범주별 값을 비교해 보겠습니다. 아래 코드는 처음부터 순서대로 실행하세요.
 
-[ggplot2 개발자 Hadley Wickham의 paper](http://byrneslab.net/classes/biol607/readings/wickham_layered-grammar.pdf)
+```r
+# 패키지 설치는 처음 한 번만 필요합니다.
+install.packages(c("ggplot2", "dplyr"))
 
-
-## ggplot2
-수많은 책과 포스팅을 보면 시각화하는 수많은 패키지와 프로그램이 있지만
-
-여기서 소개해드릴 것은 R에서 사용하는  **ggplot2** 입니다.
-
-제가 시각화하는 책과 여러가지 프로젝트를 보았지만 ggplot2 만큼 많은 것을 커버할수있고 
-
-활용하는 패키지는 없는 것 같았습니다.
-
-그래서 만약 데이터 시각화에 관심이 있으시고 R을 사용하신다면 ggplot2만 익혀도 표현하고자 하는 
-
-수 많은 생각을 시각화 하는데 도움이 될 것입니다.
-
-
-### ggplot2 구성 방식
-* 레이어를 하나씩 쌓아가면서 그림을 그리는 방식
-* 이때 레이어를 연결시키는 방법이 `+` 라는 기호를 사용하여 연결
-
-ex)
-```R
-ggplot(data = mpg, aes(x = displ, y = hwy))+  #배경레이어 - 이용할 데이터와 축을 명시한다.
-  geom_point()+                               #그래프레이어 - 배경레이어 위에 어떤 그래프를 그릴지 선택한다.
-  xlim(3, 6)+                                 #기타 레이어 - 그외의 축범위 조정 외 수많은 기능들을 실행한다.
-  ylim(10,30)``
+library(ggplot2)
+library(dplyr)
 ```
 
-### 설치
-```R
-install.packages("ggplot2")
-install.packages("ggplot2")
-library(ggplot2) #시각화 
-library(dplyr)   #데이터 프레임 조작
-```
-> 모든 예제는 ggplot2 패키지 내의 mpg 데이터를 이용하겠습니다. 데이터 구성은 다음과 같습니다.
+예제 데이터 `mpg`는 ggplot2에 들어 있는 자동차 데이터입니다. 234개 행과 11개 변수가 있으며, 이 글에서는 다음 변수를 사용합니다.
 
-11 variables, 234 row, dataframe
+| 변수 | 의미 |
+| --- | --- |
+| `drv` | 구동 방식: `f` 전륜, `r` 후륜, `4` 사륜 |
+| `fl` | 연료 종류 |
+| `manufacturer` | 제조사 |
+| `hwy` | 고속도로 연비(miles per gallon, mpg) |
 
-variable이름 - 설명
+`hwy`는 값이 클수록 같은 연료로 더 멀리 이동한다는 뜻입니다. km/L와는 단위가 다릅니다.
 
-manufacturer
+## ggplot2의 기본 구조
 
-model - model name
+`ggplot()`에서 데이터와 축을 지정하고, `+`로 그래프와 꾸미기 요소를 하나씩 추가합니다.
 
-displ - engine displacement, in litres
-
-year - year of manufacture
-
-cyl - number of cylinders
-
-trans - type of transmission
-
-drv - f = front-wheel drive, r = rear wheel drive, 4 = 4wd
-
-cty - city miles per gallon
-
-hwy - highway miles per gallon
-
-fl - fuel type
-
-class - "type" of car
-
-## Univariate graphical EDA
-
-### Boxplots
-* outlier
-* symmetry (데이터 치우침정도 파악가능)
-* robust measures of location and spread
-* categorical data 데이터 분포 
-* continous data에 사용하면 전체적인 분포를 빼곡히 파악 가능
-
-먼저 하나씩 차근 차근 시작하여봅시다
-
-**mpg라는 데이터 셋에서 drv 별로 얼마나 많은 빈도를 가지고 있는지 확인하여 봅시다**
-
-```R
-ggplot(data = mpg, aes(x = drv)) +
-  geom_bar()
-```
-![barplot1](/assets/images/barplot1.png)
-
-`data = mpg는 사용할 데이터 셋이 mpg라는 것`
-
-`aes(x = drv)는 x축으로 drv를 지정하는 것, drv는 categorical 변수입니다.`
-
-`y축을 지정하지 않은 이유는 막대 그래프이기 때문데 x축만을 지정하여도 되기 때문입니다`
-
-`+ 기호를 사용하여 layer를 연결시킵니다. `
-
-`geom_bar() 는 막대그래프를 그리라는 함수입니다.`
-
-**배경에 격자 무늬를 수정해봅시다.**
-
-```R
+```r
 ggplot(data = mpg, aes(x = drv)) +
   geom_bar() +
-  theme_lightl()
-```
-
-`theme 함수를 통해서 배경의 격자 무늬를 수정할 수 있습니다`
-
-**색이 좀 칙칙하다구요? fill=drv는 drv별로 색을 다르게 채우겠다는 뜻입니다.**
-
-```R
-ggplot(data = mpg, aes(x = drv, fill=drv))+
-  geom_bar() +
-  theme_lightl()
-```
-
-**막대를 수정해봅시다**
-
-```R
-ggplot(data = mpg, aes(x = drv, fill = drv)) +
-  geom_bar(width = 0.7) +
   theme_light()
 ```
 
-`geom_bar 함수 안에 숫자를 입력하면 됩니다. 만약 aes에 fill을 채우지 않았다면 color, fill함수를 여기에 사용하여 막대를 수정할 수 있습니다`
+- `data = mpg`: 사용할 데이터입니다.
+- `aes(x = drv)`: x축에 구동 방식을 놓습니다.
+- `geom_bar()`: 각 범주의 행 수를 세어 막대 높이로 표시합니다.
+- `theme_light()`: 배경과 격자 스타일을 바꿉니다.
 
-**x축의 drv에서 원하는 크기 순으로 나열해 봅시다**
+![구동 방식별 관측값의 개수를 나타낸 막대그래프](/assets/images/barplot1.png)
 
-```R
-ggplot(data = mpg, aes(x = drv, fill = drv)) +
-  geom_bar(width=0.7) +
+## 색상, 순서, 축 이름 바꾸기
+
+`fill = drv`를 `aes()` 안에 넣으면 구동 방식에 따라 색을 다르게 채웁니다. 하나의 고정 색을 쓰려면 `geom_bar(fill = "steelblue")`처럼 `aes()` 밖에 지정하세요.
+
+```r
+ggplot(mpg, aes(x = drv, fill = drv)) +
+  geom_bar(width = 0.7) +
+  scale_x_discrete(limits = c("f", "4", "r")) +
+  labs(x = "구동 방식", y = "관측값 수", fill = "구동 방식") +
+  theme_light()
+```
+
+`scale_x_discrete(limits = ...)`는 범주의 순서를 정합니다. 목록에 없는 범주는 제외되므로, 의도하지 않게 데이터를 빠뜨리지 않도록 주의하세요.
+
+## 막대 위에 개수 표시하기
+
+`after_stat(count)`는 `geom_bar()`가 계산한 개수를 라벨로 사용합니다.
+
+```r
+ggplot(mpg, aes(x = drv, fill = drv)) +
+  geom_bar(width = 0.7) +
+  geom_text(stat = "count", aes(label = after_stat(count)), vjust = -0.3) +
+  scale_y_continuous(expand = expansion(mult = c(0, 0.1))) +
+  labs(x = "구동 방식", y = "관측값 수") +
   theme_light() +
-  scale_x_discrete(limits=c("f", "4", "r"))
+  theme(legend.position = "none")
 ```
 
-`x축의 drv를 원하는 숫자만 가져오거나 내가  원하는 순서대로 배열하고 싶다면 다음과 같이 scale_x_discrete(limits=..)) 함수를 사용합니다`
+![막대 위에 빈도를 표시한 그래프의 예](/assets/images/barplot2.png)
 
-**x축의 이름을 바꾸고 싶다면 labs(x = "움직이는 바퀴")이라는 layer를 추가 해주면 됩니다**
+## 한 범주 안의 여러 집단 비교하기
 
-```R
-ggplot(data = mpg, aes(x = drv, fill = drv)) +
-  geom_bar(width=0.7) +
-  theme_light() +
-  scale_x_discrete(limits=c("f", "4", "r")) +
-  labs(x = "움직이는 바퀴") 
+구동 방식별로 연료 종류를 비교하려면 `fill = fl`을 사용합니다.
+
+```r
+ggplot(mpg, aes(x = drv, fill = fl)) +
+  geom_bar(width = 0.7, position = "dodge") +
+  labs(x = "구동 방식", y = "관측값 수", fill = "연료 종류") +
+  theme_light()
 ```
 
-**흠...막대기 위에 숫자도 추가해볼까요?**
- 
- ```R
-ggplot(data = mpg, aes(x = drv, fill = drv)) +
-  geom_bar(width=0.7) +
-  theme_light() +
-  scale_x_discrete(limits=c("f", "4", "r")) +
-  labs(x = "움직이는 바퀴") +
-  geom_label(stat='count', aes(label=..count..))
+| `position` 값 | 표현 방식 | 적합한 비교 |
+| --- | --- | --- |
+| `"dodge"` | 막대를 나란히 배치 | 집단별 개수 |
+| `"stack"` | 막대를 위로 쌓기 | 총개수와 구성 |
+| `"fill"` | 전체 높이를 1로 맞추기 | 범주 내 구성 비율 |
+
+![구동 방식 안에서 연료 종류별 막대를 나란히 놓은 그래프](/assets/images/barplot3.png)
+
+## 평균처럼 이미 계산한 값 그리기
+
+`geom_col()`은 y축에 지정한 값을 그대로 막대 높이로 사용합니다. 구동 방식과 제조사별 평균 연비를 비교하려면 **먼저 집단별 평균을 계산**합니다. 원자료를 그대로 겹쳐 그리면 집단의 대표값을 비교하기 어렵습니다.
+
+```r
+mpg_summary <- mpg %>%
+  group_by(drv, manufacturer) %>%
+  summarise(mean_hwy = mean(hwy, na.rm = TRUE), .groups = "drop")
+
+ggplot(mpg_summary, aes(x = drv, y = mean_hwy, fill = manufacturer)) +
+  geom_col(position = "dodge") +
+  labs(x = "구동 방식", y = "평균 고속도로 연비(mpg)", fill = "제조사") +
+  theme_light()
 ```
 
-![barplot2](/assets/images/barplot2.png)
+`geom_bar(stat = "identity")`도 지정한 y값을 그리지만, 이 목적에는 `geom_col()`이 더 간결합니다. 연비를 모두 더한 값은 해석하기 어려우므로, 평균이나 분포를 비교하는 편이 목적에 맞습니다.
 
- **만약 drv별로 연료타입이 어떻게 되는지 확인하고 싶다면 fill = fl로 바꿔주시면 됩니다.**
- 
- ```R
-ggplot(data = mpg, aes(x = drv, fill = fl)) +
-  geom_bar(width=0.7, position = "dodge") +
-  theme_light() +
-  scale_x_discrete(limits=c("f", "4", "r")) +
-  labs(x = "drv별로 연료타입 분포")
-```
+## 직접 해보기
 
-`여기서 한 막대안에 들어 있는 여러개의 분포를 x축위에 나란히 놓고 싶다면 geom_bar(position = "dodge")를 추가하시면 됩니다.`
+`mpg`의 `class`별 관측값 개수를 그리고, 막대 위에 개수를 표시해 보세요. x축을 `class`로 바꾸되 y축을 직접 지정할 필요는 없습니다.
 
-![barplot3](/assets/images/barplot3.png)
+## 이어서 읽기와 참고 자료
 
-**자 이제 y축에 새로운 정보를 추가하여 나타내 봅시다. x축에 drv, y축에 hwy(연비), 그룹은 manufacturer별로**
+- [바이올린 플롯으로 연비 분포 비교하기]({% post_url 2018-09-27-Visualizaion-Violinplot %})
+- [ggplot2: geom_bar()와 geom_col()](https://ggplot2.tidyverse.org/reference/geom_bar.html)
+- [ggplot2: 그래프 라벨](https://ggplot2.tidyverse.org/reference/labs.html)
 
-**즉 각 drv별로 생산자들이 만든 제품의 연비가 어떻게 되는지 보려고 합니다** 
-
-```R
-ggplot(data = mpg, aes(x = drv, y = hwy, group = manufacturer)) +
-  geom_col(aes(fill = manufacturer), position = "dodge") +
-  geom_text(aes(label = hwy), position = position_dodge(0.9))
-```
-
-![barplot4](/assets/images/barplot4.png)
-
-`geom_col(aes(fill = manufacturer), position = "dodge")은 생산자별로 색을 다르게 표시하고 dodge로 옆으로 나란히 표시하겠다는 말입니다`
-
-`dodge가 아니라 stack을 사용한다면 한 막대위에 길게 쌓아지게 됩니다.`
-
-`geom_text(aes(label = hwy), position = position_dodge(0.9))는 막대위 텍스트의 표시를 y축의 hwy로 하겠다는 말입니다.`
-
-`gerom_col과 geom_test의 position은 같은 표시로 해야합니다`
-
-**만약 drv 별로 연비의 총합을 알고 싶다면 다음과 같이 y = hwy, stat = 'identity'를 추가하면 됩니다.**
-
-```R
-ggplot(data = mpg, aes(x = drv, y = hwy, fill = drv))+
-  geom_bar(stat='identity') +
-  labs(x = "drv 별로 hwy의 총합")
-```
-
-![barplot5](/assets/images/barplot5.png)
-
-> stack 사용시 참고 코드 
-
-```R
-ggplot(data = df, aes(x, y, group = grp)) +
-  geom_col(aes(fill = grp)) +
-  geom_text(aes(label = y), position = position_stack(vjust = 0.5))
-```
-
-> stat 사용시 참고 코드
-
-
-```R
-# the height of the bar represents the count of cases in each category.
-labeling
-ggplot(data = mpg, aes(x = drv, y = hwy, fill = drv))+
-  geom_bar(stat='identity') +
-  labs(title = "y - stat identity")
-
-ggplot(data = mpg, aes(x = drv))+
-  geom_bar() +
-  labs(title = "x - default stat bin")
-```
-
-> 크기순으로 라벨링 할떄 참고코드
-
-```R
-
-library(plyr)
-mpg2 <- mpg[,c(7,9)]
-mpg_sorted <- arrange(mpg2, drv, hwy)
-mpg_cumsum <- ddply(mpg_sorted, 
-                    .(drv),
-                    transform,
-                    label_cumsum = cumsum(hwy))
-ggplot(data = mpg_cumsum, aes(x = drv, y = hwy, fill = drv))+
-  geom_bar(stat='identity') +
-  labs(x = "drv 별로 hwy의 총합") +
-  geom_text(aes(y=label_cumsum, label=hwy))
-  ```
-
-**Quiz1. mpg라는 데이터 셋에서 class 별로 얼마나 많은 빈도를 가지고 있는지 확인하여 봅시다**
-
-### Histograms
-
-### Quantile-normal plots(QQ-plot)
-
-## Reference 
-* http://www.sthda.com/english/wiki/ggplot2-barplots-quick-start-guide-r-software-and-data-visualization
-
-> 용어정리 
-* barplot
+그림은 기존 예시입니다. ggplot2 버전과 테마, 글꼴에 따라 실행 화면은 달라질 수 있습니다.

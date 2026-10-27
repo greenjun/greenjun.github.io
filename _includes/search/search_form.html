@@ -2,7 +2,10 @@
 {%- assign search_provider = site.search_provider | default: "lunr" -%}
 {%- case search_provider -%}
   {%- when "lunr" -%}
-    <input type="text" id="search" class="search-input" tabindex="-1" placeholder="{{ site.data.ui-text[site.locale].search_placeholder_text | default: 'Enter your search term...' }}" />
+    <label for="search" class="search-label">글 검색</label>
+    <p id="search-help" class="search-help">제목, 본문, 태그에서 찾습니다. 예: 탐색, ggplot2, p-value</p>
+    <input type="search" id="search" class="search-input" aria-describedby="search-help" placeholder="궁금한 주제를 입력하세요" autocomplete="off" />
+    <p id="search-status" role="status" aria-live="polite" aria-atomic="true"></p>
     <div id="results" class="results"></div>
   {%- when "google" -%}
     <form onsubmit="return executeQuery();" id="cse-search-box-form-id">

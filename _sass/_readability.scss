@@ -1,0 +1,89 @@
+// Reading improvements layered over the existing Minimal Mistakes theme.
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Malgun Gothic", "Apple SD Gothic Neo", sans-serif;
+  color: #283536;
+  line-height: 1.8;
+}
+a { color: #17645b; }
+a:visited { color: #405c70; }
+a:hover { color: #103f39; }
+.greedy-nav .greedy-nav__toggle, .toc .nav__title { background: #17645b; }
+a:focus-visible, button:focus-visible, input:focus-visible {
+  outline: 3px solid #bd672b;
+  outline-offset: 4px;
+}
+.skip-link {
+  position: absolute;
+  top: -5rem;
+  left: 1rem;
+  padding: 0.6em 1em;
+  background: #fff;
+  z-index: 100;
+  &:focus { top: 0.5rem; }
+}
+.page__title, .archive__item-title { line-height: 1.45; word-break: keep-all; overflow-wrap: break-word; }
+.page__hero--overlay {
+  padding: 2.8em 0;
+  .page__title { max-width: 22em; }
+  .page__lead { max-width: 36em; line-height: 1.75; font-size: 1em; }
+  a, a:visited, a:hover { color: #fff; }
+}
+.reading-guide {
+  padding: 1.5em;
+  margin: 0 0 2em;
+  background: #f4f8f6;
+  border: 1px solid #d7e5df;
+  border-radius: 8px;
+  h2 { margin: 0 0 0.6em; font-size: 1.2em; }
+  p { font-size: 0.82em; margin-bottom: 1em; }
+  .reading-guide__eyebrow { color: #17645b; font-weight: bold; margin: 0 0 0.5em; }
+}
+.reading-guide__steps {
+  margin: 0;
+  padding-left: 1.25em;
+  li { padding-left: 0.25em; margin: 0.7em 0; font-size: 0.85em; }
+  a { text-decoration: none; display: block; }
+  a:hover strong { text-decoration: underline; }
+  strong, span { display: block; }
+  span { font-size: 0.88em; color: #4d6260; }
+}
+.list__item {
+  padding: 1.1em 0;
+  border-bottom: 1px solid #e2e8e6;
+  .archive__item-title { margin-top: 0; font-size: 1.15em; }
+  .archive__item-title a { text-decoration: none; }
+  .archive__item-title a:hover { text-decoration: underline; }
+  .page__meta { font-size: 0.68em; color: #536561; }
+  .archive__item-excerpt { font-size: 0.82em; line-height: 1.85; margin: 0.6em 0 0; }
+}
+.page__content {
+  line-height: 1.95;
+  overflow-wrap: break-word;
+  h2 { margin-top: 2em; line-height: 1.55; }
+  h3 { line-height: 1.6; }
+  li + li { margin-top: 0.4em; }
+  img { max-width: 100%; height: auto; }
+  table { display: block; max-width: 100%; overflow-x: auto; font-size: 0.82em; }
+  th, td { min-width: 5em; padding: 0.65em; }
+  blockquote { margin: 1.5em 0; padding: 0.8em 1em; background: #f4f8f6; border-left: 4px solid #17645b; font-style: normal; }
+  blockquote p:last-child { margin-bottom: 0; }
+  .highlighter-rouge { line-height: 1.65; }
+  mjx-container[display="true"] { display: block; max-width: 100%; overflow-x: auto; overflow-y: hidden; padding: 0.5em 0; }
+}
+.search-label { display: block; font-size: 1.5em; font-weight: bold; }
+.search-help, #search-status { font-size: 0.8em; color: #4d6260; }
+.search-content .search-input { font-size: 1em; border-bottom: 2px solid #17645b; }
+@media (min-width: 1024px) {
+  .layout--home .archive, .layout--categories .archive, .layout--tags .archive { padding-right: 0; }
+}
+@media (max-width: 600px) {
+  .page__hero--overlay { padding: 2em 0; }
+  .page__hero--overlay .page__title { font-size: 1.65em; }
+  .page__hero--overlay .btn { margin-top: 0.5em; font-size: 0.8em; }
+  .reading-guide { padding: 1.1em; }
+  .reading-guide p, .reading-guide__steps li, .list__item .archive__item-excerpt { font-size: 0.95em; }
+  .list__item .page__meta { font-size: 0.8em; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+}

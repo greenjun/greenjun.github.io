@@ -40,6 +40,6 @@
   {% endfor %}
 {% endif %}
 
-{% if page.use_math %}
+{% if page.use_math or page.mathjax %}
   {% include mathjax_support.html %}
 {% endif %}

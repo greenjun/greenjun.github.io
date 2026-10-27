@@ -1,8 +1,8 @@
 # main links
 main:
-  - title: "Tags"
+  - title: "태그"
     url: /tags-archive/
-  - title: "Categories"
+  - title: "주제별 글"
     url: /categories/
-  - title: "About"
+  - title: "블로그 소개"
     url: /about/

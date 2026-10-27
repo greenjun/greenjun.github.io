@@ -1,5 +1,5 @@
 ---
-title:  "시각화(Visualization)-Violinplot"
+title: "R 시각화: 바이올린 플롯으로 분포 비교하기"
 categories:
   - data mining
 tags:
@@ -11,184 +11,107 @@ tags:
   
 classes: single
 author_profile: false
-mathjax: true
+mathjax: false
 comments: true
 toc: true
-toc_label: "Contents"
+toc_label: "이 글의 순서"
+excerpt: "바이올린 플롯, 상자그림, 실제 관측값을 함께 그려 집단별 분포를 해석하는 방법을 알아봅니다."
+last_modified_at: 2026-10-26
 ---
-* 내용은 지속적으로 업데이트 될것입니다.
-* 최대한 수식을 배제하고 전체적인 흐름을 익히게 했습니다.
-* 따라서 궁금하신 점은 메일이나 검색을 활용해주세요.
 
-## Introduction
-이전 포스팅 [탐색적자료분석(EDA)](https://greenjun.github.io/data%20mining/EDA/) 에 이어서
-데이터를 시각화하는 방법에 대해 알아보겠습니다
-이 글에서 이해가 안되시는 분은 이전 포스팅을 참고해주세요
-전에도 말했다시피  EDA하는 방법에는 크게 4가지가 있다고 했고, 
-이번 글은 그 중에서 graphic으로 표현하는 것은 포스팅 하겠습니다.
+> **핵심 요약** — 바이올린 플롯은 값이 모인 구간을 폭으로 표현합니다. 상자그림과 실제 관측값을 함께 보면 집단의 중심, 퍼짐, 표본 수를 이해하기 쉽습니다.
 
-### 참고자료
+## 언제 사용하나요?
 
-[ggplot2 공식 메뉴얼](https://cloud.r-project.org/web/packages/ggplot2/ggplot2.pdf)
+집단별 평균이 같아도 분포는 다를 수 있습니다. 바이올린 플롯(Violin plot)은 집단마다 값이 어디에 모여 있는지 비교할 때 유용합니다.
 
-[ggplot2 개발자 Hadley Wickham의 paper](http://byrneslab.net/classes/biol607/readings/wickham_layered-grammar.pdf)
+| 도구 | 보여주는 것 | 주의할 점 |
+| --- | --- | --- |
+| 상자그림 | 중앙값, 사분위 범위, 이상치 후보 | 분포의 세부 모양은 잘 드러나지 않습니다. |
+| 바이올린 플롯 | 밀도를 추정한 분포 모양 | 평활화 설정과 표본 수에 영향을 받습니다. |
+| 관측값 점 | 실제 값과 관측값 수 | 데이터가 많으면 점이 겹칠 수 있습니다. |
 
+바이올린 플롯이 항상 더 좋은 것은 아닙니다. 특히 표본이 적으면 매끈한 곡선이 실제 데이터보다 많은 정보를 암시할 수 있으므로 점을 함께 보여주세요.
 
-## ggplot2
-수많은 책과 포스팅을 보면 시각화하는 수많은 패키지와 프로그램이 있지만
+## 데이터 준비하기
 
-여기서 소개해드릴 것은 R에서 사용하는  **ggplot2** 입니다.
-
-제가 시각화하는 책과 여러가지 프로젝트를 보았지만 ggplot2 만큼 많은 것을 커버할수있고 
-
-활용하는 패키지는 없는 것 같았습니다.
-
-그래서 만약 데이터 시각화에 관심이 있으시고 R을 사용하신다면 ggplot2만 익혀도 표현하고자 하는 
-
-수 많은 생각을 시각화 하는데 도움이 될 것입니다.
-
-
-### ggplot2 구성 방식
-* 레이어를 하나씩 쌓아가면서 그림을 그리는 방식
-* 이때 레이어를 연결시키는 방법이 `+` 라는 기호를 사용하여 연결
-
-ex)
-```R
-ggplot(data = mpg, aes(x = displ, y = hwy))+  #배경레이어 - 이용할 데이터와 축을 명시한다.
-  geom_point()+                               #그래프레이어 - 배경레이어 위에 어떤 그래프를 그릴지 선택한다.
-  xlim(3, 6)+                                 #기타 레이어 - 그외의 축범위 조정 외 수많은 기능들을 실행한다.
-  ylim(10,30)``
-```
-
-### 설치
-```R
+```r
+# 처음 사용할 때만 설치합니다.
 install.packages("ggplot2")
-install.packages("ggplot2")
-library(ggplot2) #시각화 
-library(dplyr)   #데이터 프레임 조작
-```
-> 모든 예제는 ggplot2 패키지 내의 mpg 데이터를 이용하겠습니다. 데이터 구성은 다음과 같습니다.
-
-11 variables, 234 row, dataframe
-
-variable이름 - 설명
-
-manufacturer
-
-model - model name
-
-displ - engine displacement, in litres
-
-year - year of manufacture
-
-cyl - number of cylinders
-
-trans - type of transmission
-
-drv - f = front-wheel drive, r = rear wheel drive, 4 = 4wd
-
-cty - city miles per gallon
-
-hwy - highway miles per gallon
-
-fl - fuel type
-
-class - "type" of car
-
-## Univariate graphical EDA
-* [Visualizaion-Barplot](https://greenjun.github.io/data%20mining/Visualizaion-Barplot/)
-
-### Violinplot
-* central tendency, spread, modality, shape and outliers
-* continous data distribution
-* boxplot보다 많은 정보를 나타낼 수 있고 더 많은 정보를 보여주므로 boxplot보다는 violinplot을 사용하는것을 권합니다.
-
-![boxplotexample](/assets/images/boxplotexample.PNG)
-
-기본적으로 boxplot의 역할은 다음과 같이 median과 Q1, Q3을 표시함으로써 outlier의 존재성을 밝혀줍니다.
-
-**먼저 mpg 데이터에 포함되어 있는 hwy연비의 분포를 확인하여 봅시다.**
-
-```R
-ggplot(mpg, aes(x = drv, y = hwy)) +
-  geom_violin()
-  
-ggplot(mpg, aes(x = drv, y = hwy)) +
-  geom_boxplot()
+library(ggplot2)
 ```
 
-![violinplot1](/assets/images/violinplot1.png)
+ggplot2의 `mpg` 데이터에서 `drv`는 구동 방식(`f` 전륜, `r` 후륜, `4` 사륜), `hwy`는 고속도로 연비(mpg)입니다. ggplot2의 기본 문법은 [막대그래프 글]({% post_url 2018-09-21-Visualizaion-Barplot %})을 참고하세요.
 
-![boxplot1](/assets/images/boxplot1.png)
+## 바이올린 플롯과 상자그림 비교하기
 
-
-`기존의 boxplot과 비교해 보면 데이터의 분포 모형까지도 함께 알 수 있습니다.`
-
-**이제 기존의 boxplot처럼 median과 mean 등의 summary statistics를 표시해봅시다.**
-
-```R
+```r
 ggplot(mpg, aes(x = drv, y = hwy)) +
   geom_violin() +
+  labs(x = "구동 방식", y = "고속도로 연비(mpg)") +
+  theme_light()
+
+ggplot(mpg, aes(x = drv, y = hwy)) +
+  geom_boxplot() +
+  labs(x = "구동 방식", y = "고속도로 연비(mpg)") +
+  theme_light()
+```
+
+![구동 방식별 고속도로 연비의 바이올린 플롯](/assets/images/violinplot1.png)
+
+![같은 데이터를 나타낸 상자그림](/assets/images/boxplot1.png)
+
+바이올린이 넓은 구간은 그 주변에 관측값이 많이 모여 있다는 뜻입니다. 기본 설정에서는 집단마다 면적을 맞추므로, 바이올린의 전체 크기만으로 표본 수를 비교하면 안 됩니다.
+
+## 중앙값과 평균 함께 표시하기
+
+좁은 상자그림을 겹쳐 중앙값과 사분위 범위를 보여주고, 평균은 별도의 점으로 표시합니다.
+
+```r
+ggplot(mpg, aes(x = drv, y = hwy)) +
+  geom_violin(fill = "#dcece5") +
   geom_boxplot(width = 0.1) +
-  stat_summary(fun.y = mean, geom = "point", color = 2, size = 2))
+  stat_summary(fun = mean, geom = "point", color = "#b34e30", size = 2) +
+  labs(x = "구동 방식", y = "고속도로 연비(mpg)") +
+  theme_light()
 ```
 
-![violinplot2](/assets/images/violinplot2.png)
+![바이올린 플롯 안에 상자그림과 평균을 겹친 예](/assets/images/violinplot2.png)
 
-`stat_summary 함수를 통해 mean, median을 지정하여 plot상에 점을 찍어서 통계량을 알 수 있습니다`
+상자 안의 선은 중앙값이고, 별도로 추가한 점은 평균입니다. 평균과 중앙값의 차이가 크다면 분포의 치우침이나 극단적인 값을 살펴보세요.
 
-`geom_boxplot()함수를 추가함으로써 violinplot 내에 boxplot을 표시함으로써 많은 정보를 포함 할 수 있습니다`
+## 실제 관측값을 점으로 표시하기
 
-**그림안에 실제 hwy에 해당되는 케이스를 점을 찍어봅시다**
+`geom_jitter()`는 겹치는 점을 조금씩 흩어 보여줍니다. 값이 바뀐 것처럼 보이지 않도록 y축 방향의 흔들림은 0으로 둡니다.
 
-```R
+```r
 ggplot(mpg, aes(x = drv, y = hwy)) +
-  geom_violin() +
-  geom_boxplot(width = 0.1, color = "blue") +
-  stat_summary(fun.y = mean, geom = "point", color = 2, size = 2) +
-  geom_jitter(shape=16, position=position_jitter(0.2))
+  geom_violin(fill = "#dcece5") +
+  geom_boxplot(width = 0.1, outlier.shape = NA) +
+  geom_jitter(
+    width = 0.12, height = 0,
+    alpha = 0.45, size = 1.5
+  ) +
+  stat_summary(fun = mean, geom = "point", color = "#b34e30", size = 2) +
+  labs(title = "구동 방식별 연비 분포", x = "구동 방식", y = "고속도로 연비(mpg)") +
+  theme_light()
 ```
 
-![violinplot3](/assets/images/violinplot3.png)
+`outlier.shape = NA`는 상자그림의 이상치 점만 숨깁니다. 모든 관측값을 jitter로 다시 표시하므로 동일한 점을 두 번 그리는 일을 줄입니다.
 
-`실제 데이터의 점을 찍음으로써 데이터가 어떻게 분포하는지 확인가능합니다`
+![실제 관측값을 함께 표시한 바이올린 플롯의 예](/assets/images/violinplot3.png)
 
-**그래프 안의 색을 채우는 것은 fill함수, 그래프의 선을 바꾸는 것은 color함수를 통해 가능합니다**
+## 해석 전에 확인할 것
 
-```R
-ggplot(mpg, aes(x = drv, y = hwy, fill = drv, color = drv)) +
-  geom_violin() +
-  scale_color_manual(values=c("#999999", "#E69F00", "#56B4E9")) +
-  scale_fill_brewer(palette="Dark2")
-```
+1. 집단별 표본 수가 충분한지 확인합니다.
+2. 축의 범위와 단위가 같은지 확인합니다.
+3. 폭은 밀도 추정치라는 점을 기억합니다. 개별 값은 점으로 확인하세요.
+4. 분포 모양만으로 집단 차이의 통계적 유의성을 단정하지 않습니다.
 
-`scale_color_manual() : to use custom colors`
+## 참고 자료
 
-`scale_color_brewer() : to use color palettes from RColorBrewer package`
+- [ggplot2: geom_violin()](https://ggplot2.tidyverse.org/reference/geom_violin.html)
+- [ggplot2: stat_summary()](https://ggplot2.tidyverse.org/reference/stat_summary.html)
+- [ggplot2: geom_jitter()](https://ggplot2.tidyverse.org/reference/geom_jitter.html)
 
-`scale_color_grey() : to use grey color palettes`
-
-> 제목과 x축 y축 이름을 바꾸고 범례 위치를 바꾸는 참고 코드
-
-```R
-ggplot(mpg, aes(x = drv, y = hwy, fill = drv)) +
-  geom_violin(trim = T) +
-  labs(main = "drv 별 연비 분포",
-       x = "구동방식",
-       y = "연비") +
-  theme(legend.position = "top")
-```
-
-### Quantile-normal plots(QQ-plot)
-* 샘플이 가정한 분포와 얼마나 일치하는지 여부
-* detect left or right skew
-* detect positive or negative kurtosis
-* detect bimodality
-
->
-### Reference 
-* [ggplot2_essentials](http://www.sthda.com/english/wiki/ggplot2-violin-plot-quick-start-guide-r-software-and-data-visualization){: .btn .btn--info}
-
->
-### 용어정리 
-* boxplot, violin plot
+그림은 기존 예시입니다. 코드의 색상, 글꼴, ggplot2 버전에 따라 실행 화면은 달라질 수 있습니다.

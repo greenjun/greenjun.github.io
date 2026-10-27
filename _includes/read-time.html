@@ -6,7 +6,10 @@
   {% assign words = page.content | strip_html | number_of_words %}
 {% endif %}
 
-{% if words < words_per_minute %}
+{% assign language = site.locale | slice: 0, 2 %}
+{% if language == "ko" %}
+  {% if words < words_per_minute %}1분 미만{% else %}약 {{ words | divided_by:words_per_minute }}분 소요{% endif %}
+{% elsif words < words_per_minute %}
   {{ site.data.ui-text[site.locale].less_than | default: "less than" }} 1 {{ site.data.ui-text[site.locale].minute_read | default: "minute read" }}
 {% elsif words == words_per_minute %}
   1 {{ site.data.ui-text[site.locale].minute_read | default: "minute read" }}

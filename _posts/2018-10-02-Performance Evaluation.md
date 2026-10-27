@@ -1,5 +1,5 @@
 ---
-title:  "모델 성능 평가(Performance Evaluations)"
+title: "모델 성능 평가: 정확도부터 ROC와 비용까지"
 categories:
   - data mining
 tags:
@@ -12,270 +12,135 @@ author_profile: false
 mathjax: true
 comments: true
 toc: true
-toc_label: "Contents"
+toc_label: "이 글의 순서"
+excerpt: "학습·검증·테스트 데이터의 역할과 분류 지표, ROC-AUC, 오분류 비용, 과표집의 주의점을 설명합니다."
+last_modified_at: 2026-10-26
 ---
-* 방문해주셔서 감사합니다. 
-* 내용은 지속적으로 업데이트 될 것입니다.
-* 궁금한 내용은 댓글로 남겨주세요. 
 
-## Introduction
-한개의 데이터 셋에 대해서도 사용할 수 있는 모델의 수가 굉장히 많습니다. 따라서 모델을 만든 후에 어떤 모델이 좋은 지 확인하는 과정이 필요합니다. 그래서 모델을 평가하는 성과분석(performance analysis)를 하게 됩니다. 
+> **핵심 요약** — 좋은 모델의 기준은 분석 목적에 따라 달라집니다. 데이터 분할을 먼저 하고, 정확도뿐 아니라 놓친 양성·잘못된 경보·오분류 비용을 함께 확인하세요.
 
-### Typers of output
-모델을 통해 나온는 결과는 다음과 같이 세가지가 있습니다.
+## 무엇을 예측하는 모델인가요?
 
-* 일반적인 회귀분석의 결과로 나오는 Numerical value
-* 일반적인 의사결정나무의 결과로 나오는 Class
-* 그리고 Class가 될 확률로 나오는 Tendancy
+| 출력 | 예시 | 대표 평가 방법 |
+| --- | --- | --- |
+| 수치 | 매출, 온도 | MAE, RMSE |
+| 범주 | 불량/정상 | 혼동행렬, 정밀도, 재현율 |
+| 확률 또는 점수 | 불량일 확률 | ROC-AUC, PR-AUC, 확률 보정 평가 |
 
-### Misclassification error
-기본적으로 에러는 맞는데 틀리게 분류하였거나,틀렸는데 맞게 분류한것을 말합니다. 용어로는 error, error rate를 쓰게 됩니다.
+먼저 단순한 기준 모델(Baseline)과 비교하세요. 분류에서는 항상 다수 클래스를 예측하는 모델, 회귀에서는 학습 데이터의 평균을 예측하는 모델이 출발점이 될 수 있습니다.
 
-### Benchmark
-* 분류 벤치마크 - 가장 빈도가 많은 class로 모든 값을 분류해 버리는 것
-* 예측 벤치마크 - 학습 데이터들의 평균 값을 예측 값으로 사용하는 것 
+## 학습·검증·테스트 데이터 나누기
 
-다음과 같은 경우를 생각해봅시다. 여러분들이 암을 예측하는 모델을 만들었다고 합시다. 이 모델은 0이면 음성, 1이면 양성으로 분류합니다.
+| 데이터 | 역할 | 언제 사용하나요? |
+| --- | --- | --- |
+| 학습(Train) | 모델의 계수를 학습 | 모델을 적합할 때 |
+| 검증(Validation) | 모델과 하이퍼파라미터 선택 | 후보를 비교하고 설정을 조정할 때 |
+| 테스트(Test) | 선택을 마친 모델의 최종 평가 | 모델 개발을 마친 후 |
 
-검사한 사람들 10,000명 중에 양성인 사람들은 100명이라고 합시다. 
+검증 데이터는 모델 선택에 영향을 줍니다. 따라서 검증 성능을 최종 성능처럼 보고하면 낙관적인 평가가 될 수 있습니다. 테스트 결과를 보고 설정을 반복해서 바꾸는 것도 피해야 합니다.
 
-이 경우 이 사람들에 대해서 10,000을 모두 음성이라고 판단을 내리는 모델에 대해서 단순히  error rate로 측정을 하게되면 정확도가 99%가 됩니다.
+정해진 분할 비율이 모든 문제에 맞는 것은 아닙니다. 표본 수와 모델 복잡도를 고려하고, 데이터가 적다면 교차검증을 활용할 수 있습니다. 시계열은 시간 순서를, 같은 사람의 반복 측정은 사람 단위의 분리를 고려하세요.
 
-단순히 모두 음성이라고 했을 뿐인데 말이죠. 그래서 일반적으로 모델을 만들었을때 단순히 정확도만으로 평가하는 것은 위헙합니다.
+표준화, 결측값 대체, 변수 선택 같은 전처리도 학습 데이터에서 기준을 구한 뒤 검증·테스트 데이터에 적용해야 합니다.
 
-###  Error measure for prediction
-세부 내용은 위키에 검색하시면 됩니다.
+## 회귀 모델의 오차 지표
 
-* MAE(Mean absoulute error) - 오차(실제값과 예측값)에 전부 절댓값을 취한 후 평균을 구한 것
-* AE(Average error) - 오차의 평균
-* MAPE(Mean absolute percentage error) - 실제값 중에서 오차가 차지하는 비에 절댓값을 취한 후 평균을 구하여 100을 곱한것
-* RMSE(Root-mean-square deviation) - 오차에 제곱을 취한것의 평균을 구한 후 루트를 취한 것
-* SSE - 오차의 제곱의 합
+| 지표 | 계산의 의미 | 특징 |
+| --- | --- | --- |
+| MAE | 절대 오차의 평균 | 원래 값과 같은 단위로 해석합니다. |
+| RMSE | 제곱 오차의 평균에 제곱근 적용 | 큰 오차에 더 민감합니다. |
+| SSE | 제곱 오차의 합 | 데이터 개수의 영향을 받습니다. |
+| MAPE | 실제값 대비 절대 오차 비율의 평균 | 실제값이 0이면 정의되지 않고, 0에 가까우면 불안정합니다. |
+| 평균 오차 | 부호가 있는 오차의 평균 | 과대·과소 예측이 서로 상쇄될 수 있습니다. |
 
-### training, validation, test data
-일반적으로 하나의 데이터 셋을 여러가지 용도에 맞게 나누게 됩니다.
+## 분류 모델: 정확도만 보면 안 되는 이유
 
-기본적으로 train data로 모델을 만들고
+10,000명 중 양성이 100명이라면 모두 음성으로 예측해도 정확도는 99%입니다. 하지만 실제 양성 100명을 한 명도 찾아내지 못하므로 재현율은 0%입니다.
 
-validation data로 모델 검증을 하게 됩니다. 이때 모델은 이 validation data로 배우는 것이 아니라 parameter를 수정하는데 사용하게 됩니다. 간접적으로는 모델에 영향을 주긴하지만 이 모델로부터 배우는 것은 아닙니다.
+특히 불량 탐지나 질병 검사처럼 희귀한 양성을 찾는 문제에서는 오류의 종류를 나누어 살펴봐야 합니다.
 
-모델을 평가할 때 사용하는 것이 바로  test data입니다. 모델이 완전히 만들어진 후 오직 한번만 사용됩니다. 
+### 혼동행렬(Confusion matrix)
 
-### Ratio of splited datasets
-아마도 하나의 데이터 셋을 나눈다고 말했기때문에 어떤 비율로 데이터를 나누는 게 좋을지 고민할것이라고 생각이듭니다. 여기서 고민해야 할 것은 두가지가 있습니다. 
+아래 표는 행이 실제값, 열이 예측값인 경우입니다. 자료마다 배치가 다를 수 있으므로 축을 먼저 확인하세요.
 
-First, 데이터의 총 샘플수
+| 실제값 / 예측값 | 양성 예측 | 음성 예측 |
+| --- | --- | --- |
+| 실제 양성 | TP: 맞게 찾은 양성 | FN: 놓친 양성 |
+| 실제 음성 | FP: 잘못된 양성 경보 | TN: 맞게 찾은 음성 |
 
-second, 만들고 있는 모델
+| 지표 | 계산 | 답하는 질문 |
+| --- | --- | --- |
+| 정확도(Accuracy) | (TP + TN) / 전체 수 | 전체 중 얼마나 맞혔나요? |
+| 정밀도(Precision) | TP / (TP + FP) | 양성이라고 한 것 중 실제 양성은 얼마나 되나요? |
+| 재현율·민감도(Recall, Sensitivity) | TP / (TP + FN) | 실제 양성 중 얼마나 찾았나요? |
+| 특이도(Specificity) | TN / (TN + FP) | 실제 음성 중 얼마나 음성으로 판단했나요? |
+| 거짓 양성률(FPR) | FP / (FP + TN) | 실제 음성 중 얼마나 잘못 경보를 냈나요? |
 
-만약에 여러분들이 만들고 있는 모델이 엄청나게 많은 train data를 필요로 하고 parameter tuning이 적게 필요하다면 아마도 데이터 비율이 train data에 집중이 되고 validation에는 데이터가 적을 것입니다. 반대의 경우도 마찬가지입니다. 만약에 많은 tuning해야 될 많은 parameters가 있다면 validation 데이터가 많이 필요하겠죠. cross-validation을 검색해보면 이와 관련된 아이디어를 얻을 수 있을겁니다. 즉, 비율에 관한 정확한 정답을 없기에 여러분들이 많은 모델을 만들어 본 후에 많은 use-case가 생긴다면 비율에 관해서 know-how가 생길 것 입니다.
+분모가 0인 지표는 정의되지 않습니다. 평가 도구가 이를 0 등으로 처리할 수 있으므로 처리 방식을 확인하세요.
 
-<a href="http://imgur.com/3PVaEXE"><img src="https://i.stack.imgur.com/1fXzJ.png" width="400px" title="source: imgur.com" /></a>
+### 분류 임곗값(Cutoff)
 
-### Separation of Records
-* “High separation of records” means that using predictor variables attains low error
+확률을 출력하는 모델은 임곗값을 기준으로 양성과 음성을 나눕니다. 임곗값을 낮추면 보통 양성을 더 많이 찾는 동시에 잘못된 경보도 늘어납니다. 0.5가 모든 문제에서 최적인 것은 아닙니다.
 
-* “Low separation of records” means that using predictor variables does not improve much on naïve rule
+임곗값은 검증 데이터와 업무상 비용을 바탕으로 선택하고, 테스트 데이터는 최종 평가에 사용하세요.
 
-### Threshold logic unit
-그림에서 보는 것처럼 일정 한계값을 넘어서면 1, 아니면 0으로 분류하는 것이 TLU이고, 이를 이용하여 AND, OR 등을 만들 수 있습니다.
+## ROC 곡선과 AUC
 
-![Threshold logic unit](http://present5.com/presentation/f38da7bb0a544eef73457e93f6811f3f/image-2.jpg){: width="400" height="400"}
+ROC 곡선은 임곗값을 바꾸면서 다음 두 비율을 그린 그래프입니다.
 
-### Linearly separable functions
-여기에서는 일반적으로 AND나 OR 같은 경우는 한개의 선으로 구별되어지지만, XOR의 경우 어떤 경우에도 하나의 선으로 구별되지 않습니다. 이때, 하나의 선으로 구별된다면 linearly separable function이라고 말합니다.
+- **x축**: 거짓 양성률(FPR) = 1 − 특이도
+- **y축**: 참 양성률(TPR) = 재현율
 
-![Lineary separable functions](https://cdn-images-1.medium.com/max/1600/1*wEomny4n9fzKL7X9TABWjw.png){: width="400" height="400"}
+이상적인 분류기는 FPR이 0이고 TPR이 1인 왼쪽 위에 가깝습니다. 무작위 순위의 분류기는 평균적으로 대각선 부근에 놓입니다.
 
-### Cutoff
-실제로 데이털르 예측하게 되면 거의 대부분의 데이터마이닝 알고리즘은 1로 분류할 확률을 결과 값으로 내놓게 됩니다. 그런 후에 이 확률을 cutoff를 기준으로 0인지 1인지 분류하게 되죠.
+ROC-AUC는 곡선 아래의 면적입니다. 양성 사례가 음성 사례보다 높은 점수를 받을 가능성을 요약하며, 일반적으로 1에 가까울수록 순위 구분 능력이 좋습니다. 동점은 절반의 가중치로 계산합니다.
 
-![Cutoff](https://www.cansfordlabs.co.uk/wp-content/uploads/2016/01/CutoffPic-800x568.png){: width="400" height="400"}
+**AUC가 높다고 확률값이 정확하거나 특정 임곗값에서 성능이 좋다는 뜻은 아닙니다.** 양성이 매우 적으면 정밀도-재현율(PR) 곡선과 실제 양성 비율도 함께 확인하세요.
 
-### 주의점
-정확도를 올리는 것이 기본이지만 사기탐지, 결함파악, 비행기 딜레이 예측, 질병 예측 등의 모델에서는 사기를 치지않는 것보다는 사기를 치는 것을 정확하게 잡아내는 것이 중요하고, 결함이 없는 걸 맞추는 것보다는 결함을 맞추는 것이 더 중요합니다. 
+## Lift와 상위 고객 선택
 
+마케팅처럼 일부 대상만 선택하는 문제에서는 예측 점수가 **높은 순서**로 정렬한 뒤 상위 집단의 응답률을 확인합니다.
 
-## 성과 분석 척도
-자 드디어 introduction을 마치고 본격적으로 어떤 것으로 성능을 평가하는 지 알아봅시다.
+전체 응답률이 8%이고 상위 10% 집단의 응답률이 29%라면, 그 집단의 lift는 `29 / 8 = 3.625`입니다. 무작위로 선택했을 때보다 응답 비율이 약 3.63배 높다는 뜻입니다.
 
-### Confusion matrix
-![Confusion Matrix](https://3.bp.blogspot.com/--jLXutUe5Ss/VvPIO6ZH2tI/AAAAAAAACkU/pvVL4L-a70gnFEURcfBbL_R-GnhBR6f1Q/s1600/ConfusionMatrix.png){: width="400" height="400"}
+집단별 응답률을 더한 값은 전체 응답자를 찾아낸 비율이 아닙니다. 예를 들어 상위 두 집단이 각각 전체의 10%이고 응답률이 29%, 14%라면:
 
-여기서 용어를 쉽게 외우려면 일단 틀리면 앞에 False를 붙입니다. 그런후에 내가 예측을 positive로 했냐, negative로 했냐를 확인하면 됩니다.
+- 선택한 상위 20%의 평균 응답률: `(29% + 14%) / 2 = 21.5%`
+- 전체 인원 대비 선택 집단의 응답자 비율: `0.1 × 0.29 + 0.1 × 0.14 = 4.3%`
+- 전체 응답자 중 찾아낸 비율: `4.3% / 8% = 53.75%`
 
-이제 본격적으로 들어가봅시다. 
+## 오분류 비용으로 평가하기
 
-Overall error rate = 전체 경우 중에 예측이 틀린 것의 비율
+양성을 놓치는 비용과 잘못된 경보의 비용이 다르면 정확도만으로 모델을 선택하기 어렵습니다.
 
-Accuracy = 1 - error rate
+- `C(FN)`: 실제 양성을 음성으로 예측한 경우의 건당 비용
+- `C(FP)`: 실제 음성을 양성으로 예측한 경우의 건당 비용
 
-Sensitivity = 실제로 Positive 중에 예측이 맞은 것
+정분류 비용을 0으로 두면 평균 오분류 비용은 다음과 같습니다.
 
-Specificity = 실제로 Negative 중에 예측이 맞은 것
+$$
+\text{평균 오분류 비용} = \frac{C(FN) \times FN + C(FP) \times FP}{N}
+$$
 
-### Lift amd Decile charts
-* 여러 케이스 중에서 보다 중요한 것들을 식별하는 관점에서 모델 성능을 평가하는 지표입니다.
-* 먼저 좋은 분류기는 적은 수의 케이스 만으로 높은 향상을 제공합니다.
-* 상대적으로 사례를 적게 선택하고 상대적으로 높은 응답자의 비율을 찾고자 할때 사용.
+예를 들어 FN이 2건이고 건당 비용이 100, FP가 10건이고 건당 비용이 5라면 총비용은 `2 × 100 + 10 × 5 = 250`입니다. 평가 대상이 100건이면 평균 비용은 2.5입니다.
 
-예를 들어 여러분이 사람들의 응답을 조사하는 분석가라고 해봅시다. 
+비용의 비율 자체를 최소화하는 것이 아니라, 비용 가정 아래에서 **모델과 임곗값이 만드는 실제 비용**을 비교해야 합니다. 마케팅 수익을 평가한다면 발송비와 응답으로 얻는 순이익의 정의도 일관되게 맞추세요.
 
-과거의 응답 비율을 보면 메일을 받은 사람들 중 8% 만이 응답할것으로 생각하고 있습니다.
+## 과표집(Oversampling)의 주의점
 
-기본적으로 메일에 응답하는 사람에게만 메일을 보내는 것이 이득일 것입니다. 따라서 답장하려는 사람에게만 메일을 보내고 싶은데요. 
+과표집은 학습 데이터의 소수 클래스 사례를 늘려 학습을 돕는 방법입니다. 반드시 양성과 음성을 50:50으로 맞춰야 하는 것은 아닙니다. 클래스 가중치나 임곗값 조정도 함께 검토할 수 있습니다.
 
-그래서 여러분들은 과거의 데이터를 바탕으로 사람들이 응답할지 하지 않을지를 예측하는 logistic regression modeld을 만들었습니다. 
+1. 먼저 학습·검증·테스트 데이터를 분리합니다.
+2. **학습 데이터에만** 과표집을 적용합니다.
+3. 검증·테스트 데이터에는 실제 사용 환경의 클래스 비율을 유지합니다.
+4. 검증 데이터로 모델과 임곗값을 선택하고, 테스트 데이터로 최종 평가합니다.
 
-이 모델은 과거에 메일을 받았던 사람의 응답자료를 바탕으로 응답할지 말지에 관한 확률을 얻는 모델입니다.
+교차검증을 한다면 각 fold의 학습 부분 안에서만 과표집합니다. 분할 전에 복제하거나 합성한 사례가 검증 쪽에 섞이면 데이터 누수로 성능이 부풀려질 수 있습니다.
 
-이 모델을 이용하여 각 사람마다의 응답할 확률을 구하였습니다. 그 후 확률이 가장 낮은것부터 높은것 순서대로 나열하였습니다.
+과표집은 학습 시 클래스 비율을 바꾸므로 예측 확률이 실제 발생 비율과 맞지 않을 수 있습니다. 확률 자체가 필요하다면 원래 비율의 별도 데이터로 보정을 검토하세요.
 
-![Lift](https://i.stack.imgur.com/N1ryb.png){: width="400" height="400"}
+## 참고 자료
 
-두번째 그림을 보세요. 나열된 사람들을 10개의 구간이 되도록 같은 구간으로 묶어서 히스토그램을 그립니다. 그러면 첫번재 막대는 상위 10%인 고객들의 집합으로 응답확률의 평균이 29%입니다. 이는 8%로 기대했을때보다 29/8 = 3.63 배의 lift가 있었습니다.
-
-이제 첫번째 그림을 보세요. 응답자를 찾아내는 비율은, 모델 없이 랜덤하게 모든 사람에게 보냈을때랑 모델을 이용하여 나열 한 후 모든 사람에게 메일을 보냈을 때랑 비교한다면 별 차이가 없습니다. 즉, 모든 사람에게 보냈으므로 응답자를 전부 찾아내겠죠.
-
-하지만 20%의 사람들에게만 메일을 보내는 경우에는, 랜덤하게 보냈을 때에는 응답자를 찾아내는 비율은 20%만 찾아내지만(전체 중에 20%만 보냈으니깐 20%만 찾을 수 있습니다) 모델을 이용한다면 20%의 사람에게 메일을 보내 29% + 14% = 43%의 응답을 기대 할 수 있습니다.
-
-![Lift](https://paultebraak.files.wordpress.com/2013/10/103113_2355_understandi1.png?w=640){: width="400" height="400"}
-
-### ROC Curve
-Sensitivity와 Specificity를 구하는 방법이 기억나시나요?
-
-구하는 것 보다는 의미를 다시 한번 확인하여봅시다. 
-
-Sensitivity는 실제로 1인데 예측을 1로해서 맞은 것이고
-
-Specificity는 실제로 0인데 예측을 0으로 해서 맞은 것입니다.
-
-그러면 1 - Specificity는 실제로 0인데 예측을 1로해서 틀린것입니다.
-
-x축에 1 - Specificity = False Positive
-
-y축에 Sensitivity = True Positive
-
-를 그립니다.
-
-![Lift](https://docs.eyesopen.com/toolkits/cookbook/python/_images/roc-theory-small.png){: width="400" height="400"}
-
-바보에게 케이스를 주면서 맞춰봐라고 하면 그냥 기준없이 반반의 확률로 찍기때문에 0을 1로 판정할 확률(1-Specificity)과 1인데 1로 판정할 확률(Sensitivity)이 같을 것입니다. 
-
-따라서 만약 최상의 좋은 분류기는 0을 1로 잘못 분류하는 확률이 0일때, 1을 1이라고 모두다 분류해버려야합니다.
-
-
-### AUROC 
-ROC curve를 보게 되면 좋은 분류기는 그래프가 위로 점점 올라가게 됩니다. 따라서 좋은 분류기일수록 밑의 넓이가 넓어지게 됩니다. 이 원리를 이용한것이 area under ROC입니다.
-
-![AUROC](https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/ROC_curves.svg/300px-ROC_curves.svg.png){: width="400" height="400"}
-
-### Cost perspective
-* 모델의 목표는 먼저 케이스 당 평균 비용을 최소화하는 것입니다.
-
-여러분들이 메일을 보내는 마케팅 담당자라고 생각해봅시다. 1000명의 사람에게 메일을 보내는 데 그 중에 오직 1퍼센트만이 응답할것으로 기대됩니다. 이 경우 예측을, 모두 다 응답하지 않을 것이다라고 예측을 해버리면 정확도는 99%로 좋아보이는(?) 모델이 만들어지게 됩니다. 
-
-하지만 여러분은 답장할 사람을 답장 할것이다라고 분류하는 것이 이득이 되는 것을 비용의 관점으로 살펴보려고 합니다.
-
-메일을 보내는 비용은 답장하지 않은 사람 당 1$이고 답장을 받는다면 답장한 사람 당 총 10$의 비용을 회수할수있습니다. 다음과 같은 2가지 경우를 생각해봅시다
-
-1. 1000명 모두에게 메일을 보내진 않는 경우 0$
-
-![costperspective](/assets/images/costperspective.PNG){: width="400" height="400"}
-
-2. 모델을 이용하여 답장 할 것이라고 예측한 사람인 28명에게만 메일을 보내는 경우 8 * 10 - 20 = 60$
-
-하지만 현실에서는 이렇게 모든 것은 비용으로 산정하기 어렵습니다. 따라서 코스트의 관점으로 성능을 평가하기 위해서는 케이스 당 어떤 비용이 드는지 모든 것은 따져봐야됩니다. 만약에 이런것이 어렵다면 대안책이 하나 있습니다. 그것은 바로 오분류 비용의 비율입니다. 예를 들어, 어떤 기업의 신용도를 평가하는데 사기를 치는 기업을 평가하는 것을 잘못분류하여 좋은기업으로 평가하는 것은, 좋은 기업을 안좋게 분류하는 것보다 5배 나쁘다 이런 식으로 말이죠.
-
-![misclassifying cost](http://albahnsen.github.io/CostSensitiveClassification/_images/cost_mat.png){: width="400" height="400"}
-
-C(FN) - 실제 1을 0으로 잘못 분류하는 비용
-
-C(FP) - 실제 0 을 1로 잘못 분류하는 비용
-
-목표 - C(FN)/C(FP)를 Minimize하는 것이 케이스 당 평균 비용을 최소화하는데 좋음.
-
-따라서 평균 오분류 비용은 = C(FN) * (0을 1으로 분류한 케이스 수) + C(FP) * (1을 0으로 분류한 케이스 수)/총케이스수
-
-> 실제 비용을 추산 할때 기회비용같은 것을 포함하여 성능을 평가할수도 있지만 비용만을 넣는 것이 다양한 곳에 적용할수있게 해줍니다.
-
-### Adding Cost/Benefit to lift Curve
-X-axis is index number (1 for 1st case, n for nth case)
-
-Y-axis is cumulative cost/benefit
-
-Reference line from origin to yn  ( yn = total net benefit)
-
-* 한사람에게 우편물 보내는 비용은 0.65$, 응답자의 가치는 25$, 응답율 2%일 때, 10,000명에게 우편물 보내면? (0.02*$25*10,000) – (0.65*10,000) = - 1500 
-
-![Cost plot](https://image.slidesharecdn.com/lift-171015094055/95/predictive-classification-using-lift-chart-16-638.jpg?cb=1508060774){: width="400" height="400"}
-
-## Oversampling
-* oversampling하는 경우는 언제일까요?
-
-데이터 클래스간의(0,1)의 비율 차이가 크다면, 모델은 예측을 할때 다수의 클래스가 포함된 쪽으로 많은 예측을 할것입니다.
-
-따라서 만약 매우 소수의 클래스가 있지만 그 경우가 매우 중요한 경우(예를 들어 어떤 사람이 금융사기의 위험이 있는지를 예측하고자 할 때, 금융사기의 케이스 수는 매우 작지만 그것을 예측하는 것은 매우 중요하게 됩니다) 이 경우 oversampling을 하게 됩니다.
-
-일반적으로 train할때에는 response의 비율은 50%는 1로 50%는 0으로 합니다.
-
-세가지의 경우를 살펴봅시다
-
-1. assuming equal costs of misclassification
-
-![oversampling1](/assets/images/oversampling1.PNG){: width="400" height="400"}
-
-이 경우 비용이 모두 같으므로 오분류가 최소가 되는 모델을 택했습니다. 총8개 중에 1개를 잘못분류했습니다.
-
-2. assuming that misclassifying “o” is five times the cost of misclassifying “x”
-
-![oversampling2](/assets/images/oversampling2.PNG){: width="400" height="400"}
-
-이 경우 0을 잘못 분류하는 비용이 매우 크므로 0을 모두 정확하게 맞추고, x를 잘못 분류하는 모델을 택했습니다. 총 8개중에 2개를 잘못분류했습니다
-
-3. Oversampling scheme allowing DM methods to incorporate asymmetric costs
-
-![oversampling3](/assets/images/oversampling3.PNG){: width="400" height="400"}
-
-0으로 잘못분류하는 비용이 5배 더 많으므로 0을 5배 만큼 수를 더하면 오분류비용을 같은 비용으로 산정하더라도 5배를 반영하는 형식이 됩니다. 그래서 이 경우 총 16개 중에 2개를 잘못 택하게 되는것입니다.
-
-###  Oversampling Procedure
-1. 전체 데이터 셋을 0 과 1 클래스로 구분합니다. 
-
-2. 케이스 수가 적은 1의 절반을 랜덤으로 선택하여 training sample에 넣고, 같은 수만큼 0을 넣습니다.
-
-3. 샘플에 넣고 남은 1의 케이스를 validation sample에 넣습니다.
-
-4. 원래 0과 1의 비율이 80:30이었다면 validation sample에 이 비율이 유지되도록 0을 validaion sample에 넣습니다.
-
-5. 필요하면 검증 데이터로부터 무작위적으로 테스트 셋을 취합니다.
-
-이렇게 데이터셋을 만든후에 다음과 같이 두가지 경우로 나누어 
-
-* 비과샘플된 검증세트이용하는 경우
-
-validaion data는 oversampling되지않았고 원래의 데이터의 비율을 유지하고 있으므로 모델을 검증할때 이용하고 모델은 oversamped 된 데이터에서 만듭니다.
-
-* 과샘플된 검증데이터만 존재하는 경우
-
-먼저 모델을 과샘플집합에서 만들고, oversampling의 효과를 제거하기위해 비과샘플 세트를 이용해서 모델을 수정합니다.
-
-
-
-
-
-
-
-
-
->
-### Reference 
-* [About train, validation, test data](https://towardsdatascience.com/train-validation-and-test-sets-72cb40cba9e7){: .btn .btn--info}
-* [oversampling](https://www.youtube.com/watch?v=yDe6mw3rQ8g){: .btn .btn--info}
-* [Handling imbalanced dataset in supervised learning using family of SMOTE algorithm](https://www.datasciencecentral.com/profiles/blogs/handling-imbalanced-data-sets-in-supervised-learning-using-family){: .btn .btn--info}
-* [Lecture](http://www.kocw.net/home/search/kemView.do?kemId=1046969){: .btn .btn--info}
-
-
->
-### 용어정리 
-* validation, imbalanced
+- [scikit-learn: 모델 평가 지표](https://scikit-learn.org/stable/modules/model_evaluation.html)
+- [scikit-learn: 교차검증](https://scikit-learn.org/stable/modules/cross_validation.html)
+- [imbalanced-learn: 데이터 누수 주의점](https://imbalanced-learn.org/stable/common_pitfalls.html)
