@@ -1,4 +1,5 @@
 ---
+date: 2018-09-21 00:00:00 +0900
 title: "R 시각화: ggplot2로 막대그래프 그리기"
 categories:
   - data mining

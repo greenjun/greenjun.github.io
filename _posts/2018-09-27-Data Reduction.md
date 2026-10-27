@@ -1,4 +1,5 @@
 ---
+date: 2018-09-27 00:00:00 +0900
 title: "데이터 축소: 표본 추출부터 PCA까지"
 categories:
   - data mining

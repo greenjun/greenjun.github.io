@@ -1,4 +1,5 @@
 ---
+date: 2018-10-02 00:00:00 +0900
 title: "모델 성능 평가: 정확도부터 ROC와 비용까지"
 categories:
   - data mining

@@ -1,4 +1,5 @@
 ---
+date: 2018-09-27 00:00:00 +0900
 title: "R 시각화: 바이올린 플롯으로 분포 비교하기"
 categories:
   - data mining
