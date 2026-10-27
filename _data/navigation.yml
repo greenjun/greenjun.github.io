@@ -1,5 +1,7 @@
 # main links
 main:
+  - title: "시계열 연재"
+    url: /time-series/
   - title: "태그"
     url: /tags-archive/
   - title: "주제별 글"

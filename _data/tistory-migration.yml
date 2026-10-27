@@ -1,0 +1,44 @@
+source: https://dabuncon.tistory.com/
+inventory_checked_at: '2026-10-27'
+public_posts: 4
+public_pages: 1
+entries:
+- source_url: https://dabuncon.tistory.com/entry/%EC%8B%9C%EA%B3%84%EC%97%B4-%EB%B6%84%EC%84%9D1-%EB%B0%B1%EC%83%89%EC%86%8C%EC%9D%8Cwhite-noise%EC%9D%B4%EB%9E%80
+  source_title: 시계열 분석1. 백색소음(white noise)이란?
+  source_published_at: '2022-03-08T11:29:27+09:00'
+  source_modified_at: '2022-11-25T14:27:25+09:00'
+  target: _posts/2022-03-08-Time-Series-White-Noise.md
+  disposition: Full subject matter migrated and edited for mathematical accuracy and
+    house style
+- source_url: https://dabuncon.tistory.com/entry/%EC%8B%9C%EA%B3%84%EC%97%B4-%EB%B6%84%EC%84%9D2-%EC%A0%95%EC%83%81%EC%84%B1stationarity%EC%9D%B4%EB%9E%80
+  source_title: 시계열 분석2. 정상성(stationarity)이란?
+  source_published_at: '2022-03-11T17:25:51+09:00'
+  source_modified_at: '2022-03-17T16:05:47+09:00'
+  target: _posts/2022-03-11-Time-Series-Stationarity.md
+  disposition: Full subject matter migrated and edited for mathematical accuracy and
+    house style
+- source_url: https://dabuncon.tistory.com/entry/%EC%8B%9C%EA%B3%84%EC%97%B4-%EB%B6%84%EC%84%9D3-%EC%9E%90%EA%B8%B0%EC%83%81%EA%B4%80autocorrelation%EC%9D%B4%EB%9E%80
+  source_title: 시계열 분석3. 자기상관(autocorrelation)이란?
+  source_published_at: '2022-03-18T14:38:56+09:00'
+  source_modified_at: '2022-09-23T16:04:25+09:00'
+  target: _posts/2022-03-18-Time-Series-Autocorrelation.md
+  disposition: Full subject matter migrated and edited for mathematical accuracy and
+    house style
+- source_url: https://dabuncon.tistory.com/entry/%EC%9E%90%EB%A3%8C%EC%A1%B0%EC%82%AC-1-%EC%82%B0%EC%97%85-%EB%8F%99%ED%96%A5
+  source_title: '[자료조사] 1. 산업 동향'
+  source_published_at: '2022-05-13T15:17:55+09:00'
+  source_modified_at: '2022-05-13T15:17:55+09:00'
+  target: _posts/2022-05-13-Industry-Research-Sources.md
+  disposition: Full subject matter migrated and edited for mathematical accuracy and
+    house style
+- source_url: https://dabuncon.tistory.com/pages/About
+  source_title: About
+  source_published_at: '2022-02-23T15:02:14+09:00'
+  source_modified_at: '2022-02-23T15:07:31+09:00'
+  target: _pages/about.md
+  disposition: CV link merged into existing about page
+original_figures:
+  kept: 2
+  note: Two explanatory white-noise figures stored locally; unrelated decorative photos
+    omitted.
+industry_source_count: 12
