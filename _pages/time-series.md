@@ -15,15 +15,15 @@ toc: false
 | 1 | [백색소음]({% post_url 2022-03-08-Time-Series-White-Noise %}) | 관측값과 확률과정, 무상관과 독립은 어떻게 다른가요? |
 | 2 | [정상성]({% post_url 2022-03-11-Time-Series-Stationarity %}) | 시간이 지나도 무엇이 유지되어야 하나요? |
 | 3 | [자기상관·ACF·PACF]({% post_url 2022-03-18-Time-Series-Autocorrelation %}) | 시점 사이의 관계를 어떻게 요약하나요? |
-| 4 | [이동평균 모형 MA]({% post_url 2026-10-27-Time-Series-MA %}) | 과거 충격의 영향과 가역성은 무엇인가요? |
-| 5 | [자기회귀 모형 AR]({% post_url 2026-10-27-Time-Series-AR %}) | 과거 값의 영향과 정상성은 어떻게 연결되나요? |
-| 6 | [ARMA와 모형 비교]({% post_url 2026-10-27-Time-Series-ARMA %}) | ACF·PACF·AIC를 어떻게 함께 읽나요? |
-| 7 | [변환·추세·차분]({% post_url 2026-10-27-Time-Series-Differencing %}) | 로그·추세 제거·일반·계절 차분은 어떻게 다른가요? |
-| 8 | [ARIMA]({% post_url 2026-10-27-Time-Series-ARIMA %}) | 차분 후의 모형에서 원래 수준을 어떻게 예측하나요? |
-| 9 | [계절성과 STL 분해]({% post_url 2026-10-27-Time-Series-Seasonality %}) | 추세·계절·나머지 성분을 어떻게 나누나요? |
-| 10 | [SARIMA]({% post_url 2026-10-27-Time-Series-SARIMA %}) | 계절 시차와 로그 역변환은 어떻게 다루나요? |
-| 11 | [잔차 진단과 예측구간]({% post_url 2026-10-27-Time-Series-Diagnostics %}) | 모형이 놓친 규칙과 불확실성을 어떻게 확인하나요? |
-| 12 | [시계열 예측 프로젝트]({% post_url 2026-10-27-Time-Series-Forecast-Project %}) | 미래 정보를 보지 않고 후보를 고르고 평가할 수 있나요? |
+| 4 | [이동평균 모형 MA]({% post_url 2020-03-23-Time-Series-MA %}) | 과거 충격의 영향과 가역성은 무엇인가요? |
+| 5 | [자기회귀 모형 AR]({% post_url 2020-03-30-Time-Series-AR %}) | 과거 값의 영향과 정상성은 어떻게 연결되나요? |
+| 6 | [ARMA와 모형 비교]({% post_url 2020-04-06-Time-Series-ARMA %}) | ACF·PACF·AIC를 어떻게 함께 읽나요? |
+| 7 | [변환·추세·차분]({% post_url 2020-04-13-Time-Series-Differencing %}) | 로그·추세 제거·일반·계절 차분은 어떻게 다른가요? |
+| 8 | [ARIMA]({% post_url 2020-04-20-Time-Series-ARIMA %}) | 차분 후의 모형에서 원래 수준을 어떻게 예측하나요? |
+| 9 | [계절성과 STL 분해]({% post_url 2020-04-27-Time-Series-Seasonality %}) | 추세·계절·나머지 성분을 어떻게 나누나요? |
+| 10 | [SARIMA]({% post_url 2020-05-04-Time-Series-SARIMA %}) | 계절 시차와 로그 역변환은 어떻게 다루나요? |
+| 11 | [잔차 진단과 예측구간]({% post_url 2020-05-11-Time-Series-Diagnostics %}) | 모형이 놓친 규칙과 불확실성을 어떻게 확인하나요? |
+| 12 | [시계열 예측 프로젝트]({% post_url 2020-05-18-Time-Series-Forecast-Project %}) | 미래 정보를 보지 않고 후보를 고르고 평가할 수 있나요? |
 
 ## 어디부터 읽으면 좋을까요?
 

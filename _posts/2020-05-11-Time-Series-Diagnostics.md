@@ -1,7 +1,7 @@
 ---
 title: "시계열 분석 11. 잔차가 조용하면 예측도 믿을 수 있을까요?"
-date: 2026-10-27 09:11:00 +0900
-last_modified_at: 2026-10-27
+date: 2020-05-11 09:11:00 +0900
+last_modified_at: 2020-05-13
 categories: [Time Series]
 tags: [R, time series, residual diagnostics, Ljung-Box]
 author_profile: false
@@ -89,7 +89,7 @@ interval
 
 ## 다음에는 무엇을 배우면 좋을까요?
 
-잔차 진단은 모형 안에 남은 구조를 살피는 단계이고, 시간순 검증은 새 자료에서의 예측을 평가하는 단계입니다. 마지막 글에서는 두 단계를 연결한 [시계열 예측 프로젝트]({% post_url 2026-10-27-Time-Series-Forecast-Project %})를 완성하겠습니다.
+잔차 진단은 모형 안에 남은 구조를 살피는 단계이고, 시간순 검증은 새 자료에서의 예측을 평가하는 단계입니다. 마지막 글에서는 두 단계를 연결한 [시계열 예측 프로젝트]({% post_url 2020-05-18-Time-Series-Forecast-Project %})를 완성하겠습니다.
 
 ## 직접 생각해 보기와 참고 자료
 

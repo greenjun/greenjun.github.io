@@ -1,7 +1,7 @@
 ---
 title: "시계열 분석 6. AR과 MA를 함께 쓰면 무엇이 달라질까요?"
-date: 2026-10-27 09:06:00 +0900
-last_modified_at: 2026-10-27
+date: 2020-04-06 09:06:00 +0900
+last_modified_at: 2020-04-08
 categories: [Time Series]
 tags: [R, time series, ARMA, model selection]
 author_profile: false
@@ -78,13 +78,13 @@ Box.test(as.numeric(residuals(candidate)), lag = 20,
          fitdf = length(coef(candidate)) - 1)
 ```
 
-여기서는 차분 없는 비계절 모형의 평균 모수가 하나 있으므로 이를 빼고 AR·MA 모수 수를 자유도 보정에 썼습니다. 다른 모형에 이 계산을 그대로 옮기지 말고 p+q 등을 명시적으로 확인해야 합니다. 검정의 상세한 조건은 [잔차 진단 글]({% post_url 2026-10-27-Time-Series-Diagnostics %})에서 다시 다룹니다.
+여기서는 차분 없는 비계절 모형의 평균 모수가 하나 있으므로 이를 빼고 AR·MA 모수 수를 자유도 보정에 썼습니다. 다른 모형에 이 계산을 그대로 옮기지 말고 p+q 등을 명시적으로 확인해야 합니다. 검정의 상세한 조건은 [잔차 진단 글]({% post_url 2020-05-11-Time-Series-Diagnostics %})에서 다시 다룹니다.
 
 잔차가 시간에 따라 치우치거나 ACF에 패턴이 남으면 평균 구조가 부족할 수 있습니다. 반대로 잔차 검정을 기각하지 못했다고 모형이 참이라고 증명된 것은 아닙니다. 최종 선택에는 실제 예측 상황을 닮은 검증도 필요합니다.
 
 ## 다음에는 무엇을 배우면 좋을까요?
 
-지금까지는 정상적인 부분을 AR·MA 구조로 설명했습니다. 평균이 계속 증가하는 자료에는 어떻게 적용할까요? 다음 글에서 [변환·추세 제거·차분]({% post_url 2026-10-27-Time-Series-Differencing %})을 구분해 보겠습니다.
+지금까지는 정상적인 부분을 AR·MA 구조로 설명했습니다. 평균이 계속 증가하는 자료에는 어떻게 적용할까요? 다음 글에서 [변환·추세 제거·차분]({% post_url 2020-04-13-Time-Series-Differencing %})을 구분해 보겠습니다.
 
 ## 직접 생각해 보기와 참고 자료
 

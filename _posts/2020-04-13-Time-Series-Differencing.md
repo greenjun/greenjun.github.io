@@ -1,7 +1,7 @@
 ---
 title: "시계열 분석 7. 추세를 빼는 것과 차분은 어떻게 다를까요?"
-date: 2026-10-27 09:07:00 +0900
-last_modified_at: 2026-10-27
+date: 2020-04-13 09:07:00 +0900
+last_modified_at: 2020-04-15
 categories: [Time Series]
 tags: [R, time series, differencing, transformation]
 author_profile: false
@@ -89,7 +89,7 @@ ADF 검정은 단위근을 귀무가설로, KPSS 검정은 설정한 결정적 �
 
 ## 다음에는 무엇을 배우면 좋을까요?
 
-차분 뒤 남은 부분을 ARMA로 설명하면 원래 수준을 위한 모형도 만들 수 있습니다. 다음 글에서 이 구조를 [ARIMA]({% post_url 2026-10-27-Time-Series-ARIMA %})라는 이름으로 연결해 보겠습니다.
+차분 뒤 남은 부분을 ARMA로 설명하면 원래 수준을 위한 모형도 만들 수 있습니다. 다음 글에서 이 구조를 [ARIMA]({% post_url 2020-04-20-Time-Series-ARIMA %})라는 이름으로 연결해 보겠습니다.
 
 ## 직접 생각해 보기와 참고 자료
 

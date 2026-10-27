@@ -1,7 +1,7 @@
 ---
 title: "시계열 분석 12. 미래를 보지 않고 예측 모형을 고를 수 있을까요?"
-date: 2026-10-27 09:12:00 +0900
-last_modified_at: 2026-10-27
+date: 2020-05-18 09:12:00 +0900
+last_modified_at: 2020-05-20
 categories: [Time Series]
 tags: [R, time series, forecasting, rolling origin, project]
 author_profile: false
@@ -49,7 +49,7 @@ forecast_candidate <- function(training, horizon, model) {
 }
 ```
 
-로그 변환은 양수인 승객 수와 수준에 따른 변동을 생각해 개발 단계에서 정한 선택입니다. 예측을 되돌릴 때는 [SARIMA 글]({% post_url 2026-10-27-Time-Series-SARIMA %})의 정규 근사 평균 보정을 사용했습니다. 예측 전에 최종 테스트 결과에 맞춰 변환을 바꾸지 않습니다.
+로그 변환은 양수인 승객 수와 수준에 따른 변동을 생각해 개발 단계에서 정한 선택입니다. 예측을 되돌릴 때는 [SARIMA 글]({% post_url 2020-05-04-Time-Series-SARIMA %})의 정규 근사 평균 보정을 사용했습니다. 예측 전에 최종 테스트 결과에 맞춰 변환을 바꾸지 않습니다.
 
 ## 예측 원점을 앞으로 옮겨 보겠습니다
 
@@ -135,7 +135,7 @@ legend("topleft", c("Observed", "Selected model", "Seasonal naive"),
 
 이 예제의 개발 검증 구간은 세 개뿐입니다. 월별 오차는 서로 독립이라고 보기 어렵고, 검증·테스트 구간은 특정 역사 시기에 해당합니다. 모형이 잘 맞아도 구조 변화나 외부 충격이 있는 미래까지 보장하지는 않습니다.
 
-또한 여기서는 점 예측을 비교했습니다. 의사결정에 예측구간이 필요하다면 [잔차와 구간 진단]({% post_url 2026-10-27-Time-Series-Diagnostics %})을 더하고, horizon별 구간 포함률과 폭도 별도로 평가해야 합니다. 관측되지 않은 외생 변수를 이미 아는 것처럼 넣지 않는 원칙도 같습니다.
+또한 여기서는 점 예측을 비교했습니다. 의사결정에 예측구간이 필요하다면 [잔차와 구간 진단]({% post_url 2020-05-11-Time-Series-Diagnostics %})을 더하고, horizon별 구간 포함률과 폭도 별도로 평가해야 합니다. 관측되지 않은 외생 변수를 이미 아는 것처럼 넣지 않는 원칙도 같습니다.
 
 ## 연재를 마치며 무엇을 연결하면 좋을까요?
 

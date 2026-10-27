@@ -1,7 +1,7 @@
 ---
 title: "시계열 분석 10. SARIMA는 계절 패턴을 어떻게 예측할까요?"
-date: 2026-10-27 09:10:00 +0900
-last_modified_at: 2026-10-27
+date: 2020-05-04 09:10:00 +0900
+last_modified_at: 2020-05-06
 categories: [Time Series]
 tags: [R, time series, SARIMA, prediction interval]
 author_profile: false
@@ -16,7 +16,7 @@ excerpt: "SARIMA의 일반·계절 차수를 읽고, 로그 항공 승객 자료
 
 월별 매출에는 바로 지난달뿐 아니라 작년 같은 달과의 관계도 있을 수 있습니다. ARIMA에 이런 계절 시차의 구조를 더한 모형을 **계절 ARIMA(seasonal ARIMA, SARIMA)**라고 말합니다.
 
-[계절성 글]({% post_url 2026-10-27-Time-Series-Seasonality %})에서 주기를 먼저 확인했는데요. 주기가 12라는 이유만으로 계절 차수까지 자동 결정되는 것은 아닙니다.
+[계절성 글]({% post_url 2020-04-27-Time-Series-Seasonality %})에서 주기를 먼저 확인했는데요. 주기가 12라는 이유만으로 계절 차수까지 자동 결정되는 것은 아닙니다.
 
 ## 일곱 숫자는 각각 무엇일까요?
 
@@ -98,7 +98,7 @@ data.frame(model = c("Seasonal naive", "SARIMA mean", "SARIMA median"),
 
 ## 다음에는 무엇을 배우면 좋을까요?
 
-예측선이 자연스러워 보여도 남아 있는 의존성과 구간의 가정을 확인해야 합니다. 다음 글에서는 [잔차 진단과 예측구간]({% post_url 2026-10-27-Time-Series-Diagnostics %})을 한 단계 더 살펴보겠습니다.
+예측선이 자연스러워 보여도 남아 있는 의존성과 구간의 가정을 확인해야 합니다. 다음 글에서는 [잔차 진단과 예측구간]({% post_url 2020-05-11-Time-Series-Diagnostics %})을 한 단계 더 살펴보겠습니다.
 
 ## 직접 생각해 보기와 참고 자료
 

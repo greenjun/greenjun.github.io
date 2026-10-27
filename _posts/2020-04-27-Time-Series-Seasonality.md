@@ -1,7 +1,7 @@
 ---
 title: "시계열 분석 9. 추세와 계절성을 나누면 무엇이 보일까요?"
-date: 2026-10-27 09:09:00 +0900
-last_modified_at: 2026-10-27
+date: 2020-04-27 09:09:00 +0900
+last_modified_at: 2020-04-29
 categories: [Time Series]
 tags: [R, time series, seasonality, STL]
 author_profile: false
@@ -76,7 +76,7 @@ STL과 여러 평활화 방법은 한 시점의 추세를 추정할 때 그 뒤 
 
 ## 다음에는 무엇을 배우면 좋을까요?
 
-계절성을 나누어 보면 어느 주기에 어떤 관계가 남는지 생각하기 쉬워집니다. 다음 글에서는 계절 차분과 계절 AR·MA 항을 함께 사용하는 [SARIMA]({% post_url 2026-10-27-Time-Series-SARIMA %})로 이어 보겠습니다.
+계절성을 나누어 보면 어느 주기에 어떤 관계가 남는지 생각하기 쉬워집니다. 다음 글에서는 계절 차분과 계절 AR·MA 항을 함께 사용하는 [SARIMA]({% post_url 2020-05-04-Time-Series-SARIMA %})로 이어 보겠습니다.
 
 ## 직접 생각해 보기와 참고 자료
 

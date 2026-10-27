@@ -1,7 +1,7 @@
 ---
 title: "시계열 분석 8. ARIMA의 세 숫자는 무엇을 뜻할까요?"
-date: 2026-10-27 09:08:00 +0900
-last_modified_at: 2026-10-27
+date: 2020-04-20 09:08:00 +0900
+last_modified_at: 2020-04-22
 categories: [Time Series]
 tags: [R, time series, ARIMA, forecasting]
 author_profile: false
@@ -14,7 +14,7 @@ excerpt: "ARIMA(p,d,q)의 차분과 ARMA 구조를 연결하고, Nile 자료로 
 
 ## 차분한 값을 예측하면 원래 값도 예측할 수 있을까요?
 
-[앞 글]({% post_url 2026-10-27-Time-Series-Differencing %})에서는 차분으로 수준의 누적 변화를 다뤘습니다. 차분한 값의 미래를 예측한 뒤 다시 누적하면 원래 수준으로 돌아올 수 있겠죠. 이 생각을 모형으로 정리한 것이 **ARIMA(autoregressive integrated moving average)**입니다.
+[앞 글]({% post_url 2020-04-13-Time-Series-Differencing %})에서는 차분으로 수준의 누적 변화를 다뤘습니다. 차분한 값의 미래를 예측한 뒤 다시 누적하면 원래 수준으로 돌아올 수 있겠죠. 이 생각을 모형으로 정리한 것이 **ARIMA(autoregressive integrated moving average)**입니다.
 
 integrated는 차분의 반대 방향으로 누적해 원래 수준을 복원한다는 의미로 이해하면 좋겠습니다. 미래의 실제값을 끼워 넣는다는 뜻은 아닙니다.
 
@@ -97,7 +97,7 @@ data.frame(model = c("Last observed value", selected_name),
 
 ## 다음에는 무엇을 배우면 좋을까요?
 
-ARIMA의 세 숫자는 차분한 자료의 구조를 간단히 나타냅니다. 그런데 매년 같은 달에 반복되는 변화는 어떻게 표현할까요? 다음 글에서 [계절성과 시계열 분해]({% post_url 2026-10-27-Time-Series-Seasonality %})를 살펴보겠습니다.
+ARIMA의 세 숫자는 차분한 자료의 구조를 간단히 나타냅니다. 그런데 매년 같은 달에 반복되는 변화는 어떻게 표현할까요? 다음 글에서 [계절성과 시계열 분해]({% post_url 2020-04-27-Time-Series-Seasonality %})를 살펴보겠습니다.
 
 ## 직접 생각해 보기와 참고 자료
 
